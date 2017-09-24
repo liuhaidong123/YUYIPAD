@@ -1,7 +1,9 @@
-package com.technology.yuyipad;
+package com.technology.yuyipad.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.technology.yuyipad.R;
 
 public class MainActivity extends AppCompatActivity {
 
