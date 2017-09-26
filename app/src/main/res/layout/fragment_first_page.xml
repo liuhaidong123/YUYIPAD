@@ -4,10 +4,262 @@
     android:layout_height="match_parent"
     tools:context="com.technology.yuyipad.fragment.FirstPageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <!--左边布局-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/fafafa"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="52dp"
+                        android:background="@color/ffffff">
+
+                        <!--选择头像-->
+                        <RelativeLayout
+                            android:id="@+id/select_patient_rl"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp">
+
+                            <com.technology.yuyipad.lhdUtils.RoundImageView
+                                android:id="@+id/patient_head_img"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="15dp"
+                                android:src="@mipmap/ic_launcher"
+
+                                />
+
+                            <TextView
+                                android:id="@+id/patient_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@id/patient_head_img"
+                                android:maxLength="6"
+                                android:text="刘海东"
+                                android:textColor="@color/name_color"
+                                android:textSize="12sp" />
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:src="@mipmap/more" />
+                        </RelativeLayout>
+
+                        <!--血压体温走势图-->
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewpager_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="290dp"
+                            android:layout_below="@id/select_patient_rl"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp">
+
+                        </android.support.v4.view.ViewPager>
+
+                        <!--显示体温血压数据-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:layout_below="@id/viewpager_view"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:id="@+id/normal_btn_ll"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:src="@mipmap/ic_launcher"
+                                    android:id="@+id/normal_btn_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/heightPress_btn_ll"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/heightPress_message_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="129"
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:id="@+id/heightPress_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:text="@string/height_blood"
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="9sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/lowPress_btn_ll"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/lowPress_message_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:id="@+id/lowPress_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:text="@string/low_blood"
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="9sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/my_btn_ll"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:id="@+id/temperature_message_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="37"
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:id="@+id/temperature_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:text="@string/tem"
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="9sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </ScrollView>
+
+
+        </LinearLayout>
+
+        <!--右边布局-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/ffffff"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!--首页标题横栏-->
+    <RelativeLayout
+        android:id="@+id/first_title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="@color/color_homeBackGround">
+
+        <ImageView
+            android:id="@+id/location_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/location" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/location_img"
+            android:gravity="center"
+            android:text="北景"
+            android:textColor="@color/location_color"
+            android:textSize="15dp" />
+
+
+        <ImageView
+            android:id="@+id/message_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/message" />
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_toLeftOf="@id/message_img"
+            android:src="@mipmap/search" />
+    </RelativeLayout>
+
+=======
         android:text="111111" />
+>>>>>>> 17443bb41d1979583e040bf715c7ddef09aaf001
 
 </FrameLayout>

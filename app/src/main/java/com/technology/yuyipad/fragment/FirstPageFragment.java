@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.technology.yuyipad.R;
 
@@ -13,7 +14,7 @@ import com.technology.yuyipad.R;
  * A simple {@link Fragment} subclass.
  */
 public class FirstPageFragment extends Fragment {
-
+    private RelativeLayout mTitle_Rl;
 
     public FirstPageFragment() {
         // Required empty public constructor
@@ -23,8 +24,19 @@ public class FirstPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_first_page, container, false);
+        initUI(view);
+        return view;
+    }
 
-        return inflater.inflate(R.layout.fragment_first_page, container, false);
+    /**
+     * 初始化UI
+     *
+     * @param view
+     */
+    private void initUI(View view) {
+        mTitle_Rl = view.findViewById(R.id.first_title_rl);
+        mTitle_Rl.getBackground().setAlpha(200);
     }
 
 }

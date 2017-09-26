@@ -3,4 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="height_blood">收缩压(高压)</string>
+    <string name="low_blood">舒张压(低压)</string>
+    <string name="tem">体温</string>
 </resources>
