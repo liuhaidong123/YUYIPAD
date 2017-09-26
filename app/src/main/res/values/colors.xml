@@ -7,4 +7,11 @@
     <color name="color_homeTextColorUnSelect">#636e59</color>
     <color name="color_homeBackGround">#383a41</color>
     <color name="color_unhomeBackGround">#212226</color>
+
+
+    <color name="location_color">#dedfe0</color>
+    <color name="fafafa">#fafafa</color>
+    <color name="ffffff">#ffffff</color>
+    <color name="name_color">#1dbeec</color>
+    <color name="color_666666">#666666</color>
 </resources>
