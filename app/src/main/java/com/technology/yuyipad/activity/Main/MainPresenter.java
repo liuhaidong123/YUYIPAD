@@ -41,28 +41,26 @@ public class MainPresenter {
         transaction.add(LayoutId,cFragment);
         transaction.add(LayoutId,myFragment);
         fragment=fFragment;
-        transaction.hide(fFragment).hide(meFrgament).hide(cFragment).hide(myFragment).show(fFragment).commit();
+        transaction.hide(fFragment).hide(meFrgament).hide(cFragment).hide(myFragment).show(fragment).commit();
     }
 
     public void ShowFragment(int pos){
+        manager.beginTransaction().hide(fragment).commit();
         switch (pos){
             case 0:
-                manager.beginTransaction().hide(fragment).show(fFragment).commit();
                 fragment=fFragment;
                 break;
             case 1:
-                manager.beginTransaction().hide(fragment).show(meFrgament).commit();
                 fragment=meFrgament;
                 break;
             case 2:
-                manager.beginTransaction().hide(fragment).show(cFragment).commit();
                 fragment=cFragment;
                 break;
             case 3:
-                manager.beginTransaction().hide(fragment).show(myFragment).commit();
                 fragment=myFragment;
                 break;
         }
+        manager.beginTransaction().show(fragment).commit();
     }
 
     //首页，测量页面，咨询页面，我的页面
