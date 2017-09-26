@@ -35,8 +35,7 @@ public class MainActivity extends MyActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        unbinder= ButterKnife.bind(this);
+        setChilidView(R.layout.activity_main);
         presenter=new MainPresenter();
         presenter.addList(
                 new HomeRelativeBean(main_HomePage_rela,main_HomePage_image,main_HomePage_text),
@@ -64,7 +63,6 @@ public class MainActivity extends MyActivity {
         }
 
     }
-
     @Override
     public void setRequestedOrientation(int requestedOrientation) {
         return;
