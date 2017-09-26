@@ -3,6 +3,7 @@ package com.technology.yuyipad.lzhUtils;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -15,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MyActivity extends Activity {
+public class MyActivity extends FragmentActivity {
     public Unbinder unbinder;
     RelativeLayout rela;
     @Override
