@@ -1,6 +1,6 @@
-package com.technology.yuyipad.MainActivity;
+package com.technology.yuyipad.Main;
 
-import com.technology.yuyipad.MainActivity.HomeRelativeBean;
+
 
 import java.util.ArrayList;
 import java.util.List;

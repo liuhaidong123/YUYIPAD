@@ -1,4 +1,4 @@
-package com.technology.yuyipad.MainActivity;
+package com.technology.yuyipad.Main;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
