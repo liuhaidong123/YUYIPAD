@@ -10,12 +10,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.Main.MainActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

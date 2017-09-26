@@ -25,18 +25,10 @@ public class FirstPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first_page, container, false);
-        initUI(view);
         return view;
     }
-
     /**
      * 初始化UI
-     *
      * @param view
      */
-    private void initUI(View view) {
-        mTitle_Rl = view.findViewById(R.id.first_title_rl);
-        mTitle_Rl.getBackground().setAlpha(200);
-    }
-
 }

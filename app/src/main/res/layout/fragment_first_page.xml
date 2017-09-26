@@ -220,7 +220,7 @@
         android:id="@+id/first_title_rl"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:background="@color/color_homeBackGround">
+        android:background="#c8383a41">
 
         <ImageView
             android:id="@+id/location_img"
