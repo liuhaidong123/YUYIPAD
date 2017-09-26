@@ -1,6 +1,8 @@
 package com.technology.yuyipad.activity.Main;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -66,9 +68,5 @@ public class MainActivity extends MyActivity {
                 break;
         }
 
-    }
-    @Override
-    public void setRequestedOrientation(int requestedOrientation) {
-        return;
     }
 }
