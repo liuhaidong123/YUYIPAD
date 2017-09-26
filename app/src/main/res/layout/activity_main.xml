@@ -4,8 +4,10 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_white"
     tools:context=".activity.Main.MainActivity">
     <RelativeLayout
+        android:id="@+id/main_leftLayout"
         android:background="@color/color_homeBackGround"
         android:layout_height="match_parent"
         android:layout_width="100dp">
@@ -141,4 +143,9 @@
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_toRightOf="@+id/main_leftLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_fragLayout"/>
 </RelativeLayout>

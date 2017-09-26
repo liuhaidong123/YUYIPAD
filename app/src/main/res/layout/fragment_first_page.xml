@@ -258,5 +258,8 @@
             android:src="@mipmap/search" />
     </RelativeLayout>
 
+=======
+        android:text="111111" />
+>>>>>>> 17443bb41d1979583e040bf715c7ddef09aaf001
 
 </FrameLayout>
