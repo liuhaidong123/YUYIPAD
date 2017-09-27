@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.lzhUtils.StateBarUtils;
 
 /**
  * A simple {@link Fragment} subclass.
