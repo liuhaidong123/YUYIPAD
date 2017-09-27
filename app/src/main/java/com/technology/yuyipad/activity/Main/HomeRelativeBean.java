@@ -17,6 +17,7 @@ public class HomeRelativeBean {
         this.imageView=image;
         this.textView=text;
     }
+    //设置drawable的select属性
     public void setSelect(boolean flag){
         rela.setSelected(flag);
         imageView.setSelected(flag);

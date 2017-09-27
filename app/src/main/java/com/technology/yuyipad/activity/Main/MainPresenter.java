@@ -27,14 +27,13 @@ public class MainPresenter {
     public MainPresenter(){
         li=new ArrayList<>();
     }
+    //初始化fragment
     public void initFragment( FragmentManager manager,int LayoutId){
         this.manager=manager;
         cFragment=new ConsultFragment();
         fFragment=new FirstPageFragment();
         meFrgament=new MeasureFragment();
         myFragment=new MyFragment();
-
-
         FragmentTransaction transaction=manager.beginTransaction();
         transaction.add(LayoutId,fFragment);
         transaction.add(LayoutId,meFrgament);
@@ -43,7 +42,7 @@ public class MainPresenter {
         fragment=fFragment;
         transaction.hide(fFragment).hide(meFrgament).hide(cFragment).hide(myFragment).show(fragment).commit();
     }
-
+    //fragment切换
     public void ShowFragment(int pos){
         manager.beginTransaction().hide(fragment).commit();
         switch (pos){
@@ -63,13 +62,14 @@ public class MainPresenter {
         manager.beginTransaction().show(fragment).commit();
     }
 
-    //首页，测量页面，咨询页面，我的页面
+    //初始化首页，测量页面，咨询页面，我的页面标题项
     public void addList( HomeRelativeBean HomePage,HomeRelativeBean MeasurePage,HomeRelativeBean CounselingPage,HomeRelativeBean Minepage){
         li.add(HomePage);
         li.add(MeasurePage);
         li.add(CounselingPage);
         li.add(Minepage);
     }
+    //设置标题项的颜色
     public void setSelect(int pos){
         for(int i=0;i<li.size();i++){
             li.get(i).setSelect(false);

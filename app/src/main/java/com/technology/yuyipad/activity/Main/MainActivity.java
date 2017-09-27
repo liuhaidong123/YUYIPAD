@@ -1,17 +1,10 @@
 package com.technology.yuyipad.activity.Main;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.technology.yuyipad.R;
-import com.technology.yuyipad.fragment.ConsultFragment;
-import com.technology.yuyipad.fragment.FirstPageFragment;
-import com.technology.yuyipad.fragment.MeasureFragment;
-import com.technology.yuyipad.fragment.MyFragment;
 import com.technology.yuyipad.lzhUtils.MyActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,13 +31,14 @@ public class MainActivity extends MyActivity {
         super.onCreate(savedInstanceState);
         setChilidView(R.layout.activity_main);
         presenter=new MainPresenter();
+        //初始化被选中的标题项实体类
         presenter.addList(
                 new HomeRelativeBean(main_HomePage_rela,main_HomePage_image,main_HomePage_text),
                 new HomeRelativeBean(main_MeasurePage_rela,main_MeasurePage_image,main_MeasurePage_text),
                 new HomeRelativeBean(main_CounselingPage_rela,main_CounselingPage_image,main_CounselingPage_text),
                 new HomeRelativeBean(main_MinePage_rela,main_MinePage_image,main_MinePage_text));
-        presenter.setSelect(0);
-        presenter.initFragment(getSupportFragmentManager(),R.id.main_fragLayout);//初始化fragment
+        presenter.setSelect(0);//设置被选中的标题颜色
+        presenter.initFragment(getSupportFragmentManager(),R.id.main_fragLayout);//初始化fragment并显示第一个fragment
     }
 
     @OnClick({R.id.main_HomePage_rela, R.id.main_MeasurePage_rela, R.id.main_CounselingPage_rela, R.id.main_MinePage_rela})

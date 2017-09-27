@@ -303,7 +303,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
 
     public FirstPageFragment() {
-
+        // Required empty public constructor
     }
 
 
