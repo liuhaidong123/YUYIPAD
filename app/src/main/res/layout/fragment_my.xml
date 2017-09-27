@@ -19,7 +19,7 @@
                 android:layout_height="116dp"
                 android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"
-                android:padding="3dp"
+                android:padding="1.5dp"
                 android:id="@+id/frag_my_userImage"
                 android:src="@mipmap/usererr"/>
             <LinearLayout

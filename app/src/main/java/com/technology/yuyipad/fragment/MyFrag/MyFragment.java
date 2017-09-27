@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.technology.yuyipad.DbUtils.IDbUtlis;
@@ -31,10 +33,11 @@ public class MyFragment extends Fragment implements IUser{
     UserBean user;
     Unbinder unbinder;
     MyPresenter presenter;
+    @BindView(R.id.frag_my_userLayout)RelativeLayout frag_my_userLayout;
     @BindView(R.id.frag_my_userImage)RoundImageView userImage;//头像
     @BindView(R.id.frag_my_userName)TextView frag_my_userName;//姓名
     @BindView(R.id.frag_my_userAge)TextView frag_my_userAge;//年龄
-    @BindView(R.id.frag_my_userSexImage)TextView frag_my_userSexImage;//性别image：false女，ture男
+    @BindView(R.id.frag_my_userSexImage)ImageView frag_my_userSexImage;//性别image：false女，ture男
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,7 +93,6 @@ public class MyFragment extends Fragment implements IUser{
     public void onErrorTokenOut() {
 
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
