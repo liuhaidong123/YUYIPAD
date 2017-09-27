@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,9 +18,9 @@
             android:orientation="vertical">
 
             <ScrollView
-                android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scrollbars="none">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -38,14 +39,15 @@
                         <RelativeLayout
                             android:id="@+id/select_patient_rl"
                             android:layout_width="match_parent"
-                            android:layout_height="65dp">
+                            android:layout_height="65dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp">
 
                             <com.technology.yuyipad.lhdUtils.RoundImageView
                                 android:id="@+id/patient_head_img"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="15dp"
                                 android:src="@mipmap/ic_launcher"
 
                                 />
@@ -68,15 +70,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginRight="20dp"
                                 android:src="@mipmap/more" />
                         </RelativeLayout>
 
                         <!--血压体温走势图-->
                         <android.support.v4.view.ViewPager
-                            android:id="@+id/viewpager_view"
+                            android:id="@+id/blood_tem_viewpager"
                             android:layout_width="match_parent"
-                            android:layout_height="290dp"
+                            android:layout_height="350dp"
                             android:layout_below="@id/select_patient_rl"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp">
@@ -87,9 +88,10 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="65dp"
-                            android:layout_below="@id/viewpager_view"
+                            android:layout_height="100dp"
+                            android:layout_below="@id/blood_tem_viewpager"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:id="@+id/normal_btn_ll"
                                 android:layout_width="0dp"
@@ -99,13 +101,21 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:src="@mipmap/ic_launcher"
+
                                     android:id="@+id/normal_btn_img"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center" />
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/ic_launcher" />
 
-
+                                <TextView
+                                    android:id="@+id/normal_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -147,7 +157,7 @@
                                     android:id="@+id/lowPress_message_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=""
+                                    android:text="99"
                                     android:textColor="@color/color_666666"
                                     android:textSize="15sp" />
 
@@ -191,6 +201,7 @@
                             </LinearLayout>
 
                         </LinearLayout>
+
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -209,6 +220,148 @@
             android:background="@color/ffffff"
             android:orientation="vertical">
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.jude.rollviewpager.RollPagerView
+                        android:id="@+id/ad_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp">
+
+                    </com.jude.rollviewpager.RollPagerView>
+
+                    <View
+                        android:id="@+id/line_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/ad_viewpager"
+                        android:background="@color/line_drug" />
+                    <!--预约挂号，我的药品-->
+                    <LinearLayout
+
+                        android:id="@+id/mallregister_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_below="@id/line_view"
+                        android:background="@color/color_white"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/register_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/registration" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/str_register"
+                                android:textColor="@color/color_drumall"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/line_drug" />
+
+                        <LinearLayout
+                            android:id="@+id/drugmall_ll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/drug" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/str_drugmall"
+                                android:textColor="@color/color_drumall"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/line_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/mallregister_ll"
+                        android:background="@color/line_drug" />
+                    <!--资讯-->
+                    <RelativeLayout
+                        android:id="@+id/information_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_below="@id/line_1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:text="@string/information"
+                            android:textColor="@color/color_drumall"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:src="@mipmap/more" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:id="@+id/line_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/information_rl"
+                        android:background="@color/line_drug" />
+
+                    <com.technology.yuyipad.lhdUtils.InformationListView
+                        android:id="@+id/listview_firstpage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/line_2"
+                        android:background="@color/color_white"
+                        android:divider="@color/line_drug"
+                        android:dividerHeight="0.5dp">
+
+                    </com.technology.yuyipad.lhdUtils.InformationListView>
+
+                </RelativeLayout>
+            </ScrollView>
+
         </LinearLayout>
 
 
@@ -220,7 +373,7 @@
         android:id="@+id/first_title_rl"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:background="@color/color_homeBackGround">
+        android:background="#c8383a41">
 
         <ImageView
             android:id="@+id/location_img"
@@ -258,8 +411,5 @@
             android:src="@mipmap/search" />
     </RelativeLayout>
 
-=======
-        android:text="111111" />
->>>>>>> 17443bb41d1979583e040bf715c7ddef09aaf001
 
 </FrameLayout>

@@ -8,4 +8,8 @@
     <string name="height_blood">收缩压(高压)</string>
     <string name="low_blood">舒张压(低压)</string>
     <string name="tem">体温</string>
+    <string name="str_register">预约挂号</string>
+    <string name="str_drugmall">我的药品</string>
+    <string name="information">资讯</string>
+    <string name="add_patient">添加</string>
 </resources>
