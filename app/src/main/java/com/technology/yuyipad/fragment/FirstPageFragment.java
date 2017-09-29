@@ -29,6 +29,8 @@ import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 import com.jude.rollviewpager.hintview.IconHintView;
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.activity.InformationDetailsActivity;
+import com.technology.yuyipad.activity.SelectHospitalOPDActivity;
 import com.technology.yuyipad.adapter.BloodTemViewPagerAda;
 import com.technology.yuyipad.adapter.FirstPageListViewAdapter;
 import com.technology.yuyipad.adapter.PatientAda;
@@ -57,7 +59,8 @@ import java.util.Map;
  * A simple {@link Fragment} subclass.
  */
 public class FirstPageFragment extends Fragment implements View.OnClickListener {
-    private RelativeLayout mSelect_patient_rl, mAdd_rl;
+    private RelativeLayout wrap;//RelativeLyout是scrollview中的容器，
+    private RelativeLayout mSelect_patient_rl;
     private RoundImageView mHead_img;
     private TextView mName;
     private PopupWindow mPopupwindow;
@@ -65,36 +68,12 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     private PatientAda mPatientAda;
     private View mView;
     private View footer;
-    private Map<String, String> mMap = new HashMap<>();
     private List<com.technology.yuyipad.bean.FirstPageUserDataBean.Result> mList = new ArrayList<>();
     private HttpTools mHttptools;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-//            if (msg.what == 35) {//获取用户列表
-//                Object o = msg.obj;
-//                if (o != null && o instanceof Root) {
-//                    Root root = (Root) o;
-//                    if (root != null && root.getResult() != null) {
-//                        mList = root.getResult();
-//                        mPatientAda.setList(mList);
-//                        mPatientAda.notifyDataSetChanged();
-//
-//                        //默认主用户头像和姓名
-//                        if (mList.size() != 0) {
-//                            Picasso.with(getActivity()).load(UrlTools.BASE + mList.get(0).getAvatar()).error(R.mipmap.usererr).into(mHead_img);
-//                            mName.setText(mList.get(0).getTrueName());
-//                        }
-//
-//                    }
-//                    if (mList.size() == 6) {
-//                        mPatient_Listview.removeFooterView(footer);
-//                    }
-//
-//                }
-//            } else
-
 
             if (msg.what == 31) {//广告接口
                 Object o = msg.obj;
@@ -118,41 +97,39 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
                 }
             } else if (msg.what == 38) {//首页用户列表及默认数据
-//                tvlist.clear();
-//                imglist.clear();
                 heightBloodData.clear();
                 lowBloodData.clear();
                 XdateNum.clear();
                 temData.clear();
                 XTemdateNum.clear();
                 Object o = msg.obj;
-                if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageUserDataBean.Root)
-                    ;
-                com.technology.yuyipad.bean.FirstPageUserDataBean.Root root = (com.technology.yuyipad.bean.FirstPageUserDataBean.Root) o;
-                //mUserData.clear();
-               // mAllUser_ll.removeAllViews();
-                if (root != null && root.getResult() != null) {
-                    mList = root.getResult();
-                    mPatientAda.setList(mList);
-                    mPatientAda.notifyDataSetChanged();
+                if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageUserDataBean.Root){
+                    com.technology.yuyipad.bean.FirstPageUserDataBean.Root root = (com.technology.yuyipad.bean.FirstPageUserDataBean.Root) o;
+                    if (root != null && root.getResult() != null) {
+                        mList = root.getResult();
+                        mPatientAda.setList(mList);
+                        mPatientAda.notifyDataSetChanged();
 
-                    //默认主用户头像和姓名
-                    if (mList.size() != 0) {
-                        Picasso.with(getActivity()).load(UrlTools.BASE + mList.get(0).getAvatar()).error(R.mipmap.usererr).into(mHead_img);
-                        mName.setText(mList.get(0).getTrueName());
-                        initUserMessage();//初始化用户的头像和昵称，绘制折线图
+                        //默认主用户头像和姓名
+                        if (mList.size() != 0) {
+                            Picasso.with(getActivity()).load(UrlTools.BASE + mList.get(0).getAvatar()).error(R.mipmap.usererr).into(mHead_img);
+                            mName.setText(mList.get(0).getTrueName());
+                            initUserMessage();//初始化默认主用户用户的头像和昵称，绘制折线图
+                        }
+
+                        //如果数据为6条，则隐藏添加按钮
+                        if (mList.size() == 6) {
+                            mPatient_Listview.removeFooterView(footer);
+                        }
                     }
 
                 }
-                //如果数据为6条，则隐藏添加按钮
-                if (mList.size() == 6) {
-                    mPatient_Listview.removeFooterView(footer);
-                }
 
-            }else if (msg.what == 39) {//点击首页用户头像
+
+
+            } else if (msg.what == 39) {//点击首页用户头像
                 Object o = msg.obj;
                 if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageClickUserBean.Root) {
-                    //MyDialog.stopDia();
                     com.technology.yuyipad.bean.FirstPageClickUserBean.Root root = (com.technology.yuyipad.bean.FirstPageClickUserBean.Root) o;
                     XdateNum.clear();
                     heightBloodData.clear();
@@ -266,7 +243,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
                 }
             }
-            // mSwipeRefresh.setRefreshing(false);
         }
 
     };
@@ -279,8 +255,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     private List<com.technology.yuyipad.bean.UpdatedFirstPageTwoDataBean.Rows> mInforList = new ArrayList<>();
     FirstPageListViewAdapter mListViewAdapter;
 
-//血压体温
-
+    //血压体温
     private ViewPager mBloodTem_ViewPager;
     private List<View> mBloodTemViewList = new ArrayList<>();
     private BloodView mBloodView;
@@ -299,9 +274,13 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     private ImageView mPromptImg;
     private TextView mPromptTv;
     private String grayColor = "#6a6a6a";
-    private TextView mHeightBloodTv,mLowBloodTv,mTem;
+    private TextView mHeightBloodTv, mLowBloodTv, mTem;
 
+    //资讯
+    private RelativeLayout mInformation_Rl;
 
+    //预约挂号
+    private LinearLayout mRegister_ll;
     public FirstPageFragment() {
         // Required empty public constructor
     }
@@ -321,11 +300,20 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
      * @param view
      */
     private void initUI(View view) {
-        //mMap.put("token", User.token);
-       // Log.e("token=", User.token);
+
+        //将右边scrollView定位到最顶端：
+
+
+        wrap=(RelativeLayout)view.findViewById(R.id.wrap);
+        wrap.setFocusable(true);
+        wrap.setFocusableInTouchMode(true);
+        wrap.requestFocus();
+
+
         mHttptools = HttpTools.getHttpToolsInstance();
         mHttptools.getAdData(mHandler);//广告接口
         mHttptools.getFirstPageInformationTwoData(mHandler, 0, 2);//首页资讯2条数据
+        mHttptools.getFirstPageUserDataData(mHandler, User.token);//首页用户列表数据u
         //选择患者查看数据
         mSelect_patient_rl = view.findViewById(R.id.select_patient_rl);
         mSelect_patient_rl.setOnClickListener(this);
@@ -348,7 +336,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                     Picasso.with(getActivity()).load(UrlTools.BASE + mList.get(i).getAvatar()).error(R.mipmap.usererr).into(mHead_img);
                     mName.setText(mList.get(i).getTrueName());
                     mPopupwindow.dismiss();
-                    mHttptools.getClickUserDataData(mHandler, User.token, mList.get(i).getId());
+                    mHttptools.getClickUserDataData(mHandler, User.token, mList.get(i).getId());//请求某个患者数据
                 } else {
                     //添加患者
                     Toast.makeText(getActivity(), "添加患者", Toast.LENGTH_SHORT).show();
@@ -368,6 +356,15 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         //给资讯设置adapter
         mListViewAdapter = new FirstPageListViewAdapter(this.getActivity(), mInforList);
         mInformationTwoListview.setAdapter(mListViewAdapter);
+        //点击资讯跳转列表和详情
+        mInformationTwoListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), InformationDetailsActivity.class);
+                intent.putExtra("tag", i);//
+                startActivity(intent);
+            }
+        });
 
         //血压体温走势图
         initBloodData();
@@ -381,27 +378,41 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mBloodTem_ViewPager.setAdapter(mBloodTemViewPagerAda);
         //时间
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         mPromptImg = (ImageView) view.findViewById(R.id.normal_btn_img);
         mPromptTv = (TextView) view.findViewById(R.id.normal_tv);
         mHeightBloodTv = (TextView) view.findViewById(R.id.heightPress_message_tv);
         mLowBloodTv = (TextView) view.findViewById(R.id.lowPress_message_tv);
         mTem = (TextView) view.findViewById(R.id.temperature_message_tv);
+
+        //点击资讯按钮跳转列表和详情
+        mInformation_Rl = view.findViewById(R.id.information_rl);
+        mInformation_Rl.setOnClickListener(this);
+
+        //预约挂号
+        mRegister_ll=view.findViewById(R.id.register_ll);
+        mRegister_ll.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == mSelect_patient_rl.getId()) {
+        if (id == mSelect_patient_rl.getId()) {//选择患者查看数据
             showPatientBox();
+        } else if (id == mInformation_Rl.getId()) {//点击资讯跳转列表和详情
+            Intent intent = new Intent(getActivity(), InformationDetailsActivity.class);
+            intent.putExtra("tag", -1);//
+            startActivity(intent);
+        }else if (id==mRegister_ll.getId()){
+            startActivity(new Intent(getActivity(), SelectHospitalOPDActivity.class));
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // mHttptools.getUserLIst(mHandler, mMap);
-        mHttptools.getFirstPageUserDataData(mHandler, User.token);//首页用户列表数据u
+
+
+
     }
 
     /**
@@ -482,6 +493,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         }
 
     }
+
 
 
     /**
@@ -636,6 +648,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mLowBloodTv.setText(low + "");
         mTem.setText(tem + "°C");
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

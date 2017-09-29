@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_information_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.technology.yuyipad.activity.InformationDetailsActivity">
+
+    <TextView
+        android:id="@+id/information_title"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="@color/ffffff"
+        android:gravity="center"
+        android:text="@string/information"
+        android:textColor="@color/color_333333"
+        android:textSize="19sp" />
+
+    <View
+        android:id="@+id/title_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/information_title"
+        android:background="@color/fafafa"
+
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/all_information_data_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_line"
+        android:background="@color/ffffff"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--左边列表-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:background="@color/ffffff">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.technology.yuyipad.lhdUtils.InformationListView
+                            android:id="@+id/information_details_listview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:divider="@null"
+                            android:scrollbars="none">
+
+                        </com.technology.yuyipad.lhdUtils.InformationListView>
+
+                        <RelativeLayout
+                            android:id="@+id/in_many_relative"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/information_details_listview"
+                            android:background="@color/fafafa"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/footer_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:paddingBottom="15dp"
+                                android:paddingEnd="20dp"
+                                android:paddingStart="20dp"
+                                android:paddingTop="15dp"
+                                android:text="加载更多"
+                                android:textColor="@color/color_333333"
+                                android:textSize="13sp" />
+
+                            <ProgressBar
+                                android:id="@+id/in_pbLocate"
+                                style="?android:attr/progressBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@+id/footer_tv" />
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@color/fafafa" />
+            <!--右边详情-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6.5"
+                android:background="@color/ffffff">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/information_details_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="310dp"
+                            android:scaleType="fitXY" />
+
+                        <TextView
+                            android:id="@+id/information_title_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/information_details_img"
+                            android:layout_margin="20dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:text="title"
+                            android:textColor="@color/color_333333"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/information_details_grade"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/information_title_tv"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"
+                            android:text="等级"
+                            android:textColor="@color/color_333333"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:id="@+id/grade_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_below="@id/information_details_grade"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:background="@color/color_eeeeee" />
+
+                        <TextView
+                            android:id="@+id/information_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/grade_line"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="15dp"
+                            android:textColor="@color/color_333333"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                </ScrollView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

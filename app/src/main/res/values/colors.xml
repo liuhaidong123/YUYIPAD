@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#1dbeec</color>
     <color name="color_homeTextColorSelect">#1ebeec</color>
     <color name="color_homeTextColorUnSelect">#636e59</color>
     <color name="color_homeBackGround">#383a41</color>
@@ -23,8 +23,20 @@
     <color name="color_333333">#333333</color>
     <color name="color_888888">#888888</color>
     <color name="color_blood_tem_bg">#474e5b</color>
+    <color name="color_eeeeee">#eeeeee</color>
+    <color name="color_title_bg">#8b474d5b</color>
+    <color name="color_click_bg">#f6f5f5</color>
+    <color name="color_measure">#221e1f</color>
+    <color name="color_f3f3f3">#f3f3f3</color>
+    <color name="color_aaa9a9">#aaa9a9</color>
+    <color name="color_f6f6f6">#f6f6f6</color>
+    <color name="color_department_tv">#1ebeec</color>
+    <color name="color_fefefe">#fefefe</color>
+    <color name="color_cecece">#cecece</color>
+    <color name="color_06b2f7">#06b2f7</color>
 
     <color name="themeColorDink">#b5212226</color>
     <color name="color_white">#ffffff</color>
+    <color name="color_white_aph">#a0ffffff</color>
 
 </resources>

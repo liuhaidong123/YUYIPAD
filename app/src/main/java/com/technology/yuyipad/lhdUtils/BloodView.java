@@ -39,6 +39,7 @@ public class BloodView extends View {
     private float XScale;//x轴刻度
     private float YScale;//y轴刻度
     private float YEachBlood;
+    private float mWidth;
     private float mBigCircleRadius;
     private float mSmallCircleRadius;
     private Context mContext;
@@ -80,9 +81,12 @@ public class BloodView extends View {
         YEndPoint = getHeight();
         YScale = YEndPoint / 10.0f;
         YEachBlood = YScale / 20.0f;
-        XScale = getWidth() / 8.0f;
+        mWidth=getWidth();
+        XScale = mWidth / 8.0f;
 
         Log.e("YEndPoint", YEndPoint + "");
+        Log.e("mWidth", mWidth + "");
+
         Log.e("XScale", XScale + "");
         Log.e("YScale", YScale + "");
         Log.e("YEachBlood", YEachBlood + "");

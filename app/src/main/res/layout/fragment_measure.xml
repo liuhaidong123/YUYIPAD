@@ -1,13 +1,129 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ffffff"
     tools:context="com.technology.yuyipad.fragment.MeasureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/measure_title"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:text="@string/measure"
+        android:textColor="@color/color_333333"
+        android:textSize="19sp" />
+
+    <View
+        android:background="@color/fafafa"
+        android:id="@+id/measure_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/measure_title" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="222222" />
+        android:layout_below="@id/measure_line"
+        android:scrollbars="none">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/blood_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="149dp"
+                android:layout_marginRight="149dp"
+                android:layout_marginTop="34dp"
+                android:background="@mipmap/picture_one">
+
+                <ImageView
+                    android:id="@+id/blood_xin_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:src="@mipmap/blood_xin" />
+
+                <RelativeLayout
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/blood_xin_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/blood_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blood_tv"
+                        android:textSize="19sp"
+                        android:textColor="@color/ffffff"
+                        />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/blood_tv"
+                        android:id="@+id/blood_tv_m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blood_measure_tv"
+                        android:textSize="18sp"
+                        android:textColor="@color/ffffff"
+                        />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/tem_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blood_rl"
+                android:layout_marginLeft="149dp"
+                android:layout_marginRight="149dp"
+                android:layout_marginTop="25dp"
+                android:background="@mipmap/picture_two">
+                <ImageView
+                    android:id="@+id/tem_ji_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:src="@mipmap/tem_ji" />
+
+
+                <RelativeLayout
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/tem_ji_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tem_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tem_ji"
+                        android:textSize="19sp"
+                        android:textColor="@color/ffffff"
+                        />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/tem_tv"
+                        android:id="@+id/tem_tv_m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tem_measure_tv"
+                        android:textSize="18sp"
+                        android:textColor="@color/ffffff"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

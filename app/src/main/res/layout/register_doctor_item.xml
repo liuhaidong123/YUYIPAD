@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/color_cecece">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0.5dp"
+            android:background="@color/color_fefefe">
+
+            <ImageView
+                android:id="@+id/dortor_head_img"
+                android:layout_width="85dp"
+                android:layout_height="110dp"
+                android:scaleType="center"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/dortor_head_img">
+
+                <TextView
+                    android:id="@+id/doctor_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="5"
+                    android:text="LM"
+                    android:textColor="@color/color_drumall"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/doctor_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/doctor_name"
+                    android:layout_marginTop="15dp"
+                    android:maxLength="5"
+                    android:text="主治医师"
+                    android:textColor="@color/color_drumall"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:id="@+id/register_btn_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_below="@id/doctor_job"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/registertion">
+
+                    <RelativeLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <TextView
+                            android:id="@+id/gua_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/registertion"
+                            android:textColor="@color/ffffff"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/yu_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@id/gua_tv"
+                            android:text="@string/yu"
+                            android:textColor="@color/ffffff"
+                            android:textSize="10sp" />
+
+                        <TextView
+
+                            android:id="@+id/yu_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/yu_tv"
+                            android:text="10"
+                            android:textColor="@color/ffffff"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

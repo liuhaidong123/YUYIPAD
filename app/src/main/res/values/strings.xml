@@ -12,4 +12,18 @@
     <string name="str_drugmall">我的药品</string>
     <string name="information">资讯</string>
     <string name="add_patient">添加</string>
+    <string name="measure">测量</string>
+    <string name="blood_tv">血压计</string>
+    <string name="blood_measure_tv">血压测量记录</string>
+    <string name="tem_ji">体温计</string>
+    <string name="tem_measure_tv">体温测量记录</string>
+    <string name="register_title">预约挂号</string>
+    <string name="select_opd">选择科室</string>
+    <string name="morning">上午</string>
+    <string name="afternoon">下午</string>
+    <string name="registertion">挂号</string>
+    <string name="yu">余号</string>
+
+
+
 </resources>
