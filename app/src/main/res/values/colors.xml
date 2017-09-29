@@ -35,8 +35,9 @@
     <color name="color_cecece">#cecece</color>
     <color name="color_06b2f7">#06b2f7</color>
 
-    <color name="themeColorDink">#b5212226</color>
+    <color name="themeColorDink">#c8212226</color>
     <color name="color_white">#ffffff</color>
+    <color name="colorea">#eaeaea</color>
     <color name="color_white_aph">#a0ffffff</color>
 
 </resources>

@@ -6,6 +6,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,26 +22,34 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.adapter.DepartmentAda;
 import com.technology.yuyipad.adapter.DoctorAda;
 import com.technology.yuyipad.adapter.HospitalAda;
 import com.technology.yuyipad.adapter.OPDAda;
+import com.technology.yuyipad.adapter.RecycleAdapter;
 import com.technology.yuyipad.bean.FirstPageInformationTwoData;
 import com.technology.yuyipad.bean.FirstPageInformationTwoDataRoot;
 import com.technology.yuyipad.bean.HospitalDepartmentMessage;
 import com.technology.yuyipad.bean.HospitalDepartmentRoot;
 import com.technology.yuyipad.bean.HospitalOutPatient;
 import com.technology.yuyipad.bean.SelectDoctor.DatenumberList;
+import com.technology.yuyipad.bean.SelectDoctor.Result;
+import com.technology.yuyipad.bean.SelectDoctor.Root;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lhdUtils.InformationListView;
 import com.technology.yuyipad.lhdUtils.UseDrugGridView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class SelectHospitalOPDActivity extends AppCompatActivity implements View.OnClickListener{
+public class SelectHospitalOPDActivity extends AppCompatActivity implements View.OnClickListener {
     //医院列表
     private InformationListView mHospital_listview;
     private HospitalAda mHospitalAda;
@@ -130,6 +141,58 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
                     }
                 }
             }
+            //获取所有的挂号医生
+            else if (msg.what == 30) {
+                Object o = msg.obj;
+                if (o != null && o instanceof Root) {
+                    Root root = (Root) o;
+                    if (root.getCode().equals("0")) {
+                        int month = 0;
+                        int day = 0;
+                        mRList = root.getResult();
+                        if (mRList.size() != 0) {
+                            //设置日期
+                            for (int i = 0; i < mRList.size(); i++) {
+                                try {
+                                    Date date = simpleDateFormat.parse(mRList.get(i).getDatastr());
+                                    mCalender.setTime(date);
+                                    month = mCalender.get(Calendar.MONTH) + 1;
+                                    day = mCalender.get(Calendar.DAY_OF_MONTH);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                String date = month + "/" + day;
+                                mDateList.add(date);
+                                if (i == 0) {//默认第一个日期字体比较大，背景深
+                                    isClickDateList.add(true);
+                                } else {
+                                    isClickDateList.add(false);
+                                }
+
+                            }
+
+                            //设置日期数据
+                            mRecycleAda.setIsFlagList(isClickDateList);
+                            mRecycleAda.setmList(mDateList);
+                            mRecycleAda.notifyDataSetChanged();
+                            // mDateMsg_tv.setText(mDateList.get(datePosition));
+
+                            //刚进页面显示第一个日期，上午的医生数据
+                            mDoctorList = mRList.get(datePosition).getDatenumberList();
+                            if (mDoctorList.size() != 0) {
+                                mDoctorAda.setmListDoctor(mDoctorList);
+                                mDoctorAda.setFlag(isFlag);
+                                mDoctorAda.notifyDataSetChanged();
+                                // mAll_Doctor_Rl.setVisibility(View.VISIBLE);
+                            } else {
+                                Toast.makeText(SelectHospitalOPDActivity.this, "此门诊目前没有医生信息", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }
+
+                }
+            }
         }
     };
 
@@ -191,7 +254,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mHospitalCheckList.clear();
-                mDepartmentPosition=0;
+                mDepartmentPosition = 0;
                 mDoctor_ll.setVisibility(View.GONE);//隐藏医生
                 mDepartmentAndOpd_ll.setVisibility(View.VISIBLE);//显示科室门诊
                 showPopuWindow();
@@ -236,7 +299,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
 
                 // 点击某个科室获取对应门诊集合
                 if (mRightData.size() != 0) {
-                    mDepartmentPosition=i;
+                    mDepartmentPosition = i;
                     mOPDAda.setmList((List<HospitalOutPatient>) mRightData.get(i));
                     mOPDAda.notifyDataSetChanged();
                 }
@@ -257,8 +320,10 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
                 mDoctor_ll.setVisibility(View.VISIBLE);//显示医生
                 mDepartmentAndOpd_ll.setVisibility(View.GONE);//隐藏所有科室门诊
                 mName_ke.setText(mRightData.get(mDepartmentPosition).get(i).getClinicName());
-                Log.e("门诊下标",i+"");
-                Log.e("科室下标",mDepartmentPosition+"");
+                mDateList.clear();
+                isClickDateList.clear();
+                Log.e("门诊下标", i + "");
+                Log.e("科室下标", mDepartmentPosition + "");
                 mHttptools.getUserRegisterData(mHandler, mRightData.get(mDepartmentPosition).get(i).getId());//获取所有医生列表
             }
         });
@@ -277,17 +342,61 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
         //点击某个门诊名称
         mName_ke = (TextView) findViewById(R.id.opd_name_tv);
         //医生列表
-        mGridView= (UseDrugGridView) findViewById(R.id.doctor_gridview);
-        mDoctorAda=new DoctorAda(this, mDoctorList, isFlag);
+        mGridView = (UseDrugGridView) findViewById(R.id.doctor_gridview);
+        mDoctorAda = new DoctorAda(this, mDoctorList, isFlag);
         mGridView.setAdapter(mDoctorAda);
+
+        //时间
+        simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        mCalender = Calendar.getInstance();
+
+        //日期列表
+        mRecycleView = (RecyclerView) findViewById(R.id.recycle_date_id);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(OrientationHelper.HORIZONTAL);//水平走向
+        mRecycleView.setLayoutManager(manager);
+        mRecycleAda = new RecycleAdapter(mDateList, isClickDateList, this);
+        mRecycleView.setAdapter(mRecycleAda);
+        //点击日期时候
+        mRecycleAda.setOnItemClickLitener(new RecycleAdapter.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                for (int i = 0; i < isClickDateList.size(); i++) {
+                    if (position == i) {
+                        isClickDateList.set(position, true);
+                    } else {
+                        isClickDateList.set(i, false);
+                    }
+                }
+                mRecycleAda.setIsFlagList(isClickDateList);
+                mRecycleAda.notifyDataSetChanged();
+                Toast.makeText(SelectHospitalOPDActivity.this, "日期下标"+position, Toast.LENGTH_SHORT).show();
+                datePosition=position;
+                mDoctorList = mRList.get(datePosition).getDatenumberList();
+                mDoctorAda.setmListDoctor(mDoctorList);
+                mDoctorAda.setFlag(isFlag);
+                mDoctorAda.notifyDataSetChanged();
+            }
+        });
     }
+
     private ImageView mLfetDate_img, mRightDate_img;//左右日期
-    private TextView  mMorning_tv, mAfternoon_tv,mName_ke;//上午下午
-    private int mDepartmentPosition=0;//点击科室的时候获取的下标
+    private TextView mMorning_tv, mAfternoon_tv, mName_ke;//上午下午
+    private RecyclerView mRecycleView;
+    private RecycleAdapter mRecycleAda;
+    private int mDepartmentPosition = 0;//点击科室的时候获取的下标
     private UseDrugGridView mGridView;
     private DoctorAda mDoctorAda;
     private List<DatenumberList> mDoctorList = new ArrayList<>();
     private boolean isFlag = true;//默认true上午, false 下午
+    private List<Result> mRList = new ArrayList<>();
+    private SimpleDateFormat simpleDateFormat;
+    private Calendar mCalender;
+    private int hour;
+    private List<String> mDateList = new ArrayList<>();
+    private List<Boolean> isClickDateList = new ArrayList<>();
+    private int datePosition = 0;//日期下表，默认第一个日期下的医生列表
+
     //加载弹框
     private void showPopuWindow() {
         //设置透明度
@@ -316,23 +425,65 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        int id= view.getId();
-        if (id==mLfetDate_img.getId()){//左日期
+        int id = view.getId();
+        if (id == mLfetDate_img.getId()) {//左日期
+                if (datePosition==0){
+                    Toast.makeText(getApplicationContext(), "抱歉，只显示当天的数据", Toast.LENGTH_SHORT).show();
+                }else {
+                    datePosition-=1;
+                    mDoctorList = mRList.get(datePosition).getDatenumberList();
+                    mDoctorAda.setmListDoctor(mDoctorList);
+                    mDoctorAda.setFlag(isFlag);
+                    mDoctorAda.notifyDataSetChanged();
 
-        }else if (id==mRightDate_img.getId()){//右日期
+                    mRecycleView.smoothScrollToPosition(datePosition);
+                    for (int i = 0; i < isClickDateList.size(); i++) {
+                        if (datePosition == i) {
+                            isClickDateList.set(datePosition, true);
+                        } else {
+                            isClickDateList.set(i, false);
+                        }
+                    }
+                    mRecycleAda.setIsFlagList(isClickDateList);
+                    mRecycleAda.notifyDataSetChanged();
+                }
 
-        }else if (id==mMorning_tv.getId()){//上午
-            mMorning_tv.setTextColor(ContextCompat.getColor(this,R.color.ffffff));
+        } else if (id == mRightDate_img.getId()) {//右日期
+            if (datePosition==mDateList.size()-1){
+                Toast.makeText(getApplicationContext(), "抱歉，最多显示一周的数据", Toast.LENGTH_SHORT).show();
+            }else {
+                datePosition+=1;
+                mDoctorList = mRList.get(datePosition).getDatenumberList();
+                mDoctorAda.setmListDoctor(mDoctorList);
+                mDoctorAda.setFlag(isFlag);
+                mDoctorAda.notifyDataSetChanged();
+
+                mRecycleView.smoothScrollToPosition(datePosition);
+                for (int i = 0; i < isClickDateList.size(); i++) {
+                    if (datePosition == i) {
+                        isClickDateList.set(datePosition, true);
+                    } else {
+                        isClickDateList.set(i, false);
+                    }
+                }
+                mRecycleAda.setIsFlagList(isClickDateList);
+                mRecycleAda.notifyDataSetChanged();
+            }
+        } else if (id == mMorning_tv.getId()) {//上午
+            mMorning_tv.setTextColor(ContextCompat.getColor(this, R.color.ffffff));
             mMorning_tv.setBackgroundResource(R.drawable.morning_bg);
-            mAfternoon_tv.setTextColor(ContextCompat.getColor(this,R.color.color_drumall));
+            mAfternoon_tv.setTextColor(ContextCompat.getColor(this, R.color.color_drumall));
             mAfternoon_tv.setBackgroundResource(R.drawable.afternoon_cancle_bg);
+            isFlag = true;
+        } else if (id == mAfternoon_tv.getId()) {//下午
 
-        }else if (id==mAfternoon_tv.getId()){//下午
-
-            mMorning_tv.setTextColor(ContextCompat.getColor(this,R.color.color_drumall));
+            mMorning_tv.setTextColor(ContextCompat.getColor(this, R.color.color_drumall));
             mMorning_tv.setBackgroundResource(R.drawable.morning_cancle_bg);
-            mAfternoon_tv.setTextColor(ContextCompat.getColor(this,R.color.ffffff));
+            mAfternoon_tv.setTextColor(ContextCompat.getColor(this, R.color.ffffff));
             mAfternoon_tv.setBackgroundResource(R.drawable.afternoon_bg);
+            isFlag = false;
         }
     }
+
+
 }

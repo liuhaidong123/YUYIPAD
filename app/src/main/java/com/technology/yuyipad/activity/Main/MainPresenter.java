@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.technology.yuyipad.fragment.ConsultFragment;
 import com.technology.yuyipad.fragment.FirstPageFragment;
 import com.technology.yuyipad.fragment.MeasureFragment;
-import com.technology.yuyipad.fragment.MyFragment;
+import com.technology.yuyipad.fragment.MyFrag.MyFragment;
 
 import java.util.ArrayList;
 import java.util.List;

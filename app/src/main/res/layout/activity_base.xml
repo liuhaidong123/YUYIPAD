@@ -2,9 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:id="@+id/base_rela"
+    android:clipToPadding="false"
     android:fitsSystemWindows="true"
-    android:background="@color/themeColorDink"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 </RelativeLayout>

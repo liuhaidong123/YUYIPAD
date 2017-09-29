@@ -7,5 +7,26 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <!--字体19sp，颜色#fffff（纯白），最大长度5,宽度／高度均为自适应-->
+    <style name="TextS19CfM5" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize19</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <!--//定义字体19sp，颜色#333333 width=wrapcontent，height=wrapcontent-->
+    <style name="TextS19C3" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize19</item>
+        <item name="android:textColor">@color/color_333333</item>
+    </style>
+    <!--//定义所有的宽高度都是wrap_content的布局-->
+    <style name="layoutWrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--//定义所有的宽高度都是match_parent的布局-->
+    <style name="layoutmatchparent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>

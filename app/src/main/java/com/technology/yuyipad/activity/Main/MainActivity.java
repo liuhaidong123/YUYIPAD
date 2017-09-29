@@ -39,6 +39,7 @@ public class MainActivity extends MyActivity {
                 new HomeRelativeBean(main_MinePage_rela,main_MinePage_image,main_MinePage_text));
         presenter.setSelect(0);//设置被选中的标题颜色
         presenter.initFragment(getSupportFragmentManager(),R.id.main_fragLayout);//初始化fragment并显示第一个fragment
+        main_MinePage_text=findViewById(R.id.main_MinePage_text);
     }
 
     @OnClick({R.id.main_HomePage_rela, R.id.main_MeasurePage_rela, R.id.main_CounselingPage_rela, R.id.main_MinePage_rela})
@@ -61,6 +62,5 @@ public class MainActivity extends MyActivity {
                 presenter.ShowFragment(3);
                 break;
         }
-
     }
 }

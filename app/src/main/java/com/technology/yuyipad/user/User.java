@@ -5,5 +5,5 @@ package com.technology.yuyipad.user;
  */
 
 public class User {
-    public static String token="8205A7675B1DACAB2D29442FABD1D17F";
+    public static String token="3FDE5008B1DF46D72B734191EC45539C";
 }
