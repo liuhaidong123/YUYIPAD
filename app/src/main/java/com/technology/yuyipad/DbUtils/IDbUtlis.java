@@ -27,10 +27,10 @@ public class IDbUtlis {
         helper=new IOpenHelper(context, "network.db", null, 1);
         SQLiteDatabase db =helper.getReadableDatabase();
         String netString="";
-        Cursor cursor=db.rawQuery("select values from inter where name=?",new String[]{url});
+        Cursor cursor=db.rawQuery("select value from inter where name=?",new String[]{url});
         if (cursor!=null){
             while (cursor.moveToNext()){
-                netString=cursor.getString(cursor.getColumnIndex("values"));
+                netString=cursor.getString(cursor.getColumnIndex("value"));
             }
             Log.i("IDbUtlis","getOkhttpString获取缓存数据--："+url+"==="+netString);
         }
@@ -46,7 +46,7 @@ public class IDbUtlis {
         SQLiteDatabase db=helper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put("name",url);
-        contentValues.put("values",netString);
+        contentValues.put("value",netString);
         long l=db.replace("inter",null,contentValues);
         db.close();
         if (l>-1){

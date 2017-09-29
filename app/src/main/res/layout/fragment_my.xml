@@ -5,11 +5,15 @@
     android:background="@color/color_white"
     tools:context="com.technology.yuyipad.fragment.MyFrag.MyFragment">
     <FrameLayout
-        android:background="@mipmap/photo"
         android:id="@+id/frag_my_topLayout"
         android:layout_width="match_parent"
         android:layout_height="219dp"
         >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/photo"
+            android:scaleType="centerCrop"/>
         <RelativeLayout
             android:id="@+id/frag_my_userLayout"
             android:layout_gravity="center"
@@ -30,15 +34,17 @@
                 android:layout_below="@+id/frag_my_userImage"
                 android:layout_width="wrap_content">
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:text="姓名"
-                    style="@style/TextS17CfM5"
+                    style="@style/TextS19CfM5"
                     android:id="@+id/frag_my_userName"
                     />
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="2.5dp"
                     android:text="年龄"
                     android:id="@+id/frag_my_userAge"
-                    style="@style/TextS17CfM5"/>
+                    style="@style/TextS19CfM5"/>
                 <ImageView
                     android:id="@+id/frag_my_userSexImage"
                     android:layout_gravity="center_vertical"
@@ -50,4 +56,143 @@
         </RelativeLayout>
     </FrameLayout>
 
+    <RelativeLayout
+        android:layout_below="@+id/frag_my_topLayout"
+        android:id="@+id/frag_my_layout_center"
+        style="@style/layoutmatchparent"
+        >
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            style="@style/layoutWrapContent">
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                style="@style/layoutWrapContent">
+                <!--/／电子病例-->
+                <RelativeLayout
+                    android:id="@+id/frag_my_layout_medical"
+                    android:background="@drawable/frag_my_rela"
+                    android:layout_width="145dp"
+                    android:layout_height="109dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+                        <ImageView
+                            style="@style/layoutWrapContent"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/medicalrecord"/>
+                        <TextView
+                            android:layout_gravity="center_horizontal"
+                            android:text="电子病历"
+                            android:layout_marginTop="15dp"
+                            style="@style/TextS19C3"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!--/／消息-->
+                <RelativeLayout
+                    android:layout_marginLeft="98.5dp"
+                    android:id="@+id/frag_my_layout_message"
+                    android:background="@drawable/frag_my_rela"
+                    android:layout_width="145dp"
+                    android:layout_height="109dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+                            <ImageView
+                                style="@style/layoutWrapContent"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@mipmap/news"/>
+                        <TextView
+                            android:layout_gravity="center_horizontal"
+                            android:text="消息"
+                            android:layout_marginTop="15dp"
+                            style="@style/TextS19C3"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!--/／家庭成员管理-->
+                <RelativeLayout
+                    android:layout_marginLeft="98.5dp"
+                    android:id="@+id/frag_my_layout_member"
+                    android:background="@drawable/frag_my_rela"
+                    android:layout_width="145dp"
+                    android:layout_height="109dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+                        <ImageView
+                            style="@style/layoutWrapContent"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/member"/>
+                        <TextView
+                            android:layout_gravity="center_horizontal"
+                            android:text="家庭成员管理"
+                            android:layout_marginTop="15dp"
+                            style="@style/TextS19C3"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                style="@style/layoutWrapContent">
+                <!--/／用户设备管理-->
+                <RelativeLayout
+                    android:id="@+id/frag_my_layout_device"
+                    android:background="@drawable/frag_my_rela"
+                    android:layout_width="145dp"
+                    android:layout_height="109dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+                        <ImageView
+                            style="@style/layoutWrapContent"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/equipment"/>
+                        <TextView
+                            android:layout_gravity="center_horizontal"
+                            android:text="用户设备管理"
+                            android:layout_marginTop="15dp"
+                            style="@style/TextS19C3"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <!--/／设置-->
+                <RelativeLayout
+                    android:layout_marginLeft="98.5dp"
+                    android:id="@+id/frag_my_layout_setting"
+                    android:background="@drawable/frag_my_rela"
+                    android:layout_width="145dp"
+                    android:layout_height="109dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+                        <ImageView
+                            style="@style/layoutWrapContent"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/setup"/>
+                        <TextView
+                            android:layout_gravity="center_horizontal"
+                            android:text="设置"
+                            android:layout_marginTop="15dp"
+                            style="@style/TextS19C3"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

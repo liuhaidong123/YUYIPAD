@@ -3,6 +3,8 @@ package com.technology.yuyipad.ToastUtils;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.technology.yuyipad.Net.ErrorText;
+
 /**
  * Created by wanyu on 2017/9/27.
  */
@@ -31,8 +33,8 @@ public class toast {
         Toast.makeText(con,ToastText.onSuccess,Toast.LENGTH_SHORT).show();
     }
     interface ToastText{
-        String gsonError="";
-        String netWorkError="";
-        String onSuccess="";
+        String gsonError= ErrorText.gsonError;
+        String netWorkError=ErrorText.netError;
+        String onSuccess="成功";
     }
 }

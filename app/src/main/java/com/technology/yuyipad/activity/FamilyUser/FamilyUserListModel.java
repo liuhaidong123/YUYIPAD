@@ -1,4 +1,4 @@
-package com.technology.yuyipad.fragment.MyFrag;
+package com.technology.yuyipad.activity.FamilyUser;
 
 import android.os.Handler;
 import android.os.Message;
@@ -13,20 +13,19 @@ import com.technology.yuyipad.Net.Ip;
 import com.technology.yuyipad.Net.Iport;
 import com.technology.yuyipad.Net.gson;
 import com.technology.yuyipad.Net.ok;
-import com.technology.yuyipad.ToastUtils.toast;
-import com.technology.yuyipad.code.ServerCode;
 import com.technology.yuyipad.lzhUtils.MyApplication;
 import com.technology.yuyipad.user.User;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by wanyu on 2017/9/27.
+ * Created by wanyu on 2017/9/29.
  */
-
-public class MyModel {
-    IUser iUser;
+//获取家庭用户列表
+public class FamilyUserListModel {
+    IFamilyUserList iUser;
     String resStr;
     Handler handler=new Handler(){
         @Override
@@ -34,53 +33,52 @@ public class MyModel {
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
-                    iUser.onError(ErrorText.netError,Iport.IgetUserInfo);
+                    iUser.onError(ErrorText.netError,Iport.IgetFamilyUserList);
                     break;
                 case 1:
                     try{
-                        UserBean bean= gson.gson.fromJson(resStr,UserBean.class);
+                        FamilyUserListBean bean= gson.gson.fromJson(resStr,FamilyUserListBean.class);
                         if (bean!=null){
-                            if (ServerCode.successCode.equals(bean.getCode())){
+                            if ("0".equals(bean.getCode())){
                                 iUser.onSuccess(bean);
-                                IDbUtlis.getInstance().saveOkhttpString(MyApplication.activityCurrent,Iport.IgetUserInfo,resStr);
-                            }
-                            else if (ServerCode.tokenErrorCode.equals(bean.getCode())){//登录状态失效
-                                iUser.onErrorTokenOut();
+                                IDbUtlis.getInstance().saveOkhttpString(MyApplication.activityCurrent,Iport.IgetFamilyUserList,resStr);
                             }
                             else {
-                                iUser.onError(bean.getMessage(),Iport.IgetUserInfo);
+                                iUser.onError(bean.getMessage(),Iport.IgetFamilyUserList);
                             }
                         }
                         else {
-                            iUser.onError(ErrorText.dateEmpty,Iport.IgetUserInfo);
+                            iUser.onError(ErrorText.dateEmpty,Iport.IgetFamilyUserList);
                         }
                     }
                     catch (Exception e){
-                        iUser.onError(ErrorText.gsonError,Iport.IgetUserInfo);
+                        iUser.onError(ErrorText.gsonError,Iport.IgetFamilyUserList);
                         e.printStackTrace();
                     }
                     break;
             }
         }
     };
-    //获取用户信息
-    public void getUserInfo(IUser iUser){
+    public FamilyUserListModel(){
+
+    }
+
+
+    public void getUserList(IFamilyUserList iUser) {
         this.iUser=iUser;
-        if (iUser==null){
-            return;
-        }
-        HashMap<String,String>mp=new HashMap<>();
+        Map<String, String> mp = new HashMap<>();
         mp.put("token", User.token);
-        ok.getCall(Ip.path+ Iport.IgetUserInfo,mp,ok.OK_GET).enqueue(new Callback() {
+        ok.getCall(Ip.path + Iport.IgetFamilyUserList, mp, ok.OK_GET).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                    handler.sendEmptyMessage(0);
+                handler.sendEmptyMessage(0);
             }
+
             @Override
             public void onResponse(Response response) throws IOException {
-                    resStr=response.body().string();
-                    Log.i("获取个人信息",resStr);
-                    handler.sendEmptyMessage(1);
+                resStr = response.body().string();
+                handler.sendEmptyMessage(1);
+                Log.i("获取家庭用户列表--", resStr);
             }
         });
     }

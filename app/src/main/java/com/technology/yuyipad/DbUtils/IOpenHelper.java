@@ -16,7 +16,7 @@ public class IOpenHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //name 接口名，value接口的数据
-        String sql="create table inter(id integer primary key,name varchar,value varchar)";
+        String sql="create table inter(id Integer primary key,name varchar unique,value varchar)";
         sqLiteDatabase.execSQL(sql);
     }
 
