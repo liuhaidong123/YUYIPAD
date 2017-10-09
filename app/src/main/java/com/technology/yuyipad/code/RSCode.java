@@ -10,5 +10,10 @@ public interface RSCode{
     int sCode=200;
 
     //私有请求吗与结果码
-
+    int rCode_SearchPicture=101;//浏览系统相册
+    int rCode_TakePhoto=102;//拍砸后
+    int rCode_CutPicture=103;//
+    //权限请求码
+    int priCode_SearchPicture=201;//浏览图库权限
+    int priCode_TakePhoto=202;//拍照权限
 }

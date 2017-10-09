@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.DbUtils.IDbUtlis;
+import com.technology.yuyipad.Enum.IntentValue;
 import com.technology.yuyipad.Enum.UserSex;
 import com.technology.yuyipad.Lview.RoundImageView;
 import com.technology.yuyipad.Net.Ip;
@@ -55,9 +56,14 @@ public class MyFragment extends Fragment implements IUser{
     @OnClick({R.id.frag_my_userLayout,R.id.frag_my_layout_medical,R.id.frag_my_layout_message,
             R.id.frag_my_layout_member,R.id.frag_my_layout_device,R.id.frag_my_layout_setting})
     public void Click(View vi){
+
         switch (vi.getId()){
             case R.id.frag_my_userLayout://用户信息
-                startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                Intent intent=new Intent();
+                intent.setClass(getActivity(), UserInfoActivity.class);
+                //1修改0添加
+                intent.putExtra("type", IntentValue.UserInfoActivity_Change);
+                startActivityForResult(intent,RSCode.rCode);
                 break;
             case R.id.frag_my_layout_medical://电子病历
 
@@ -75,6 +81,7 @@ public class MyFragment extends Fragment implements IUser{
 
                 break;
         }
+
     }
     //view填充数据
     public void setViewDate(){
@@ -93,7 +100,7 @@ public class MyFragment extends Fragment implements IUser{
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode== RSCode.rCode){
             if (resultCode==RSCode.sCode){
-
+                presenter.getUserInfo(this);
             }
         }
     }
@@ -102,7 +109,7 @@ public class MyFragment extends Fragment implements IUser{
     public void onError(String msg,String interfaceName){
         toast.getInstance().text(getActivity(),msg);
         String info= IDbUtlis.getInstance().getOkhttpString(getActivity(),interfaceName);//获取到数据库中保存的字符串信息
-        if (Empty.getInstance().isEmptyOrNull(info)){
+        if (Empty.getInstance().notEmptyOrNull(info)){
             user= gson.gson.fromJson(info,UserBean.class);
             setViewDate();
         }

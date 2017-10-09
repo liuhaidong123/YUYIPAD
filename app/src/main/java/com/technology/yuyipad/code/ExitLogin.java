@@ -17,6 +17,7 @@ public class ExitLogin {
         }
         return login;
     }
+    //重新登录
     public void showLogin(Context con){
 
     }
