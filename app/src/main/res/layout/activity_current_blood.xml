@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_current_blood"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    tools:context="com.technology.yuyipad.activity.CurrentBloodActivity">
+
+    <TextView
+        android:id="@+id/blood_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="@color/color_white"
+        android:gravity="center"
+        android:text="@string/blood_m"
+        android:textColor="@color/color_333333"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/blood_input_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:text="@string/hand_input"
+        android:textColor="@color/color_333333"
+        android:textSize="18sp" />
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_below="@+id/blood_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_h_l"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/color_383838">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true">
+                    <!--高压-->
+                    <RelativeLayout
+                        android:id="@+id/height_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/blood_height_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="000"
+                            android:textColor="@color/name_color"
+                            android:textSize="50sp" />
+
+                        <TextView
+                            android:id="@+id/blood_height_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/blood_height_num"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/blood_height_t"
+                            android:textColor="@color/color_white"
+                            android:textSize="19sp" />
+                    </RelativeLayout>
+                    <!--低压-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="227dp"
+                        android:layout_toRightOf="@id/height_rl"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/blood_low_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="000"
+                            android:textColor="@color/name_color"
+                            android:textSize="50sp" />
+
+                        <TextView
+                            android:id="@+id/blood_low_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/blood_low_num"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/blood_Low_t"
+                            android:textColor="@color/color_white"
+                            android:textSize="19sp" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/data_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_h_l"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/Data"
+                android:textColor="@color/color_333333"
+                android:textSize="19sp" />
+
+            <View
+                android:id="@+id/line_data"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/data_tv"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/color_e5e5e5" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view_person"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/line_data">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/recycle_view_person"
+                android:background="@color/color_f2f2f2">
+
+                <TextView
+                    android:id="@+id/save_blood_data"
+                    android:layout_width="250dp"
+                    android:layout_height="42dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@mipmap/save_bg"
+                    android:gravity="center"
+                    android:text="@string/save"
+                    android:textColor="@color/color_white"
+                    android:textSize="19sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

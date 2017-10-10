@@ -25,21 +25,26 @@
         <activity
             android:name=".activity.InformationDetailsActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape">
-
-        </activity>
-
-        <activity android:name=".activity.SelectHospitalOPDActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.SelectHospitalOPDActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            >
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.FamilyUser.FamilyUserListActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
-        <activity android:name=".activity.UserInfo.UserInfoActivity"></activity>
+        <activity android:name=".activity.UserInfo.UserInfoActivity" />
+        <activity android:name=".activity.CurrentBloodActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".activity.CurrentTemActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" >
+
+        </activity>
     </application>
 
 </manifest>
