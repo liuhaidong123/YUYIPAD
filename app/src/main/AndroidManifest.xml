@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.technology.yuyipad">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <!--激光权限-->
+    <!--激光权限-->
     <application
         android:name=".lzhUtils.MyApplication"
         android:allowBackup="true"
@@ -31,7 +32,8 @@
 
         </activity>
 
-        <activity android:name=".activity.SelectHospitalOPDActivity"
+        <activity
+            android:name=".activity.SelectHospitalOPDActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             >
