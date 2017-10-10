@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 import com.jude.rollviewpager.hintview.IconHintView;
@@ -350,7 +351,14 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mRollPagerView.setPlayDelay(3000);//切换图片的间隔时间
         mRollPagerView.setAnimationDurtion(500);
         mRollPagerView.setHintView(new IconHintView(this.getActivity(), R.mipmap.selected, R.mipmap.unselected));
-
+        mRollPagerView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(getActivity(), InformationDetailsActivity.class);
+                intent.putExtra("tag", position);//
+                startActivity(intent);
+            }
+        });
         //资讯俩条数据
         mInformationTwoListview = view.findViewById(R.id.listview_firstpage);
         //给资讯设置adapter

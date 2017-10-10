@@ -223,8 +223,87 @@
             android:layout_height="match_parent"
             android:layout_weight="10"
             android:background="@color/color_white"
+            android:orientation="vertical"
             android:visibility="gone">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/opd_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@color/color_white"
+                    android:gravity="center"
+                    android:text="门诊名称"
+                    android:textColor="@color/color_333333" />
+
+                <View
+                    android:id="@+id/opd_line_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/opd_name_tv"
+                    android:background="@color/fafafa" />
+
+                <ImageView
+                    android:id="@+id/prior_date_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/opd_line_1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/prior" />
+
+                <ImageView
+                    android:id="@+id/next_date_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/opd_line_1"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/next" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycle_date_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/opd_line_1"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@id/next_date_btn"
+                    android:layout_toRightOf="@id/prior_date_btn">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <RelativeLayout
+                    android:id="@+id/date_rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_below="@id/recycle_date_id"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:id="@+id/morning_btn"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/morning_bg"
+                        android:gravity="center"
+                        android:text="@string/morning"
+                        android:textColor="@color/ffffff" />
+
+                    <TextView
+                        android:id="@+id/afternoon_btn"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/morning_btn"
+                        android:background="@drawable/afternoon_cancle_bg"
+                        android:gravity="center"
+                        android:text="@string/afternoon" />
+                </RelativeLayout>
+            </RelativeLayout>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -234,91 +313,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/opd_name_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:background="@color/color_white"
-                        android:gravity="center"
-                        android:text="门诊名称"
-                        android:textColor="@color/color_333333" />
-
                     <View
-                        android:id="@+id/opd_line_1"
+                        android:id="@+id/line11"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:layout_below="@id/opd_name_tv"
-                        android:background="@color/fafafa" />
-
-                    <ImageView
-                        android:id="@+id/prior_date_btn"
-                        android:layout_width="50dp"
-                        android:layout_height="36dp"
-                        android:layout_below="@+id/opd_line_1"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@mipmap/prior" />
-
-                    <ImageView
-                        android:id="@+id/next_date_btn"
-                        android:layout_width="50dp"
-                        android:layout_height="36dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/opd_line_1"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@mipmap/next" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycle_date_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_below="@+id/opd_line_1"
-                        android:layout_marginTop="10dp"
-                        android:layout_toLeftOf="@id/next_date_btn"
-                        android:layout_toRightOf="@id/prior_date_btn">
-
-                    </android.support.v7.widget.RecyclerView>
-
-                    <RelativeLayout
-                        android:id="@+id/date_rl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:layout_below="@id/recycle_date_id"
-                        android:layout_centerHorizontal="true">
-
-                        <TextView
-                            android:id="@+id/morning_btn"
-                            android:layout_width="100dp"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/morning_bg"
-                            android:gravity="center"
-                            android:text="@string/morning"
-                            android:textColor="@color/ffffff" />
-
-                        <TextView
-                            android:id="@+id/afternoon_btn"
-                            android:layout_width="100dp"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_toRightOf="@id/morning_btn"
-                            android:background="@drawable/afternoon_cancle_bg"
-                            android:gravity="center"
-                            android:text="@string/afternoon" />
-                    </RelativeLayout>
+                        android:background="@color/color_cecece" />
 
                     <com.technology.yuyipad.lhdUtils.UseDrugGridView
                         android:id="@+id/doctor_gridview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@id/date_rl"
+                        android:layout_below="@id/line11"
                         android:numColumns="2">
 
                     </com.technology.yuyipad.lhdUtils.UseDrugGridView>
 
                 </RelativeLayout>
             </ScrollView>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -41,4 +41,8 @@
     <color name="colorea">#eaeaea</color>
     <color name="color_white_aph">#a0ffffff</color>
     <color name="color_e">#e2e2e2</color>
+    <color name="color_383838">#383838</color>
+    <color name="color_e5e5e5">#e5e5e5</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+
 </resources>

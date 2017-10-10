@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.technology.yuyipad">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
@@ -28,6 +29,9 @@
         <activity
             android:name=".activity.InformationDetailsActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.SelectHospitalOPDActivity"
             android:screenOrientation="landscape">
 
         </activity>
@@ -35,14 +39,22 @@
         <activity
             android:name=".activity.SelectHospitalOPDActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            >
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.FamilyUser.FamilyUserListActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
+
+        <activity android:name=".activity.CurrentBloodActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".activity.CurrentTemActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" >
+
+        </activity>
         <activity android:name=".activity.UserInfo.UserInfoActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
