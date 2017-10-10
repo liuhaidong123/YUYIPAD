@@ -21,4 +21,16 @@ public enum  UserSex {
         }
         return sx;
     }
+    public static int UserSexToInt(UserSex sex){
+        int se=0;
+        switch (sex){
+            case GIRL:
+                se=0;
+                break;
+            case BOY:
+                se=1;
+                break;
+        }
+        return se;
+    }
 }

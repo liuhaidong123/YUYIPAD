@@ -17,7 +17,7 @@ public class Empty {
         }
         return em;
     }
-    public boolean isEmptyOrNull(String text){
+    public boolean notEmptyOrNull(String text){
         return !"".equals(text)&&!TextUtils.isEmpty(text);
     }
 }

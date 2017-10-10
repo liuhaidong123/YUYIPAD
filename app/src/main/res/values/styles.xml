@@ -29,4 +29,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <!--弹窗样式中心弹窗-->
+    <style name="popup3_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop3_in</item>
+        <item name="android:windowExitAnimation">@anim/pop3_out</item>
+    </style>
 </resources>

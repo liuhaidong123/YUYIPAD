@@ -1,14 +1,18 @@
 package com.technology.yuyipad.activity.Main;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.technology.yuyipad.PermissionCheck.PermissionCheck;
+import com.technology.yuyipad.PermissionCheck.PermissionNames;
 import com.technology.yuyipad.fragment.ConsultFragment;
 import com.technology.yuyipad.fragment.FirstPageFragment;
 import com.technology.yuyipad.fragment.MeasureFragment;
 import com.technology.yuyipad.fragment.MyFrag.MyFragment;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +79,21 @@ public class MainPresenter {
             li.get(i).setSelect(false);
         }
         li.get(pos).setSelect(true);
+    }
+    //清除缓存
+    public void clearCache(Activity ac){
+        if (PermissionCheck.getInstance().isPermissionGet(new String[]{PermissionNames.WRITE_SD,PermissionNames.READ_SD},ac)){
+            File fl=new File(ac.getExternalFilesDir("DCIM").getAbsolutePath());
+            if (fl!=null&&fl.isDirectory()){
+                File[]files=fl.listFiles();
+                if (files!=null&&files.length>0){
+                    for (File f:files){
+                        if (f.isFile()){
+                            f.delete();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -5,4 +5,5 @@
     <dimen name="HomeTextSize11">11sp</dimen>
     <dimen name="textSize19">19sp</dimen>
     <dimen name="textSize17">17sp</dimen>
+    <dimen name="textSize18">18sp</dimen>
 </resources>

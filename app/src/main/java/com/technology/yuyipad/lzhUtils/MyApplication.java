@@ -61,7 +61,6 @@ public class MyApplication extends Application{
             }
         }
     }
-
     public static void removeActivity() {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
