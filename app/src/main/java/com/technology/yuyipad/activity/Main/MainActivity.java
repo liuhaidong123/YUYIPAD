@@ -8,6 +8,8 @@ import com.technology.yuyipad.R;
 import com.technology.yuyipad.lzhUtils.MyActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
+
 public class MainActivity extends MyActivity {
     MainPresenter presenter;
     //首页
@@ -63,5 +65,17 @@ public class MainActivity extends MyActivity {
                 presenter.ShowFragment(3);
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
     }
 }

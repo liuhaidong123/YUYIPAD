@@ -41,7 +41,7 @@ public class UserBean{
     public static class ResultBean {
         /**
          * createTimeString : 2017-03-20 10:34:19
-         * updateTimeString :
+         * updateTimeString :·
          * gender : 0
          * idCard : 418666865666464644
          * origin :

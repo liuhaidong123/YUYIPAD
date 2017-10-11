@@ -50,7 +50,7 @@ public class FamilyUserListActivity extends MyActivity implements IFamilyUserLis
     //失败的时候
     @Override
     public void onError(String msg,String interfaceName) {
-//        String result= IDbUtlis.getInstance().getOkhttpString(this,interfaceName);
+        String result= IDbUtlis.getInstance().getOkhttpString(this,interfaceName);
     }
     //token失效
     @Override
