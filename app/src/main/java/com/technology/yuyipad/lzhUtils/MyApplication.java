@@ -9,6 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by wanyu on 2017/9/27.
  */
@@ -19,6 +21,8 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         if (Build.VERSION.SDK_INT >= 14) {//4.0以上
             list = new ArrayList<>();
             if (Build.VERSION.SDK_INT >= 14) {//4.0以上

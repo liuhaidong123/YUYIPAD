@@ -216,7 +216,7 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
         }
         userInfo_userName.setText(user.getResult().getTrueName());
         Picasso.with(this).load(Ip.imagePath+user.getResult().getAvatar()).placeholder(R.mipmap.usererr).error(R.mipmap.usererr).into(userInfo_image);
-        userInfo_userAge.setTag(user.getResult().getAge()+"");
+        userInfo_userAge.setText(user.getResult().getAge()+"");
         int gender=user.getResult().getGender();
         if (UserSex.getUserSex(gender)==UserSex.BOY){
             userInfo_sex_women.setSelected(false);
