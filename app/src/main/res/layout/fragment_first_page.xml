@@ -386,12 +386,14 @@
             android:src="@mipmap/location" />
 
         <TextView
+            android:id="@+id/location_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/location_img"
             android:gravity="center"
             android:text="北景"
+            android:paddingRight="20dp"
             android:textColor="@color/location_color"
             android:textSize="15dp" />
 

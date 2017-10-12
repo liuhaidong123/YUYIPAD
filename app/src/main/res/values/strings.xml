@@ -27,7 +27,7 @@
     <string name="add_person">添加</string>
 
     <string name="blood_m">血压计</string>
-    <string name="tem_m">体温计</string>
+    <string name="tem_m">温度计</string>
     <string name="hand_input">手动输入</string>
     <string name="blood_height_t">高压/mmHg</string>
     <string name="blood_Low_t">低压/mmHg</string>

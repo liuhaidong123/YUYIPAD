@@ -31,6 +31,7 @@ import com.jude.rollviewpager.hintview.IconHintView;
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.InformationDetailsActivity;
+import com.technology.yuyipad.activity.LocationActivity;
 import com.technology.yuyipad.activity.SelectHospitalOPDActivity;
 import com.technology.yuyipad.adapter.BloodTemViewPagerAda;
 import com.technology.yuyipad.adapter.FirstPageListViewAdapter;
@@ -104,7 +105,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 temData.clear();
                 XTemdateNum.clear();
                 Object o = msg.obj;
-                if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageUserDataBean.Root){
+                if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageUserDataBean.Root) {
                     com.technology.yuyipad.bean.FirstPageUserDataBean.Root root = (com.technology.yuyipad.bean.FirstPageUserDataBean.Root) o;
                     if (root != null && root.getResult() != null) {
                         mList = root.getResult();
@@ -125,7 +126,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                     }
 
                 }
-
 
 
             } else if (msg.what == 39) {//点击首页用户头像
@@ -282,6 +282,10 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
     //预约挂号
     private LinearLayout mRegister_ll;
+
+    //定位按钮
+    private TextView mLocation_tv;
+
     public FirstPageFragment() {
         // Required empty public constructor
     }
@@ -302,10 +306,19 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
      */
     private void initUI(View view) {
 
+        //定位
+        mLocation_tv = view.findViewById(R.id.location_tv);
+        mLocation_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LocationActivity.class);
+                startActivityForResult(intent, 66);
+            }
+        });
+
+
         //将右边scrollView定位到最顶端：
-
-
-        wrap=(RelativeLayout)view.findViewById(R.id.wrap);
+        wrap = (RelativeLayout) view.findViewById(R.id.wrap);
         wrap.setFocusable(true);
         wrap.setFocusableInTouchMode(true);
         wrap.requestFocus();
@@ -397,7 +410,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mInformation_Rl.setOnClickListener(this);
 
         //预约挂号
-        mRegister_ll=view.findViewById(R.id.register_ll);
+        mRegister_ll = view.findViewById(R.id.register_ll);
         mRegister_ll.setOnClickListener(this);
     }
 
@@ -410,7 +423,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             Intent intent = new Intent(getActivity(), InformationDetailsActivity.class);
             intent.putExtra("tag", -1);//
             startActivity(intent);
-        }else if (id==mRegister_ll.getId()){
+        } else if (id == mRegister_ll.getId()) {
             startActivity(new Intent(getActivity(), SelectHospitalOPDActivity.class));
         }
     }
@@ -420,13 +433,11 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         super.onResume();
 
 
-
     }
 
     /**
      * 患者弹框
      */
-
     public void showPatientBox() {
         //设置透明度
         WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
@@ -501,7 +512,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         }
 
     }
-
 
 
     /**

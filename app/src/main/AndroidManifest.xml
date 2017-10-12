@@ -3,9 +3,10 @@
     package="com.technology.yuyipad">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".lzhUtils.MyApplication"
         android:allowBackup="true"
@@ -37,22 +38,26 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
-
-        <activity android:name=".activity.CurrentBloodActivity"
+        <activity
+            android:name=".activity.CurrentBloodActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            />
-        <activity android:name=".activity.CurrentTemActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.CurrentTemActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape" >
-
-        </activity>
-        <activity android:name=".activity.UserInfo.UserInfoActivity"
-            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.UserInfo.UserInfoActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
-            android:screenOrientation="landscape" >
-        </activity>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.InputBloodActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
+        <activity android:name=".activity.InputTemActivity" />
+        <activity android:name=".activity.LocationActivity"></activity>
     </application>
 
 </manifest>

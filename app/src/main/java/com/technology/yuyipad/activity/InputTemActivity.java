@@ -16,24 +16,25 @@ import android.widget.Toast;
 
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.adapter.TemAdapter;
+import com.technology.yuyipad.bean.UserListBean.Result;
+import com.technology.yuyipad.bean.UserListBean.Root;
 import com.technology.yuyipad.httptools.HttpTools;
-import com.technology.yuyipad.lhdUtils.InformationListView;
 import com.technology.yuyipad.lhdUtils.MyDialog;
 import com.technology.yuyipad.lhdUtils.SanJiao;
+import com.technology.yuyipad.lhdUtils.SanJiaoHand;
 import com.technology.yuyipad.lhdUtils.TherC;
+import com.technology.yuyipad.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.technology.yuyipad.bean.UserListBean.Result;
-import com.technology.yuyipad.bean.UserListBean.Root;
-import com.technology.yuyipad.user.User;
 
-public class CurrentTemActivity extends AppCompatActivity {
+public class InputTemActivity extends AppCompatActivity {
 
-    private TextView mHandInput, mSaveBtn, mDuNum, mPromptTv;
+
+    private TextView mHandInput, mSaveBtn, mDuNum,mDuFuHao, mPromptTv;
     private ListView mListview;
     private TemAdapter mAdapter;
     private RelativeLayout mTemRL;
@@ -53,8 +54,8 @@ public class CurrentTemActivity extends AppCompatActivity {
                 if (o != null && o instanceof Root) {
                     Root root = (Root) o;
                     if (root != null && root.getResult() != null) {
-                        mListview.removeFooterView(footer);
                         showNameList.clear();
+                        mListview.removeFooterView(footer);
                         mList = root.getResult();
                         for (int i = 0; i < mList.size(); i++) {
                             if (i == 0) {
@@ -105,11 +106,10 @@ public class CurrentTemActivity extends AppCompatActivity {
     private ImageView mAddimg;
     private RelativeLayout mAllDataView;
     private View footer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_current_tem);
+        setContentView(R.layout.activity_input_tem);
         //获取用户列表
         mMap.put("token", User.token);
         mHttptools = HttpTools.getHttpToolsInstance();
@@ -117,18 +117,12 @@ public class CurrentTemActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        mHandInput = (TextView) findViewById(R.id.input_tem_btn);
+
         mSaveBtn = (TextView) findViewById(R.id.tem_save_btn);
         mDuNum = (TextView) findViewById(R.id.current_tem);
+        mDuFuHao=(TextView) findViewById(R.id.du);
         mPromptTv = (TextView) findViewById(R.id.tv_prompt);
-        //手动输入
-        mHandInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),InputTemActivity.class));
-                finish();
-            }
-        });
+
         //保存
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +135,7 @@ public class CurrentTemActivity extends AppCompatActivity {
         //存放温度计
         mTemRL = (RelativeLayout) findViewById(R.id.my_tem_rl);
         TherC therC = new TherC(this);
-        SanJiao sanJiao = new SanJiao(this, 37);
+        SanJiaoHand sanJiao = new SanJiaoHand(this,39,mDuNum,mDuFuHao,mPromptTv);
         mTemRL.addView(therC);
         mTemRL.addView(sanJiao);
 
