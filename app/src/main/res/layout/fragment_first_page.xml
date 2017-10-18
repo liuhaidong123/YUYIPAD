@@ -392,7 +392,7 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/location_img"
             android:gravity="center"
-            android:text="北景"
+            android:text="正在定位..."
             android:paddingRight="20dp"
             android:textColor="@color/location_color"
             android:textSize="15dp" />

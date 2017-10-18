@@ -33,6 +33,7 @@
     <string name="blood_Low_t">低压/mmHg</string>
     <string name="Data">数据录入</string>
     <string name="save">保存</string>
+    <string name="edit_hint">搜索医院</string>
 
 
 </resources>
