@@ -31,6 +31,7 @@ import com.jude.rollviewpager.hintview.IconHintView;
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.InformationDetailsActivity;
+import com.technology.yuyipad.activity.Medicinal.MyMedicalActivity;
 import com.technology.yuyipad.activity.SelectHospitalOPDActivity;
 import com.technology.yuyipad.adapter.BloodTemViewPagerAda;
 import com.technology.yuyipad.adapter.FirstPageListViewAdapter;
@@ -62,6 +63,7 @@ import java.util.Map;
 public class FirstPageFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout wrap;//RelativeLyout是scrollview中的容器，
     private RelativeLayout mSelect_patient_rl;
+    LinearLayout drugmall_ll;//我的药品
     private RoundImageView mHead_img;
     private TextView mName;
     private PopupWindow mPopupwindow;
@@ -399,6 +401,9 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         //预约挂号
         mRegister_ll=view.findViewById(R.id.register_ll);
         mRegister_ll.setOnClickListener(this);
+        //我的药品
+        drugmall_ll=view.findViewById(R.id.drugmall_ll);
+        drugmall_ll.setOnClickListener(this);
     }
 
     @Override
@@ -412,6 +417,9 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             startActivity(intent);
         }else if (id==mRegister_ll.getId()){
             startActivity(new Intent(getActivity(), SelectHospitalOPDActivity.class));
+        }
+        else if (id==drugmall_ll.getId()){
+            startActivity(new Intent(getActivity(), MyMedicalActivity.class));
         }
     }
 

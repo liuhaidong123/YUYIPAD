@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:paddingTop="14.5dp"
+        android:paddingBottom="14.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/familyusermanager_footerview_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/addfamilyuser"/>
+        <TextView style="@style/TextS15C1ebeecLayoutWrap"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="添加"
+            android:layout_toRightOf="@+id/familyusermanager_footerview_image"/>
+    </RelativeLayout>
+</LinearLayout>

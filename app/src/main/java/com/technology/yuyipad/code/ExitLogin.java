@@ -2,6 +2,8 @@ package com.technology.yuyipad.code;
 
 import android.content.Context;
 
+import com.technology.yuyipad.ToastUtils.toast;
+
 /**
  * Created by wanyu on 2017/9/27.
  */
@@ -19,6 +21,6 @@ public class ExitLogin {
     }
     //重新登录
     public void showLogin(Context con){
-
+        toast.getInstance().text(con,"登录状态失效，请退出后重新登录");
     }
 }

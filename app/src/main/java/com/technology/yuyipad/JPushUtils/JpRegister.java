@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.technology.yuyipad.user.User;
+
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
@@ -26,17 +28,14 @@ public class JpRegister {
         JPushInterface.setAlias(context, phon,new TagAliasCallback() {
             @Override
             public void gotResult(int i, String s, Set<String> set) {
-                SharedPreferences preferences=context.getSharedPreferences("JPSH",Context.MODE_APPEND);
-                SharedPreferences.Editor editor=preferences.edit();
+
                 if (i==0){
+                    User.initJPSH(context,true);
                     Log.i("JPsh注册别名成功-alias-"+s,"--------------");
-                    editor.putBoolean("Succ",true);
-                    editor.commit();
                 }
                 else {
+                    User.initJPSH(context,false);
                     Log.e("JPsh注册别名alias失败--"+s,"----------");
-                    editor.putBoolean("Succ",false);
-                    editor.commit();
                 }
             }
         });
@@ -56,8 +55,8 @@ public class JpRegister {
         });
     }
     //是否注册过jpsh
-    public  Boolean isJPSHSucc(Context context){
-        SharedPreferences preferences=context.getSharedPreferences("JPSH",Context.MODE_APPEND);
-        return preferences.getBoolean("Succ",false);
+    public   Boolean isJPSHSucc(Context context){
+        SharedPreferences preferences=context.getSharedPreferences("USER",Context.MODE_APPEND);
+        return preferences.getBoolean("JPSH",false);
     }
 }

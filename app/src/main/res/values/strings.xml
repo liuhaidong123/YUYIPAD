@@ -33,6 +33,6 @@
     <string name="blood_Low_t">低压/mmHg</string>
     <string name="Data">数据录入</string>
     <string name="save">保存</string>
-
-
+    <string name="_90mmhg_140mmhg"><![CDATA[90mmHg<收缩压<140mmHg]]></string>
+    <string name="_60mmhg_90mmhg"><![CDATA[60mmHg<舒张压<90mmHg]]></string>
 </resources>

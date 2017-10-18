@@ -6,6 +6,50 @@
     android:background="#c8383a41"
     tools:context="com.technology.yuyipad.fragment.FirstPageFragment">
 
+
+    <!--首页标题横栏-->
+    <RelativeLayout
+        android:id="@+id/first_title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#c8383a41">
+
+        <ImageView
+            android:id="@+id/location_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/location" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/location_img"
+            android:gravity="center"
+            android:text="北景"
+            android:textColor="@color/location_color"
+            android:textSize="15dp" />
+
+
+        <ImageView
+            android:id="@+id/message_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/message" />
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_toLeftOf="@id/message_img"
+            android:src="@mipmap/search" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -368,50 +412,6 @@
 
 
     </LinearLayout>
-
-
-    <!--首页标题横栏-->
-    <RelativeLayout
-        android:id="@+id/first_title_rl"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="#c8383a41">
-
-        <ImageView
-            android:id="@+id/location_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:src="@mipmap/location" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/location_img"
-            android:gravity="center"
-            android:text="北景"
-            android:textColor="@color/location_color"
-            android:textSize="15dp" />
-
-
-        <ImageView
-            android:id="@+id/message_img"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:src="@mipmap/message" />
-
-        <ImageView
-            android:id="@+id/search_img"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="50dp"
-            android:layout_toLeftOf="@id/message_img"
-            android:src="@mipmap/search" />
-    </RelativeLayout>
 
 
 </FrameLayout>

@@ -6,10 +6,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.technology.yuyipad.RongUtils.RongUserInfoProvider;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by wanyu on 2017/9/27.
@@ -23,6 +27,10 @@ public class MyApplication extends Application{
         super.onCreate();
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        RongIM.init(this);
+        RongIM.setUserInfoProvider(RongUserInfoProvider.getInstance(),false);
+        RongIM.getInstance().setMessageAttachedUserInfo(true);
+
         if (Build.VERSION.SDK_INT >= 14) {//4.0以上
             list = new ArrayList<>();
             if (Build.VERSION.SDK_INT >= 14) {//4.0以上

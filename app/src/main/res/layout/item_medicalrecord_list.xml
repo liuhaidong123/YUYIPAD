@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/medical_left"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/s1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/medicalRecordList_stateImage"/>
+        <View
+            android:layout_width="4dp"
+            android:id="@+id/medicalRecordList_stateLine"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/medicalRecordList_stateImage"
+            android:layout_height="450dp"
+            android:background="#1ebeec"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_toRightOf="@+id/medical_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/fouceView"
+            android:layout_width="30dp"
+            android:background="#0b0901"
+            android:layout_height="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"/>
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:text="药材准备中"
+                android:textSize="15sp"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:id="@+id/medicalRecordList_stateText"
+                android:textColor="#1ebeec"/>
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_below="@+id/medicalRecordList_stateText"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/medicalRecordList_statePicture"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:src="@mipmap/picture1"/>
+                <TextView
+                    android:textColor="@color/color_white"
+                    android:padding="30dp"
+                    android:text="医务人员正在准备药材哦！"
+                    android:gravity="center"
+                    android:id="@+id/medicalRecordList_stateInfo"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18sp"
+                    android:layout_width="360dp"
+                    android:layout_height="400dp"
+                    android:background="@drawable/medicallayout"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+</RelativeLayout>

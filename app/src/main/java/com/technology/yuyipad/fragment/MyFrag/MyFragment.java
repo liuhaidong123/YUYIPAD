@@ -2,9 +2,12 @@ package com.technology.yuyipad.fragment.MyFrag;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +23,13 @@ import com.technology.yuyipad.Lview.RoundImageView;
 import com.technology.yuyipad.Net.Ip;
 import com.technology.yuyipad.Net.gson;
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.RongUtils.IGetRongDoctorId;
+import com.technology.yuyipad.RongUtils.IGetRongUserTokenError;
+import com.technology.yuyipad.RongUtils.RongConnect;
+import com.technology.yuyipad.RongUtils.RongUser;
+import com.technology.yuyipad.RongUtils.RongUserInfoProvider;
 import com.technology.yuyipad.ToastUtils.toast;
+import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.activity.UserInfo.UserInfoActivity;
 import com.technology.yuyipad.code.ExitLogin;
 import com.technology.yuyipad.code.RSCode;
@@ -31,11 +40,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.rong.callkit.RongCallKit;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyFragment extends Fragment implements IUser{
+public class MyFragment extends Fragment implements IUser,IGetRongDoctorId,IGetRongUserTokenError{
+    int RongConnectCount=1;//请求医生信息的次数
+    int RongServerConnectCount=1;//链接容云服务器的次数
+    String targetIds="";//医生id
     UserBean user;
     Unbinder unbinder;
     MyPresenter presenter;
@@ -44,6 +59,16 @@ public class MyFragment extends Fragment implements IUser{
     @BindView(R.id.frag_my_userName)TextView frag_my_userName;//姓名
     @BindView(R.id.frag_my_userAge)TextView frag_my_userAge;//年龄
     @BindView(R.id.frag_my_userSexImage)ImageView frag_my_userSexImage;//性别image：false女，ture男
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        RongConnect.getInstance().getTargetDocId(this,"1");
+        if (RongUser.isConnectSuccess==false){//没有链接容云服务器时
+            RongConnect.getInstance().getRongUserInfo(this,getActivity());
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,7 +97,7 @@ public class MyFragment extends Fragment implements IUser{
 
                 break;
             case R.id.frag_my_layout_member://家庭成员管理
-
+                startActivity(new Intent(getActivity(), FamilyUserManagerActivity.class));
                 break;
             case R.id.frag_my_layout_device://用户设备管理
 
@@ -131,5 +156,33 @@ public class MyFragment extends Fragment implements IUser{
         if (unbinder!=null){
             unbinder.unbind();
         }
+    }
+//获取医生信息失败
+    @Override
+    public void onError(String msg) {
+        if (RongConnectCount==1){
+            RongConnectCount=2;
+            RongConnect.getInstance().getTargetDocId(this,"1");
+        }
+        else {
+            toast.getInstance().text(getActivity(),msg);
+        }
+    }
+
+    @Override
+    public void onSuccess(String targetId) {
+        targetIds=targetId;
+        RongUserInfoProvider.getInstance().setUserInfo(targetIds,new UserInfo(targetIds,"医生", Uri.parse("http://a3.qpic.cn/psb?/V10dl1Mt1s0RoL/qvT5ZwDSegULprXup78nlo3*XNUqCRH8shghIkAnQTs!/b/dLMAAAAAAAAA&bo=ewJ7AgAAAAADByI!&rf=viewer_4")));
+    }
+    //链接容云服务器失败时（在MainActivity中链接，此页面只是检查是否链接成功，失败时才会重新链接）
+    @Override
+    public void onTokenError(String message) {
+        if (RongServerConnectCount==1){//重新链接容云服务器
+            RongConnect.getInstance().getRongUserInfo(this,getActivity());
+            RongServerConnectCount=2;
+        }
+        else {
+            toast.getInstance().text(getActivity(),message);
+            }
     }
 }
