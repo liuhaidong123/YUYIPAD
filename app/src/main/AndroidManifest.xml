@@ -81,9 +81,6 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.UserInfo.UserInfoActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity
-            android:name=".activity.UserInfo.UserInfoActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
