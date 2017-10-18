@@ -14,9 +14,45 @@
         <item name="android:maxLength">5</item>
         <item name="android:ellipsize">end</item>
     </style>
+    <!--17sp颜色333333宽高度自适应-->
+    <style name="TextS17C3Wrap" parent="@style/layoutWrapContent">
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">@dimen/textSize17</item>
+    </style>
     <!--//定义字体19sp，颜色#333333 width=wrapcontent，height=wrapcontent-->
     <style name="TextS19C3" parent="@style/layoutWrapContent">
         <item name="android:textSize">@dimen/textSize19</item>
+        <item name="android:textColor">@color/color_333333</item>
+    </style>
+
+    <!--//定义字体9sp，颜色#333333 width=wrapcontent，height=wrapcontent-->
+    <style name="TextS9C6" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize9</item>
+        <item name="android:textColor">@color/color_666666</item>
+    </style>
+    <!--//定义字体14sp，颜色#333333 width=wrapcontent，height=wrapcontent-->
+    <style name="TextS14C3" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize14</item>
+        <item name="android:textColor">@color/color_333333</item>
+    </style>
+    <!--//定义字体10sp，颜色#6a6a6a width=wrapcontent，height=wrapcontent-->
+    <style name="TextS10C6aWrap" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize10</item>
+        <item name="android:textColor">@color/color_drumall</item>
+    </style>
+    <!--//定义字体10sp，颜色#6a6a6a width=wrapcontent，height=wrapcontent-->
+    <style name="TextS9C9aWrap" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize9</item>
+        <item name="android:textColor">@color/color9</item>
+    </style>
+    <!--定义字体颜色为1ebeec大小15sp，宽高度自适应-->
+    <style name="TextS15C1ebeecLayoutWrap" parent="@style/layoutWrapContent">
+    <item name="android:textSize">@dimen/textSize15</item>
+    <item name="android:textColor">@color/color_homeTextColorSelect</item>
+    </style>
+    <!--定义字体颜色为33333大小15sp，宽高度自适应-->
+    <style name="TextS15C3LayoutWrap" parent="@style/layoutWrapContent">
+        <item name="android:textSize">@dimen/textSize15</item>
         <item name="android:textColor">@color/color_333333</item>
     </style>
     <!--//定义所有的宽高度都是wrap_content的布局-->

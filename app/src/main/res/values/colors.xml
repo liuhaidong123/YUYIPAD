@@ -8,8 +8,8 @@
     <color name="color_homeBackGround">#383a41</color>
     <color name="color_unhomeBackGround">#212226</color>
 
-
-
+    <color name="color9">#999999</color>
+    <color name="colorf1">#f1f1f1</color>
     <color name="location_color">#dedfe0</color>
     <color name="fafafa">#f1f1f1</color>
     <color name="ffffff">#ffffff</color>
@@ -49,5 +49,13 @@
     <color name="color_e1e1e1">#e1e1e1</color>
     <color name="color_1ebeec">#1ebeec</color>
 
+
+    <color name="colorX">#22f3f6</color>
+    <color name="colo2">#22f3f6</color>
+    <color name="colorSource">#1dbeec</color>
+    <color name="colorOtherSource">#7ed66b</color>
+    <color name="colorBackground">#30323a</color>
+    <color name="firstTextColor">#c81dbeec</color>
+    <color name="otherTextColor">#c87ed66b</color>
 
 </resources>

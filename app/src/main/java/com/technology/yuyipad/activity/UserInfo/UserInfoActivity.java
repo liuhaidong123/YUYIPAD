@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,7 +55,7 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
     @BindView(R.id.userInfo_sex_man)ImageView userInfo_sex_man;//男性的select按钮
     @BindView(R.id.userInfo_userAge)EditText userInfo_userAge;//用户年龄
     UserBean user;//用户信息实体类
-    String type;//0添加用户信息，1修改用户信息
+    String type="1";//0添加用户信息，1修改用户信息（默认是修改）
     UserInfoPresenter presenter;
     String bitmap64;
     File outImage;
@@ -70,6 +71,9 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
         presenter=new UserInfoPresenter();
         if (type.equals(IntentValue.UserInfoActivity_Change)){
             presenter.getUserDate(this);
+        }
+        else{
+            isPhotoChange=true;//添加时必须修改用户头像
         }
     }
     @OnClick({R.id.userInfo_submit,R.id.userInfo_LayoutChangePhoto,R.id.userInfo_layout_sexWomen,R.id.userInfo_layout_sexMan})
@@ -200,6 +204,7 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
         }
         else {
             startActivity(new Intent(this,MainActivity.class));
+            finish();
         }
     }
 
@@ -226,5 +231,21 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
             userInfo_sex_women.setSelected(true);
             userInfo_sex_man.setSelected(false);
         }
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            if (IntentValue.UserInfoActivity_Change.equals(type)){
+                finish();
+            }
+            else if (IntentValue.UserInfoActivity_Add.equals(type)){
+                startActivity(new Intent(this,MainActivity.class));
+                finish();
+            }
+        }
+        return false;
     }
 }

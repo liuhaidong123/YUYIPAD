@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:paddingRight="10dp"
+        android:paddingLeft="50dp"
+        android:paddingBottom="12.5dp"
+        android:paddingTop="12.5dp"
+        android:id="@+id/familyuserList_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.technology.yuyipad.Lview.RoundImageView
+                android:layout_width="80dp"
+                android:src="@mipmap/test"
+                android:layout_height="80dp"
+                android:id="@+id/familyuserList_item_image"
+                >
+            </com.technology.yuyipad.Lview.RoundImageView>
+            <RelativeLayout style="@style/layoutWrapContent"
+                android:paddingLeft="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/familyuserList_item_textLayout"
+                android:layout_toRightOf="@+id/familyuserList_item_image"
+                >
+                    <LinearLayout
+                        android:id="@+id/familyuserList_item_layouText"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.technology.yuyipad.lzhUtils.MyScrollTextView
+                            android:ellipsize="marquee"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+
+                            android:text="LIU"
+                            android:layout_width="match_parent"
+                            android:textColor="@color/color_333333"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/familyuserList_item_userName"
+                            />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_below="@+id/familyuserList_item_layouText"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:layout_marginTop="10dp"
+                        android:text="17743516231"
+                        android:textColor="@color/color_333333"
+                        style="@style/layoutWrapContent"
+                        android:id="@+id/familyuserList_item_userTele"
+                        />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

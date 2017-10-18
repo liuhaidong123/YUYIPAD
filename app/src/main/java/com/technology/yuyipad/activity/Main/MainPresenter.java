@@ -1,12 +1,15 @@
 package com.technology.yuyipad.activity.Main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.technology.yuyipad.PermissionCheck.PermissionCheck;
 import com.technology.yuyipad.PermissionCheck.PermissionNames;
+import com.technology.yuyipad.RongUtils.IGetRongUserTokenError;
+import com.technology.yuyipad.RongUtils.RongConnect;
 import com.technology.yuyipad.fragment.ConsultFragment;
 import com.technology.yuyipad.fragment.FirstPageFragment;
 import com.technology.yuyipad.fragment.MeasureFragment;
@@ -95,5 +98,10 @@ public class MainPresenter {
                 }
             }
         }
+    }
+
+    //链接容云
+    public void ConnectRongIM(IGetRongUserTokenError iError,Context con){
+        RongConnect.getInstance().getRongUserInfo(iError,con);
     }
 }

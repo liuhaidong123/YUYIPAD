@@ -11,7 +11,28 @@ public interface Iport {
     String IgetFamilyUserList="homeuser/findList.do?";
 
     //获取个人信息接口http://localhost:8080/yuyi/personal/get.do?token=C0700876FB2F9BEC156AC039F894E92B
-    public final static String interface_UserMsg="personal/get.do?";
+     String interface_UserMsg="personal/get.do?";
     //个人信息修改:http://localhost:8080/yuyi/personal/save.do?token=C0700876FB2F9BEC156AC039F894E92B&idCard=515251635262&age=26
-    public final static String interface_UserMsgRevise="personal/save.do?";
+     String interface_UserMsgRevise="personal/save.do?";
+
+    //获取融云token的请求personal/rongyuToken.do?personalid=18782931356
+    String interface_RongToken="personal/rongyuToken.do?";
+    //获取融云医生的信息接口（聊天对象的信息）http://192.168.1.37:8080/yuyi/physician/doctory.do?
+     String interface_DocInfo="physician/doctory.do?";
+
+    //获取家庭用户电子病历列表（我的家庭用户,不是我的）//http://localhost:8080/yuyi/medical/homeuserMedicalTime.do?id=1
+     String interface_famiUserEleList="medical/homeuserMedicalTime.do?";
+    //   获取电子病历列表(个人的)http://localhost:8080/yuyi/medical/token.do?token=1EE359830D68AF676396B06029CCFA61
+     String interface_medicalRecordList="medical/token.do?";
+
+    //添加家庭用户的接口
+    public final static String interface_addFamilyUser="homeuser/save.do?";
+    //删除家庭用户http://192.168.1.55:8080/yuyi/homeuser/delete.do?token=6DD620E22A92AB0AED590DB66F84D064&id=123
+    String interfce_DeleteFamilyUser="homeuser/delete.do?";
+    //获取我的药品状态接口（所有的药品状态）
+     String interface_MyDrugStateList="prescription/findList2.do?";
+    //登录获取验证码
+    String interface_LoginGetSMS="personal/vcode.do";
+    //登录
+    String interface_Login="personal/login.do";
 }

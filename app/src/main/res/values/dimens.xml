@@ -1,9 +1,32 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="lineHeight">5dp</dimen>
+    <dimen name="lineWidth">1.5dp</dimen>
+    <dimen name="lineSpace">7dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="HomeTextSize11">11sp</dimen>
     <dimen name="textSize19">19sp</dimen>
     <dimen name="textSize17">17sp</dimen>
     <dimen name="textSize18">18sp</dimen>
+    <dimen name="textSize15">15sp</dimen>
+    <dimen name="textSize14">14sp</dimen>
+    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize10">10sp</dimen>
+    <dimen name="textSize9">9sp</dimen>
+    <dimen name="parentLeftpaddingMin">50dp</dimen>
+    <dimen name="parentLeftpaddingMax">60dp</dimen>
+    <dimen name="parentToppaddingMax">40dp</dimen>
+    <dimen name="parentToppaddingMin">12.5dp</dimen>
+    <dimen name="parentBottompadding">12.5dp</dimen>
+    <dimen name="parentRightpadding">10dp</dimen>
+
+    <dimen name="childLeftPaddingMax">15dp</dimen>
+    <dimen name="childLeftPaddingMin">10dp</dimen>
+    <dimen name="imageMax">100dp</dimen>
+    <dimen name="imageMin">80dp</dimen>
+
+    <dimen name="form_paddingbottom">15dp</dimen>
+    <dimen name="form_paddingTop">20dp</dimen>
+    <dimen name="form_padding">15dp</dimen>
 </resources>

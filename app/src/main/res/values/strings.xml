@@ -36,4 +36,6 @@
     <string name="edit_hint">搜索医院</string>
 
 
+    <string name="_90mmhg_140mmhg"><![CDATA[90mmHg<收缩压<140mmHg]]></string>
+    <string name="_60mmhg_90mmhg"><![CDATA[60mmHg<舒张压<90mmHg]]></string>
 </resources>

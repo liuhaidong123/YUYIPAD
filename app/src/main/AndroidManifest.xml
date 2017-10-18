@@ -3,10 +3,10 @@
     package="com.technology.yuyipad">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 激光权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--激光权限-->
     <permission
         android:name="com.technology.yuyipad.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
@@ -28,6 +28,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- 激光权限 -->
+
+    <!-- 激光权限 -->
     <application
         android:name=".lzhUtils.MyApplication"
         android:allowBackup="true"
@@ -40,12 +42,22 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".activity.Start.StartActivity"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.Login.LoginActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.InformationDetailsActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -55,7 +67,7 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activity.FamilyUser.FamilyUserListActivity"
+            android:name=".activity.FamilyUser.FamilyUserManagerActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
@@ -66,11 +78,23 @@
         <activity
             android:name=".activity.CurrentTemActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.UserInfo.UserInfoActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Medicinal.MyMedicalActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden">
+            >
+        </activity>
+        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- Rich push 核心功能 since 2.0.6 -->
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -176,6 +200,53 @@
             </intent-filter>
         </receiver>
         <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
+        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.technology.yuyipad.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+
+        <activity
+            android:name=".activity.RongIm.RoungActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.technology.yuyipad"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.technology.yuyipad.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+        <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
+
         <meta-data
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />

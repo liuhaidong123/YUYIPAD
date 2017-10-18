@@ -1,9 +1,13 @@
 package com.technology.yuyipad.ToastUtils;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.technology.yuyipad.Net.ErrorText;
+import com.technology.yuyipad.R;
 
 /**
  * Created by wanyu on 2017/9/27.
@@ -21,7 +25,13 @@ public class toast {
         return tos;
     }
     public void text(Context con, String msg){
-        Toast.makeText(con,msg,Toast.LENGTH_SHORT).show();
+        View v = LayoutInflater.from(con).inflate(R.layout.eplay_toast, null);
+        TextView textView = (TextView) v.findViewById(R.id.textView1);
+        textView.setText(msg);
+        Toast mToast = new Toast(con);
+        mToast.setDuration(1500);
+        mToast.setView(v);
+        mToast.show();
     }
     public void textGsonFaile(Context con){
         Toast.makeText(con,ToastText.gsonError,Toast.LENGTH_SHORT).show();
