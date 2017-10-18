@@ -10,6 +10,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CurrentBloodActivity extends AppCompatActivity {
-    private TextView mHeightBlood_Num, mLowBlood_Num, mHandInput_Num, mSave_Btn;
+public class InputBloodActivity extends AppCompatActivity {
+
+    private EditText mHeightBlood_Num, mLowBlood_Num;
+    private TextView mHandInput_Num, mSave_Btn;
 
     private RecyclerView mRecycleView;
     private RecycleViewBlood mAdapter;
@@ -70,18 +73,18 @@ public class CurrentBloodActivity extends AppCompatActivity {
                 if (o != null && o instanceof com.technology.yuyipad.bean.SubmitTemBean.Root) {
                     com.technology.yuyipad.bean.SubmitTemBean.Root root = (com.technology.yuyipad.bean.SubmitTemBean.Root) o;
                     if (root.getCode().equals("0")) {
-                        Toast.makeText(CurrentBloodActivity.this, "提交数据成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InputBloodActivity.this, "提交数据成功", Toast.LENGTH_SHORT).show();
                         MyDialog.stopDialog();
                         finish();
                     } else {
-                        Toast.makeText(CurrentBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InputBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
                         MyDialog.stopDialog();
                     }
                 }
             } else if (msg.what == 229) {//json解析失败
                 MyDialog.stopDialog();
             } else if (msg.what == 230) {//提交数据失败
-                Toast.makeText(CurrentBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InputBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
                 MyDialog.stopDialog();
             }
         }
@@ -92,7 +95,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_current_blood);
+        setContentView(R.layout.activity_input_blood);
         initUI();
     }
 
@@ -126,7 +129,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
                         //用户信息不完善
                         if (mList.get(0).getAge() == 0 | mList.get(0).getTrueName().equals("") | mList.get(0).getGender() == null) {
                             //mSureAlertDialog.show();
-                            Toast.makeText(CurrentBloodActivity.this, "用户信息不完善", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InputBloodActivity.this, "用户信息不完善", Toast.LENGTH_SHORT).show();
                         } else {//点击的是某个用户头像
                             for (int i = 0; i < mList.size(); i++) {
                                 if (position == i) {
@@ -148,18 +151,11 @@ public class CurrentBloodActivity extends AppCompatActivity {
             }
         });
 
-        mHeightBlood_Num = (TextView) findViewById(R.id.blood_height_num);
-        mLowBlood_Num = (TextView) findViewById(R.id.blood_low_num);
+        mHeightBlood_Num = (EditText) findViewById(R.id.blood_height_num);
+        mLowBlood_Num = (EditText) findViewById(R.id.blood_low_num);
         mHandInput_Num = (TextView) findViewById(R.id.blood_input_tv);
         mSave_Btn = (TextView) findViewById(R.id.save_blood_data);
-        //手动输入
-        mHandInput_Num.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CurrentBloodActivity.this, InputBloodActivity.class));
-                finish();
-            }
-        });
+
         //保存血压数据
         mSave_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +190,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
             return "";
         }
     }
+
     /**
      * 判断输入的血压是否在范围之内
      */
@@ -210,7 +207,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
     public void submitBloodData() {
         if (!getHeightBlood().equals("")) {//高压
             if (!getLowBlood().equals("")) {//低压
-                if (checkHeightBlood()) {//判断输入的数据是否在规定范围内
+                if (checkHeightBlood()){
                     if (isSelect) {//选中用户
                         mSubmitMap.put("token", User.token);
                         mSubmitMap.put("humeuserId", mList.get(mPosintion).getId() + "");
@@ -219,19 +216,19 @@ public class CurrentBloodActivity extends AppCompatActivity {
                         mHttptools.submitBloodData(mHandler, mSubmitMap);
                         MyDialog.showPopuWindow(this, mAllData_Blood);
                     } else {
-                        Toast.makeText(CurrentBloodActivity.this, "请选择用户", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InputBloodActivity.this, "请选择用户", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(this, "请传入正确的血压数据", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "请输入正确的血压数据", Toast.LENGTH_SHORT).show();
                 }
 
 
             } else {
-                Toast.makeText(CurrentBloodActivity.this, "低压数据错误", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InputBloodActivity.this, "低压数据错误", Toast.LENGTH_SHORT).show();
 
             }
         } else {
-            Toast.makeText(CurrentBloodActivity.this, "高压数据错误", Toast.LENGTH_SHORT).show();
+            Toast.makeText(InputBloodActivity.this, "高压数据错误", Toast.LENGTH_SHORT).show();
         }
     }
 

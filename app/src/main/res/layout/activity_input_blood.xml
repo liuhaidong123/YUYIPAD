@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_current_blood"
+    android:id="@+id/activity_input_blood"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_f2f2f2"
-    tools:context="com.technology.yuyipad.activity.CurrentBloodActivity">
+    tools:context="com.technology.yuyipad.activity.InputBloodActivity">
 
     <RelativeLayout
         android:id="@+id/all_data_blood"
@@ -18,31 +18,22 @@
             android:layout_height="42dp"
             android:background="@color/color_white"
             android:gravity="center"
-            android:text="@string/blood_m"
+            android:text="@string/hand_input"
             android:textColor="@color/color_333333"
             android:textSize="19sp" />
 
-        <TextView
-            android:id="@+id/blood_input_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="25dp"
-            android:gravity="center"
-            android:text="@string/hand_input"
-            android:textColor="@color/color_333333"
-            android:textSize="18sp" />
 
         <ScrollView
-            android:id="@+id/scroll_all"
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/blood_tv_title"
             android:scrollbars="none">
 
             <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -63,14 +54,18 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/blood_height_num"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:text="120"
+                                android:background="@null"
+                                android:hint="请输入..."
+                                android:inputType="number"
+                                android:maxLength="3"
                                 android:textColor="@color/name_color"
-                                android:textSize="50sp" />
+                                android:textColorHint="@color/color_999999"
+                                android:textSize="19sp" />
 
                             <TextView
                                 android:id="@+id/blood_height_tv"
@@ -90,14 +85,18 @@
                             android:layout_toRightOf="@id/height_rl"
                             android:gravity="center">
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/blood_low_num"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:text="89"
+                                android:background="@null"
+                                android:hint="请输入..."
+                                android:inputType="number"
+                                android:maxLength="3"
                                 android:textColor="@color/name_color"
-                                android:textSize="50sp" />
+                                android:textColorHint="@color/color_999999"
+                                android:textSize="19sp" />
 
                             <TextView
                                 android:id="@+id/blood_low_tv"
@@ -116,13 +115,13 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:paddingLeft="15dp"
                     android:background="@color/color_white"
                     android:id="@+id/data_tv"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:paddingLeft="15dp"
-                    android:gravity="center_vertical"
                     android:layout_below="@id/rl_h_l"
+                    android:gravity="center_vertical"
                     android:text="@string/Data"
                     android:textColor="@color/color_333333"
                     android:textSize="19sp" />
@@ -137,13 +136,13 @@
                     android:background="@color/color_e5e5e5" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:background="@color/color_white"
                     android:id="@+id/recycle_view_person"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:background="@color/color_white"
                     android:layout_below="@id/line_data"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -166,11 +165,10 @@
                         android:textSize="19sp" />
                 </RelativeLayout>
 
+
             </RelativeLayout>
         </ScrollView>
 
 
     </RelativeLayout>
-
-
 </RelativeLayout>

@@ -3,10 +3,10 @@
     package="com.technology.yuyipad">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 激光权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--激光权限-->
     <permission
         android:name="com.technology.yuyipad.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
@@ -20,6 +20,14 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 高德地图权 -->
+
+
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 激光权限 -->
 
     <!-- 激光权限 -->
     <application
@@ -73,6 +81,9 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.UserInfo.UserInfoActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".activity.UserInfo.UserInfoActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
@@ -85,6 +96,30 @@
             android:windowSoftInputMode="stateHidden">
             >
         </activity>
+        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- Rich push 核心功能 since 2.0.6 -->
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.InputBloodActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
+        <activity android:name=".activity.InputTemActivity" />
+        <activity
+            android:name=".activity.LocationActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="88e70c8d9a56ceb62bfd2998e1888809" />
+
+        <service android:name="com.amap.api.location.APSService"></service>
+        <!-- 高德地图 -->
+
+
         <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
         <!-- Rich push 核心功能 since 2.0.6 -->
         <activity
@@ -215,6 +250,14 @@
         </provider>
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
 
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
+        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
+        <activity android:name=".activity.SearchHospitalActivity"></activity>
     </application>
 
 </manifest>

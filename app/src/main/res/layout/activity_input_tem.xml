@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_current_tem"
+    android:id="@+id/activity_input_tem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_383838"
-    tools:context="com.technology.yuyipad.activity.CurrentTemActivity">
-
+    tools:context="com.technology.yuyipad.activity.InputTemActivity">
 
     <RelativeLayout
         android:id="@+id/tem_all_data"
@@ -19,21 +18,10 @@
             android:layout_height="42dp"
             android:background="@color/color_white"
             android:gravity="center"
-            android:text="@string/tem_m"
-            android:textColor="@color/color_333333"
-            android:textSize="19sp" />
-
-        <TextView
-            android:id="@+id/input_tem_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:background="@color/color_white"
-            android:gravity="center"
             android:text="@string/hand_input"
             android:textColor="@color/color_333333"
             android:textSize="19sp" />
+
 
         <FrameLayout
             android:background="@color/color_383838"
@@ -145,6 +133,4 @@
 
 
     </RelativeLayout>
-
-
 </RelativeLayout>

@@ -1,12 +1,18 @@
 package com.technology.yuyipad.fragment;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.util.TypedValue;
@@ -24,6 +30,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
@@ -32,6 +42,8 @@ import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.InformationDetailsActivity;
 import com.technology.yuyipad.activity.Medicinal.MyMedicalActivity;
+import com.technology.yuyipad.activity.LocationActivity;
+import com.technology.yuyipad.activity.SearchHospitalActivity;
 import com.technology.yuyipad.activity.SelectHospitalOPDActivity;
 import com.technology.yuyipad.adapter.BloodTemViewPagerAda;
 import com.technology.yuyipad.adapter.FirstPageListViewAdapter;
@@ -106,7 +118,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 temData.clear();
                 XTemdateNum.clear();
                 Object o = msg.obj;
-                if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageUserDataBean.Root){
+                if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageUserDataBean.Root) {
                     com.technology.yuyipad.bean.FirstPageUserDataBean.Root root = (com.technology.yuyipad.bean.FirstPageUserDataBean.Root) o;
                     if (root != null && root.getResult() != null) {
                         mList = root.getResult();
@@ -127,7 +139,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                     }
 
                 }
-
 
 
             } else if (msg.what == 39) {//点击首页用户头像
@@ -284,6 +295,18 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
     //预约挂号
     private LinearLayout mRegister_ll;
+
+    //定位按钮
+    private TextView mLocation_tv;
+
+    //搜索
+    private ImageView mSearch_img;
+
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
+
     public FirstPageFragment() {
         // Required empty public constructor
     }
@@ -304,10 +327,27 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
      */
     private void initUI(View view) {
 
+        //搜索
+        mSearch_img = view.findViewById(R.id.search_img);
+        mSearch_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SearchHospitalActivity.class));
+            }
+        });
+        //定位
+        mLocation_tv = view.findViewById(R.id.location_tv);
+        mLocation_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LocationActivity.class);
+                startActivityForResult(intent, 66);
+            }
+        });
+        ///定位
+       checkPermission();
         //将右边scrollView定位到最顶端：
-
-
-        wrap=(RelativeLayout)view.findViewById(R.id.wrap);
+        wrap = (RelativeLayout) view.findViewById(R.id.wrap);
         wrap.setFocusable(true);
         wrap.setFocusableInTouchMode(true);
         wrap.requestFocus();
@@ -399,13 +439,95 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mInformation_Rl.setOnClickListener(this);
 
         //预约挂号
-        mRegister_ll=view.findViewById(R.id.register_ll);
+        mRegister_ll = view.findViewById(R.id.register_ll);
         mRegister_ll.setOnClickListener(this);
         //我的药品
         drugmall_ll=view.findViewById(R.id.drugmall_ll);
         drugmall_ll.setOnClickListener(this);
     }
 
+
+    //定位
+    public void initLocation() {
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getActivity());
+        mLocationOption = new AMapLocationClientOption();
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位模式为AMapLocationMode.Battery_Saving，低功耗模式。
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
+        mLocationOption.setInterval(1000);//设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
+        //关闭缓存机制
+        mLocationOption.setLocationCacheEnable(false);
+        mLocationOption.setHttpTimeOut(20000);
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //设置定位回调监听
+        mLocationClient.setLocationListener(new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+                if (aMapLocation != null) {
+                    if (aMapLocation.getErrorCode() == 0) {
+                        //解析定位结果
+                        mLocation_tv.setText(aMapLocation.getDistrict());
+                    } else {
+                        mLocation_tv.setText("未定位");
+
+                        //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                        Log.e("AmapError", "location Error, ErrCode:"
+                                + aMapLocation.getErrorCode() + ", errInfo:"
+                                + aMapLocation.getErrorInfo());
+                    }
+                }
+            }
+        });
+        //启动定位
+        mLocationClient.startLocation();
+    }
+
+    public static final int LOCATION_CODE = 123;
+    public void checkPermission() {
+        //sdk版本>=23时，
+        if (Build.VERSION.SDK_INT >= 23) {
+            int checkCallPhonePermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION);
+            //如果定位权限没有授权
+            if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
+                //请求授权， 点击允许或者拒绝时会回调onRequestPermissionsResult（），
+                //注意 ：如果是在fragment中申请权限，不要使用ActivityCompat.requestPermissions，
+                //直接使用requestPermissions （new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_ASK_READ_PHONE）
+                //否则不会调用onRequestPermissionsResult（）方法。
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_CODE);//
+                return;
+
+            } else {//如果已经授权，执行业务逻辑
+               initLocation();
+            }
+
+        } else { //版本小于23时，不需要判断敏感权限，执行业务逻辑
+            initLocation();
+
+        }
+    }
+
+    //请求授权， 点击允许或者拒绝时会回调onRequestPermissionsResult（），
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case LOCATION_CODE:
+                //点击了允许，授权成功
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted
+                    Toast.makeText(getActivity(), "定位授权成功", Toast.LENGTH_SHORT).show();
+                    initLocation();
+                    //点击了拒绝，授权失败
+                } else {
+                    // Permission Denied
+                    Toast.makeText(getActivity(), "定位授权失败", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -415,7 +537,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             Intent intent = new Intent(getActivity(), InformationDetailsActivity.class);
             intent.putExtra("tag", -1);//
             startActivity(intent);
-        }else if (id==mRegister_ll.getId()){
+        } else if (id == mRegister_ll.getId()) {
             startActivity(new Intent(getActivity(), SelectHospitalOPDActivity.class));
         }
         else if (id==drugmall_ll.getId()){
@@ -428,13 +550,11 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         super.onResume();
 
 
-
     }
 
     /**
      * 患者弹框
      */
-
     public void showPatientBox() {
         //设置透明度
         WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
@@ -509,7 +629,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         }
 
     }
-
 
 
     /**
