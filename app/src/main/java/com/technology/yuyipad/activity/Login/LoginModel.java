@@ -96,7 +96,7 @@ public class LoginModel {
             public void onResponse(Response response) throws IOException {
                 resStr=response.body().string();
                 cookie=response.headers().get("Set-Cookie");
-                Log.i("获取验证码",resStr);
+                Log.e("获取验证码",resStr);
                 handler.sendEmptyMessage(1);
             }
         });

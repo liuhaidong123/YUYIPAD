@@ -1,6 +1,7 @@
 package com.technology.yuyipad.activity;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -40,9 +42,12 @@ import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.TextureMapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeAddress;
@@ -100,7 +105,7 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
 
 
     private TextView myLocation;
-
+    private   GeocodeSearch geocoderSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,15 +115,20 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
         aMap = mapView.getMap();
         mapView.onCreate(savedInstanceState);
 
-
-        initLocation();
-
+        initLocation();//定位当前城市
         checkPermission();//定位需要判断权限
         getAllCityList();//初始化定位页面的所有城市数据
         //所有城市
         mAllCityListView = (ListView) findViewById(R.id.all_city_listview);
         mAllCityAdapter = new AllCityListAdapter(this, mAllCity_list);
         mAllCityListView.setAdapter(mAllCityAdapter);
+        //选择城市在地图上显示
+        mAllCityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectCityLocation(mAllCity_list.get(i).getName(),mAllCity_list.get(i).getName());
+            }
+        });
 
         //拼音listview
         myLetterListView = (MyLetterListView) findViewById(R.id.MyLetterListView01);
@@ -128,6 +138,13 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
         mSearch_city_result_listview = (ListView) findViewById(R.id.search_city_listview);//搜索城市时的城市列表ListView
         mResultCityAdapter = new ResultCityAdapter(mSearch_city_result_list, this);//搜索城市Adapter
         mSearch_city_result_listview.setAdapter(mResultCityAdapter);//设置搜索城市Adapter
+        //选择搜索到的城市在地图上显示
+        mSearch_city_result_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectCityLocation(mSearch_city_result_list.get(i).getName(),mSearch_city_result_list.get(i).getName());
+            }
+        });
         mRl_Rl = (RelativeLayout) findViewById(R.id.rl_rl);
         mEditText = (EditText) findViewById(R.id.search_edit);//输入编辑框
 
@@ -167,40 +184,92 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
             }
         });
 
-        //使用定位经纬度获取地址信息
-//        geocoderSearch = new GeocodeSearch(this);
-//        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
-//            @Override
-//            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
-//                if (i == 1000) {
-//                    RegeocodeAddress address = regeocodeResult.getRegeocodeAddress();
-//
-//                    myLocation.setText(address.getCity());
-//                    Log.e("定位城市-", address.getCity());
-//                } else {
-//                    Log.e("错误码--", "" + i);
-//                    myLocation.setText("未定位");
-//                }
-//
-//            }
-//            @Override
-//            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
-//
-//            }
-//        });
+
+
+
     }
 
-    GeocodeSearch geocoderSearch;
+
+    /**
+     * 选择城市显示在地图上
+     * @param cityName
+     */
+    private void selectCityLocation(String address,String cityName){
+        //使用定位经纬度获取地址信息
+        geocoderSearch = new GeocodeSearch(this);
+        //第一个参数是地址，第二个参数是城市
+        GeocodeQuery query = new GeocodeQuery(address, cityName);
+
+        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+            @Override
+            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+
+            }
+            @Override
+            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+                if (i == 1000) {
+                    GeocodeQuery query1 = geocodeResult.getGeocodeQuery();
+                    myLocation.setText(query1.getCity());
+                    query1.getLocationName();
+
+                    List<GeocodeAddress> list = geocodeResult.getGeocodeAddressList();
+
+                    if (list.size() != 0) {
+                        for (int k = 0; k < list.size(); k++) {
+                            double lon = list.get(k).getLatLonPoint().getLongitude();
+                            double lat = list.get(k).getLatLonPoint().getLatitude();
+                            Log.e("经度", list.get(k).getLatLonPoint().getLongitude() + "");
+                            Log.e("纬度", list.get(k).getLatLonPoint().getLatitude() + "");
+                            Log.e("城市", list.get(k).getCity() + "");
+                            Log.e("等级", list.get(k).getLevel() + "");
+                            Log.e("区域编码", list.get(k).getAdcode() + "");
+                            Log.e("建筑物", list.get(k).getBuilding() + "");
+                            Log.e("区域", list.get(k).getDistrict() + "");
+                            Log.e("FormatAddress", list.get(k).getFormatAddress() + "");
+                            String address= list.get(k).getFormatAddress();
+                            Log.e("Neighborhood", list.get(k).getNeighborhood() + "");
+                            Log.e("省份", list.get(k).getProvince() + "");
+                            Log.e("Township", list.get(k).getTownship() + "");
+                            UiSettings uiSettings = aMap.getUiSettings();
+                            uiSettings.setZoomControlsEnabled(false);
+                            uiSettings.setCompassEnabled(true);
+
+                            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(new LatLng(lat, lon), 15, 0, 0));
+                            aMap.moveCamera(cameraUpdate);
+                            MarkerOptions markerOptions = new MarkerOptions();
+                            markerOptions.position(new LatLng(lat,lon));
+                            markerOptions.title(address);
+                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                            markerOptions.draggable(true);
+
+                            Marker marker = aMap.addMarker(markerOptions);
+                            marker.showInfoWindow();// 设置默认显示一个infowinfow
+
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "无法查询当前城市", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Log.e("错误码--", "" + i);
+                    myLocation.setText("未定位");
+                }
+            }
+        });
+
+        geocoderSearch.getFromLocationNameAsyn(query);//开始定位选择城市
+    }
 
     //定位
-    public void initLocation(){
+    public void initLocation() {
         //初始化定位
         mLocationClient = new AMapLocationClient(getApplicationContext());
-        mLocationOption=new AMapLocationClientOption();
+        mLocationOption = new AMapLocationClientOption();
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位模式为AMapLocationMode.Battery_Saving，低功耗模式。
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
-        mLocationOption.setInterval(1000);//设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
+       // mLocationOption.setInterval(1000);//设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
+        mLocationOption.setOnceLocation(true);
         //关闭缓存机制
         mLocationOption.setLocationCacheEnable(false);
         mLocationOption.setHttpTimeOut(20000);
@@ -215,6 +284,19 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
                         //解析定位结果
 
                         myLocation.setText(aMapLocation.getDistrict());
+
+                        Log.e("当前定位城市",aMapLocation.getCity());
+                        Log.e("getDistrict",aMapLocation.getDistrict());
+                        Log.e("getAddress",aMapLocation.getAddress());
+                        Log.e("getAoiName",aMapLocation.getAoiName());
+                        Log.e("getBuildingId",aMapLocation.getBuildingId());
+                        Log.e("getCountry",aMapLocation.getCountry());
+                        Log.e("getDescription",aMapLocation.getDescription());
+                        Log.e("getLocationDetail",aMapLocation.getLocationDetail());
+                        Log.e("getStreet",aMapLocation.getStreet());
+                        if (aMapLocation.getDistrict().equals("涿州市")){
+                            selectCityLocation("涿州市中医医院",aMapLocation.getDistrict());//在地图上显示城市
+                        }
                     } else {
                         myLocation.setText("未定位1");
 
@@ -229,25 +311,15 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
         //启动定位
         mLocationClient.startLocation();
     }
+
     //地图实现定位蓝点
     private void gaoDeMap() {
         myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类
         myLocationStyle.interval(100000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
         aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-        //aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
         aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
-        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                double lat = location.getLatitude();
-                double lnt = location.getLongitude();
-                LatLonPoint latLonPoint = new LatLonPoint(lnt, lat);
-                // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
-               // RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.GPS);
-                //geocoderSearch.getFromLocationAsyn(query);
-            }
-        });
+
     }
 
     public static final int LOCATION_CODE = 123;
@@ -414,6 +486,7 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
             dbHelper.createDataBase();
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             Cursor cursor = db.rawQuery("select * from city", null);
+            db.execSQL("update city set name='阿拉善盟' where name='阿拉善'");
             City city;
             while (cursor.moveToNext()) {
                 city = new City(cursor.getString(1), cursor.getString(2));

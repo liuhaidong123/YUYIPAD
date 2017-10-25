@@ -15,11 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.adapter.TemAdapter;
 import com.technology.yuyipad.bean.UserListBean.Result;
 import com.technology.yuyipad.bean.UserListBean.Root;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lhdUtils.MyDialog;
+import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.SanJiao;
 import com.technology.yuyipad.lhdUtils.SanJiaoHand;
 import com.technology.yuyipad.lhdUtils.TherC;
@@ -34,7 +36,7 @@ import java.util.Map;
 public class InputTemActivity extends AppCompatActivity {
 
 
-    private TextView mHandInput, mSaveBtn, mDuNum,mDuFuHao, mPromptTv;
+    private TextView mHandInput, mSaveBtn, mDuNum, mDuFuHao, mPromptTv;
     private ListView mListview;
     private TemAdapter mAdapter;
     private RelativeLayout mTemRL;
@@ -106,21 +108,30 @@ public class InputTemActivity extends AppCompatActivity {
     private ImageView mAddimg;
     private RelativeLayout mAllDataView;
     private View footer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_tem);
-        //获取用户列表
-        mMap.put("token", User.token);
-        mHttptools = HttpTools.getHttpToolsInstance();
-        initUI();
+
+
+        if (NetWorkUtils.isNetWorkConnected(this)) {
+            //获取用户列表
+            mMap.put("token", User.token);
+            mHttptools = HttpTools.getHttpToolsInstance();
+            initUI();
+        } else {
+            setContentView(R.layout.firstpage_newwork);
+            TextView textView = (TextView) findViewById(R.id.first_page_tv);
+            textView.setText("手动输入体温");
+        }
     }
 
     private void initUI() {
 
         mSaveBtn = (TextView) findViewById(R.id.tem_save_btn);
         mDuNum = (TextView) findViewById(R.id.current_tem);
-        mDuFuHao=(TextView) findViewById(R.id.du);
+        mDuFuHao = (TextView) findViewById(R.id.du);
         mPromptTv = (TextView) findViewById(R.id.tv_prompt);
 
         //保存
@@ -135,7 +146,7 @@ public class InputTemActivity extends AppCompatActivity {
         //存放温度计
         mTemRL = (RelativeLayout) findViewById(R.id.my_tem_rl);
         TherC therC = new TherC(this);
-        SanJiaoHand sanJiao = new SanJiaoHand(this,39,mDuNum,mDuFuHao,mPromptTv);
+        SanJiaoHand sanJiao = new SanJiaoHand(this, 39, mDuNum, mDuFuHao, mPromptTv);
         mTemRL.addView(therC);
         mTemRL.addView(sanJiao);
 
@@ -148,7 +159,10 @@ public class InputTemActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (mList.size() == 0 || i == mList.size()) {
-                    Toast.makeText(getApplicationContext(), "添加", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(), "添加", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
+                    //  intent.putExtra("type", "0");
+                    startActivity(intent);
                 } else {
                     for (int k = 0; k < mList.size(); k++) {
                         if (k == i) {

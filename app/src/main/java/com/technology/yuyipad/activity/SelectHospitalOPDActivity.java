@@ -1,5 +1,8 @@
 package com.technology.yuyipad.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,6 +44,7 @@ import com.technology.yuyipad.bean.SelectDoctor.Result;
 import com.technology.yuyipad.bean.SelectDoctor.Root;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lhdUtils.InformationListView;
+import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.UseDrugGridView;
 import com.technology.yuyipad.user.User;
 
@@ -211,7 +215,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
             } else if (msg.what == 226) {
                 Toast.makeText(SelectHospitalOPDActivity.this, "获取列表失败", Toast.LENGTH_SHORT).show();
                 //挂号是否成功
-            }else if (msg.what == 40) {
+            } else if (msg.what == 40) {
                 Object o = msg.obj;
                 if (o != null && o instanceof com.technology.yuyipad.bean.RegisterResult.Root) {
                     com.technology.yuyipad.bean.RegisterResult.Root root = (com.technology.yuyipad.bean.RegisterResult.Root) o;
@@ -225,28 +229,28 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
                         mDoctorAda.setmListDoctor(mDoctorList);
                         mDoctorAda.setFlag(isFlag);
                         mDoctorAda.notifyDataSetChanged();
-                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(), Toast.LENGTH_SHORT).show();
                     } else if (root.getCode().equals("10101")) {//一天之内只能挂3个人的号
-                        Toast.makeText(SelectHospitalOPDActivity.this, "挂号失败，一天之内只能挂3个人的号",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, "挂号失败，一天之内只能挂3个人的号", Toast.LENGTH_SHORT).show();
 
                     } else if (root.getCode().equals("10102")) {//请选择挂号的家庭成员
-                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(), Toast.LENGTH_SHORT).show();
 
                     } else if (root.getCode().equals("10103")) {//用户信息不完整，无法挂号
-                        Toast.makeText(SelectHospitalOPDActivity.this, "此用户信息不完整，无法挂号",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, "此用户信息不完整，无法挂号", Toast.LENGTH_SHORT).show();
 
                     } else if (root.getCode().equals("10104")) {//没有选择挂号门诊的医生
-                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(), Toast.LENGTH_SHORT).show();
 
                     } else if (root.getCode().equals("10105")) {//请选择上午还是下午
-                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(), Toast.LENGTH_SHORT).show();
                     } else if (root.getCode().equals("10106")) {//您选择的医生已经没号了
-                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(), Toast.LENGTH_SHORT).show();
                     } else if (root.getCode().equals("10107")) {//已经挂过该医生的号了
-                        Toast.makeText(SelectHospitalOPDActivity.this, "您已经挂过该医生的好了，亲",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, "您已经挂过该医生的好了，亲", Toast.LENGTH_SHORT).show();
 
                     } else if (root.getCode().equals("10108")) {//该医生不出诊
-                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectHospitalOPDActivity.this, root.getResult(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -306,22 +310,37 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
     private int numHao;
     private long docID;
     private int mPositionDoc = -1;
+
+    private RelativeLayout mSearch_Hospital_Rl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_hospital_opd);
-        //获取首页数据
-        mHttptools = HttpTools.getHttpToolsInstance();
-        mHttptools.getAppintmentData(mHandler, 0, 10);//医院列表
-        map.put("token", User.token);
-        mHttptools.getUserLIst(mHandler, map);//获取所有挂号人
-        initUI();
+        if (NetWorkUtils.isNetWorkConnected(this)) {
+            setContentView(R.layout.activity_select_hospital_opd);
+            //获取首页数据
+            mHttptools = HttpTools.getHttpToolsInstance();
+            mHttptools.getAppintmentData(mHandler, 0, 10);//医院列表
+            map.put("token", User.token);
+            mHttptools.getUserLIst(mHandler, map);//获取所有挂号人
+            initUI();
+        } else {
+            setContentView(R.layout.firstpage_newwork);
+            TextView textView = (TextView) findViewById(R.id.first_page_tv);
+            textView.setText("预约挂号");
+        }
+
+
     }
 
     /**
      * 初始化UI
      */
     private void initUI() {
+        //搜索医院
+        mSearch_Hospital_Rl = (RelativeLayout) findViewById(R.id.search_relative);
+        mSearch_Hospital_Rl.setOnClickListener(this);
+
         mAllData = (LinearLayout) findViewById(R.id.all_data_register_ll);
         View view = LayoutInflater.from(this).inflate(R.layout.loading_box, null);
         mPopupwindow = new PopupWindow(view);
@@ -519,7 +538,6 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
     }
 
 
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -606,20 +624,24 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
                             mPatientPop.dismiss();
                             mPosition = -1;
                         } else {
-                            Toast.makeText(this, "无余号，请重新选择",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "无余号，请重新选择", Toast.LENGTH_SHORT).show();
                             mPatientPop.dismiss();
                             mPosition = -1;
                         }
                     } else {
-                        Toast.makeText(this, "请选择挂号人",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "请选择挂号人", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
 
+        } else if (id == mSearch_Hospital_Rl.getId()) {
+            startActivity(new Intent(getApplicationContext(), SearchHospitalActivity.class));
         }
     }
+
     //挂号患者弹框
     private void showPatient() {
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         //设置透明度
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.alpha = 0.7f;
@@ -630,14 +652,15 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
         mPatientPop.setWidth(mName_ke.getWidth());
         mPatientPop.setFocusable(true);//如果有交互需要设置焦点为true
         mPatientPop.setOutsideTouchable(false);//设置内容外可以点击
-
+        mPatientPop.setBackgroundDrawable(new ColorDrawable(Color.argb(000, 255, 255, 255)));
         //相对于父控件的位置
         // mPatientPop.showAtLocation(mDoctor_ll, Gravity.CENTER, 0, 0);
-       mPatientPop.showAsDropDown(mName_ke);
+        mPatientPop.showAsDropDown(mName_ke);
         //当弹框销毁时，将透明度初始化，否则弹框销毁后，所依附的activity页面背景将会改变
         mPatientPop.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+               SelectHospitalOPDActivity.this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 WindowManager.LayoutParams params = getWindow().getAttributes();
                 params.alpha = 1f;
                 getWindow().setAttributes(params);
@@ -646,6 +669,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
             }
         });
     }
+
     //加载弹框
     private void showPopuWindow() {
         //设置透明度
