@@ -28,6 +28,7 @@ import com.technology.yuyipad.bean.UpdatedFirstPageTwoDataBean.Root;
 import com.technology.yuyipad.bean.UpdatedFirstPageTwoDataBean.Rows;
 import com.technology.yuyipad.httptools.UrlTools;
 import com.technology.yuyipad.lhdUtils.InformationListView;
+import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 
 public class InformationDetailsActivity extends AppCompatActivity {
     private RelativeLayout mAllData_Rl;
@@ -42,7 +43,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
     private RelativeLayout mMany_more;
     private ProgressBar mBar;
     private HttpTools mHttptools;
-    private boolean isMore=false;//true 代表点击了加载跟多
+    private boolean isMore = false;//true 代表点击了加载跟多
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -57,7 +58,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
                         list = root.getRows();
                         mList.addAll(list);
 
-                        if (!isMore){//没有点击加载更多
+                        if (!isMore) {//没有点击加载更多
 
                             if (tag == -1) {//请求默认第一条数据
                                 for (int i = 0; i < mList.size(); i++) {
@@ -85,8 +86,8 @@ public class InformationDetailsActivity extends AppCompatActivity {
                                 mAdapter.notifyDataSetChanged();
                                 mHttptools.getFirstPageInformationTwoDataMessage(handler, mList.get(tag).getId());
                             }
-                        }else {//点击了加载更多
-                            for (int i=0;i<list.size();i++){
+                        } else {//点击了加载更多
+                            for (int i = 0; i < list.size(); i++) {
                                 checkBgList.add(false);
                             }
                             mAdapter.setList(mList, checkBgList);
@@ -99,7 +100,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
                         } else {
                             mMany_more.setVisibility(View.GONE);
                         }
-                    }else {
+                    } else {
                         mMany_more.setVisibility(View.GONE);
                     }
                 }
@@ -127,11 +128,21 @@ public class InformationDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_details);
-        //获取资讯页面数据
-        mHttptools = HttpTools.getHttpToolsInstance();
-        mHttptools.getFirstPageInformationTwoData(handler, 0, 10);
-        initUI();
+
+        if (NetWorkUtils.isNetWorkConnected(this)) {
+            setContentView(R.layout.activity_information_details);
+            //获取资讯页面数据
+            mHttptools = HttpTools.getHttpToolsInstance();
+            mHttptools.getFirstPageInformationTwoData(handler, 0, 10);
+            initUI();
+        } else {
+
+            setContentView(R.layout.firstpage_newwork);
+            TextView textView = (TextView) findViewById(R.id.first_page_tv);
+            textView.setText("资讯详情");
+
+        }
+
     }
 
     private void initUI() {
@@ -152,7 +163,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
         mMany_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isMore=true;
+                isMore = true;
                 mBar.setVisibility(View.VISIBLE);
                 mStart += 10;
                 mHttptools.getFirstPageInformationTwoData(handler, mStart, mAddNum);
@@ -168,7 +179,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
                 checkBgList.clear();
                 for (int k = 0; k < mList.size(); k++) {
                     if (k == i) {
-                        checkBgList.add(i,true);
+                        checkBgList.add(i, true);
                     } else {
                         checkBgList.add(false);
                     }

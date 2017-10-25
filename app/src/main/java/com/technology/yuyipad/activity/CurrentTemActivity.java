@@ -15,10 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.adapter.TemAdapter;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lhdUtils.InformationListView;
 import com.technology.yuyipad.lhdUtils.MyDialog;
+import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.SanJiao;
 import com.technology.yuyipad.lhdUtils.TherC;
 
@@ -109,11 +111,19 @@ public class CurrentTemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_current_tem);
-        //获取用户列表
-        mMap.put("token", User.token);
-        mHttptools = HttpTools.getHttpToolsInstance();
-        initUI();
+
+
+        if (NetWorkUtils.isNetWorkConnected(this)) {
+            setContentView(R.layout.activity_current_tem);
+            //获取用户列表
+            mMap.put("token", User.token);
+            mHttptools = HttpTools.getHttpToolsInstance();
+            initUI();
+        } else {
+            setContentView(R.layout.firstpage_newwork);
+            TextView textView = (TextView) findViewById(R.id.first_page_tv);
+            textView.setText("当前体温");
+        }
     }
 
     private void initUI() {
@@ -125,7 +135,7 @@ public class CurrentTemActivity extends AppCompatActivity {
         mHandInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),InputTemActivity.class));
+                startActivity(new Intent(getApplicationContext(), InputTemActivity.class));
                 finish();
             }
         });
@@ -154,7 +164,10 @@ public class CurrentTemActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (mList.size() == 0 || i == mList.size()) {
-                    Toast.makeText(getApplicationContext(), "添加", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(), "添加", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
+                    //  intent.putExtra("type", "0");
+                    startActivity(intent);
                 } else {
                     for (int k = 0; k < mList.size(); k++) {
                         if (k == i) {

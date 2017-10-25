@@ -15,12 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.adapter.RecycleAdapter;
 import com.technology.yuyipad.adapter.RecycleViewBlood;
 import com.technology.yuyipad.bean.UserListBean.Result;
 import com.technology.yuyipad.bean.UserListBean.Root;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lhdUtils.MyDialog;
+import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.user.User;
 
 import java.util.ArrayList;
@@ -92,8 +94,16 @@ public class CurrentBloodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_current_blood);
-        initUI();
+
+        if (NetWorkUtils.isNetWorkConnected(this)) {
+            setContentView(R.layout.activity_current_blood);
+            initUI();
+        } else {
+            setContentView(R.layout.firstpage_newwork);
+            TextView textView = (TextView) findViewById(R.id.first_page_tv);
+            textView.setText("当前血压");
+        }
+
     }
 
     private void initUI() {
@@ -114,14 +124,15 @@ public class CurrentBloodActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 if (mList.size() == 0) {//只有添加按钮
-//                    Intent intent = new Intent(getApplicationContext(), AddFamilyUserActivity.class);
-//                    intent.putExtra("type", "0");
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
+                    // intent.putExtra("type", "0");
+                    startActivity(intent);
                 } else {
                     if (position == mList.size()) {//最后一个是添加按钮
-//                        Intent intent = new Intent(getApplicationContext(), AddFamilyUserActivity.class);
-//                        intent.putExtra("type", "0");
-//                        startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
+                        //intent.putExtra("type", "0");
+                        startActivity(intent);
+
                     } else {
                         //用户信息不完善
                         if (mList.get(0).getAge() == 0 | mList.get(0).getTrueName().equals("") | mList.get(0).getGender() == null) {
@@ -194,6 +205,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
             return "";
         }
     }
+
     /**
      * 判断输入的血压是否在范围之内
      */
@@ -204,6 +216,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
             return true;
         }
     }
+
     /**
      * 提交
      */
@@ -221,7 +234,7 @@ public class CurrentBloodActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(CurrentBloodActivity.this, "请选择用户", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(this, "请传入正确的血压数据", Toast.LENGTH_SHORT).show();
                 }
 

@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,7 @@ import com.technology.yuyipad.Net.Iport;
 import com.technology.yuyipad.Net.gson;
 import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.activity.InformationDetailsActivity;
 import com.technology.yuyipad.activity.Medicinal.MyMedicalActivity;
 import com.technology.yuyipad.activity.LocationActivity;
@@ -67,6 +69,7 @@ import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.httptools.UrlTools;
 import com.technology.yuyipad.lhdUtils.BloodView;
 import com.technology.yuyipad.lhdUtils.InformationListView;
+import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.RoundImageView;
 import com.technology.yuyipad.lhdUtils.TemView;
 import com.technology.yuyipad.lzhUtils.PopupSettings;
@@ -378,10 +381,13 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_first_page, container, false);
         initUI(view);
         hasUnReadMsg();
         return view;
+
+
     }
 
     /**
@@ -412,7 +418,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             }
         });
         ///定位
-       checkPermission();
+        checkPermission();
         //将右边scrollView定位到最顶端：
         wrap = (RelativeLayout) view.findViewById(R.id.wrap);
         wrap.setFocusable(true);
@@ -449,7 +455,11 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                     mHttptools.getClickUserDataData(mHandler, User.token, mList.get(i).getId());//请求某个患者数据
                 } else {
                     //添加患者
-                    Toast.makeText(getActivity(), "添加患者", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(), "添加患者", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), FamilyUserManagerActivity.class);
+                    //intent.putExtra("type", "0");
+                    startActivity(intent);
+                    mPopupwindow.dismiss();
                 }
             }
         });
@@ -509,7 +519,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mRegister_ll = view.findViewById(R.id.register_ll);
         mRegister_ll.setOnClickListener(this);
         //我的药品
-        drugmall_ll=view.findViewById(R.id.drugmall_ll);
+        drugmall_ll = view.findViewById(R.id.drugmall_ll);
         drugmall_ll.setOnClickListener(this);
     }
 
@@ -535,6 +545,8 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 if (aMapLocation != null) {
                     if (aMapLocation.getErrorCode() == 0) {
                         //解析定位结果
+                        User.Latitude = aMapLocation.getLatitude();//获取纬度
+                        User.Longitude = aMapLocation.getLongitude();//获取经度
                         mLocation_tv.setText(aMapLocation.getDistrict());
                     } else {
                         mLocation_tv.setText("未定位");
@@ -552,6 +564,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     }
 
     public static final int LOCATION_CODE = 123;
+
     public void checkPermission() {
         //sdk版本>=23时，
         if (Build.VERSION.SDK_INT >= 23) {
@@ -566,7 +579,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 return;
 
             } else {//如果已经授权，执行业务逻辑
-               initLocation();
+                initLocation();
             }
 
         } else { //版本小于23时，不需要判断敏感权限，执行业务逻辑
@@ -595,6 +608,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -606,8 +620,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             startActivity(intent);
         } else if (id == mRegister_ll.getId()) {
             startActivity(new Intent(getActivity(), SelectHospitalOPDActivity.class));
-        }
-        else if (id==drugmall_ll.getId()){
+        } else if (id == drugmall_ll.getId()) {
             startActivity(new Intent(getActivity(), MyMedicalActivity.class));
         }
         else if (id==message_img.getId()){//点击消息
@@ -638,16 +651,19 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
      * 患者弹框
      */
     public void showPatientBox() {
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         //设置透明度
         WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
-        params.alpha = 0.7f;
+        params.alpha = 0.6f;
         getActivity().getWindow().setAttributes(params);
         //存放popupWindow的容器
         // ViewGroup container = (ViewGroup) findViewById(R.id.activity_money_input_sure);
         mPopupwindow = new PopupWindow(mView);
         //设置弹框的款，高
+        mPopupwindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         mPopupwindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopupwindow.setWidth(mSelect_patient_rl.getWidth());
+        mPopupwindow.setBackgroundDrawable(new ColorDrawable(Color.argb(000, 255, 255, 255)));
         mPopupwindow.setFocusable(true);//如果有交互需要设置焦点为true
         mPopupwindow.setOutsideTouchable(true);//设置内容外可以点击
 
@@ -658,6 +674,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mPopupwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
                 params.alpha = 1f;
                 getActivity().getWindow().setAttributes(params);

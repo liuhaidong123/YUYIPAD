@@ -1,6 +1,7 @@
 package com.technology.yuyipad.activity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
@@ -29,7 +30,7 @@ import com.technology.yuyipad.lhdUtils.InformationListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchHospitalActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class SearchHospitalActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView mListView;
     private SearchHistoryListViewAdapter mAdapter;
@@ -49,10 +50,8 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
                         mSearchHospitalList = root.getResult();
                         if (mSearchHospitalList.size() == 0) {
                             mPrompt_Tv.setVisibility(View.VISIBLE);
-                            //mDrugScrollView.setVisibility(View.GONE);
                             mHospitalScrollView.setVisibility(View.GONE);
                             mListView.setVisibility(View.GONE);
-                            //Toast.makeText(SearchActivity.this, "没有查询该医院", Toast.LENGTH_SHORT).show();
                         } else {
                             mPrompt_Tv.setVisibility(View.GONE);
                             mAdapter = new SearchHistoryListViewAdapter(SearchHospitalActivity.this, mSearchHospitalList);
@@ -116,7 +115,7 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
 
         //搜索的历史数据
         mListView = (ListView) findViewById(R.id.search_history_listview);
-        mListView.setOnItemClickListener(this);
+
         //取消按钮
         mCancel = (TextView) findViewById(R.id.cancel_tv);
         mCancel.setOnClickListener(this);
@@ -198,10 +197,7 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
         }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(SearchHospitalActivity.this, "点击了listview:" + i, Toast.LENGTH_SHORT).show();
-    }
+
 
     //判断搜索框里是否有内容
     public String getEditTxt() {

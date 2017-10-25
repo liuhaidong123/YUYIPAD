@@ -11,17 +11,19 @@ import com.technology.yuyipad.lzhUtils.Empty;
  */
 
 public class User {
-    public static String token="";//服务器返回的token
-    public static String tele="";//用户名（手机号）
+    public static String token = "";//服务器返回的token
+    public static String tele = "";//用户名（手机号）
+    public static double Longitude;
+    public static double Latitude;
 
-    public static boolean isLogin(Context context){
-        SharedPreferences preferences=context.getSharedPreferences("USER",Context.MODE_APPEND);
-        String userToken=preferences.getString("userToken","0");
-        String userTelePhone=preferences.getString("telePhone","0");
-        if (Empty.getInstance().notEmptyOrNull(userToken)&&Empty.getInstance().notEmptyOrNull(userTelePhone)
-                &&!"0".equals(userToken)&&!"0".equals(userTelePhone)){
-            token=userToken;//存储到类中
-            tele=userTelePhone;//存储到类中
+    public static boolean isLogin(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("USER", Context.MODE_APPEND);
+        String userToken = preferences.getString("userToken", "0");
+        String userTelePhone = preferences.getString("telePhone", "0");
+        if (Empty.getInstance().notEmptyOrNull(userToken) && Empty.getInstance().notEmptyOrNull(userTelePhone)
+                && !"0".equals(userToken) && !"0".equals(userTelePhone)) {
+            token = userToken;//存储到类中
+            tele = userTelePhone;//存储到类中
             return true;
         }
         return false;

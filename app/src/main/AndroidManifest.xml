@@ -40,11 +40,11 @@
             android:name=".activity.Main.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".activity.Start.StartActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".activity.Start.StartActivity"
             android:launchMode="singleTop"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -202,8 +202,6 @@
             android:name="JPUSH_APPKEY"
             android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
         <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
-
-
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -294,6 +292,27 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden">
+        </activity>
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
+        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
+        <activity android:name=".activity.SearchHospitalActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"
+            />
+        <activity android:name=".activity.HospitalDetailsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"
+            >
+
         </activity>
     </application>
 

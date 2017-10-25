@@ -34,6 +34,7 @@
     <string name="Data">数据录入</string>
     <string name="save">保存</string>
     <string name="edit_hint">搜索医院</string>
+    <string name="ask_title">咨询</string>
 
 
     <string name="_90mmhg_140mmhg"><![CDATA[90mmHg<收缩压<140mmHg]]></string>
