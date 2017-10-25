@@ -39,19 +39,30 @@ import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 import com.jude.rollviewpager.hintview.IconHintView;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
+import com.technology.yuyipad.Net.Ip;
+import com.technology.yuyipad.Net.Iport;
+import com.technology.yuyipad.Net.gson;
+import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.activity.InformationDetailsActivity;
 import com.technology.yuyipad.activity.Medicinal.MyMedicalActivity;
 import com.technology.yuyipad.activity.LocationActivity;
+import com.technology.yuyipad.activity.Message.MessageListActivity;
 import com.technology.yuyipad.activity.SearchHospitalActivity;
 import com.technology.yuyipad.activity.SelectHospitalOPDActivity;
 import com.technology.yuyipad.adapter.BloodTemViewPagerAda;
 import com.technology.yuyipad.adapter.FirstPageListViewAdapter;
+import com.technology.yuyipad.adapter.My_messageListView_Adapter;
 import com.technology.yuyipad.adapter.PatientAda;
 import com.technology.yuyipad.bean.FirstPageUserDataBean.BloodpressureList;
 import com.technology.yuyipad.bean.FirstPageUserDataBean.TemperatureList;
+import com.technology.yuyipad.bean.HasMsgBean;
+import com.technology.yuyipad.bean.UnReadMsgBean;
 import com.technology.yuyipad.bean.UserListBean.Result;
 import com.technology.yuyipad.bean.UserListBean.Root;
 import com.technology.yuyipad.httptools.HttpTools;
@@ -61,8 +72,10 @@ import com.technology.yuyipad.lhdUtils.InformationListView;
 import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.RoundImageView;
 import com.technology.yuyipad.lhdUtils.TemView;
+import com.technology.yuyipad.lzhUtils.PopupSettings;
 import com.technology.yuyipad.user.User;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,6 +99,13 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     private PatientAda mPatientAda;
     private View mView;
     private View footer;
+    ImageView message_img;//消息
+    View message_unRead;//消息圆点
+    boolean hasUnReadMsg=true;//是否有未读消息
+    int msgTotalCount=0;//未读消息的总个数
+    View parentView;//弹窗的容器
+    String resStr;
+    My_messageListView_Adapter adapter;
     private List<com.technology.yuyipad.bean.FirstPageUserDataBean.Result> mList = new ArrayList<>();
     private HttpTools mHttptools;
     private Handler mHandler = new Handler() {
@@ -260,6 +280,49 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
                 }
             }
+
+            else if (msg.what==-10){//获取有无未读消息网络异常
+                hasUnReadMsg=false;
+            }
+            else if (msg.what==-11){//获取有无未读消息
+                hasUnReadMsg=false;
+                try{
+                    HasMsgBean hasMsgBean= gson.gson.fromJson(resStr,HasMsgBean.class);
+                    if (hasMsgBean!=null){
+                        if ("0".equals(hasMsgBean.getCode())){
+                            msgTotalCount= hasMsgBean.getHasMessage();
+                            if (msgTotalCount>0){
+                                hasUnReadMsg=true;
+                                message_unRead.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else if (msg.what==-13){//获取有无未读消息网络异常
+                startActivity(new Intent(getActivity(), MessageListActivity.class));
+            }
+            else if (msg.what==-14){//获取有无未读消息
+                hasUnReadMsg=false;
+                msgTotalCount=0;
+                message_unRead.setVisibility(View.GONE);
+                try{
+                    UnReadMsgBean hasMsgBean= gson.gson.fromJson(resStr,UnReadMsgBean.class);
+                    if (hasMsgBean!=null&&hasMsgBean.getRows()!=null&&hasMsgBean.getRows().size()>0){
+                        showUnReadMsgList(hasMsgBean.getRows());
+                    }
+                    else {
+                        startActivity(new Intent(getActivity(), MessageListActivity.class));
+                    }
+                }
+                catch (Exception e){
+                    startActivity(new Intent(getActivity(), MessageListActivity.class));
+                    e.printStackTrace();
+                }
+            }
         }
 
     };
@@ -321,6 +384,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
 
         View view = inflater.inflate(R.layout.fragment_first_page, container, false);
         initUI(view);
+        hasUnReadMsg();
         return view;
 
 
@@ -332,7 +396,10 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
      * @param view
      */
     private void initUI(View view) {
-
+        message_unRead=view.findViewById(R.id.message_unRead);
+        message_unRead.setVisibility(View.GONE);
+        message_img=view.findViewById(R.id.message_img);
+        message_img.setOnClickListener(this);
         //搜索
         mSearch_img = view.findViewById(R.id.search_img);
         mSearch_img.setOnClickListener(new View.OnClickListener() {
@@ -485,9 +552,9 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                         mLocation_tv.setText("未定位");
 
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
-                        Log.e("AmapError", "location Error, ErrCode:"
-                                + aMapLocation.getErrorCode() + ", errInfo:"
-                                + aMapLocation.getErrorInfo());
+//                        Log.e("AmapError", "location Error, ErrCode:"
+//                                + aMapLocation.getErrorCode() + ", errInfo:"
+//                                + aMapLocation.getErrorInfo());
                     }
                 }
             }
@@ -556,13 +623,28 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         } else if (id == drugmall_ll.getId()) {
             startActivity(new Intent(getActivity(), MyMedicalActivity.class));
         }
+        else if (id==message_img.getId()){//点击消息
+            if (hasUnReadMsg&&msgTotalCount>0){//有未读消息时显示消息列表
+                getUnReadMsg();
+            }
+            else {//没有未读消息时跳转到消息页面
+                startActivity(new Intent(getActivity(), MessageListActivity.class));
+                }
+        }
+    }
+
+    public void showUnReadMsgList(List<UnReadMsgBean.RowsBean>list){
+        PopupWindow pop=new PopupWindow();
+        View vi=LayoutInflater.from(getActivity()).inflate(R.layout.msglist,null);
+        ListView msgListView=vi.findViewById(R.id.msgListView);
+        adapter=new My_messageListView_Adapter(getActivity(),list);
+        msgListView.setAdapter(adapter);
+        PopupSettings.getInstance().showWindowRight(getActivity(),pop,vi,message_img);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-
     }
 
     /**
@@ -807,6 +889,44 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mRollPagerView.pause();
         mRollPagerView.resume();
         mRollPagerView.isPlaying();
+    }
+
+    //是否有未读消息
+    public void hasUnReadMsg(){
+        Map<String,String>mp=new HashMap<>();
+        mp.put("token",User.token);
+        ok.getCall(Ip.path+ Iport.interface_HasUnReadMsg,mp,ok.OK_POST).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                    mHandler.sendEmptyMessage(-10);
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                resStr=response.body().string();
+                Log.e("有无未读消息",resStr);
+                mHandler.sendEmptyMessage(-11);
+            }
+        });
+    }
+    //获取未读消息http://192.168.1.168:8082/yuyi/message/readPage.do?token=97338E8A81C0CC137FC51C6206681EBB&start=0&limit=1
+    public void getUnReadMsg(){
+        Map<String,String>mp=new HashMap<>();
+        mp.put("token",User.token);
+        mp.put("start","0");
+        mp.put("limit",msgTotalCount>15?15+"":msgTotalCount+"");
+        ok.getCall(Ip.path+ Iport.interface_getUnReadMsg,mp,ok.OK_POST).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                mHandler.sendEmptyMessage(-13);
+            }
+            @Override
+            public void onResponse(Response response) throws IOException {
+                resStr=response.body().string();
+                Log.i("未读消息",resStr);
+                mHandler.sendEmptyMessage(-14);
+            }
+        });
     }
 }
 

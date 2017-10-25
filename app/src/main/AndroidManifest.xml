@@ -40,12 +40,11 @@
             android:name=".activity.Main.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
-            android:screenOrientation="landscape"></activity>
-        <activity
-            android:name=".activity.Start.StartActivity"
-            android:theme="@style/AppTheme"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".activity.Start.StartActivity"
             android:launchMode="singleTop"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,7 +55,7 @@
         <activity
             android:name=".activity.Login.LoginActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.InformationDetailsActivity"
@@ -90,13 +89,9 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden">
-            >
-        </activity>
+            android:windowSoftInputMode="stateHidden" />
         <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
         <!-- Rich push 核心功能 since 2.0.6 -->
-        android:screenOrientation="landscape"
-        android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.InputBloodActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -247,13 +242,6 @@
         </provider>
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
 
-        <meta-data
-            android:name="JPUSH_CHANNEL"
-            android:value="developer-default" />
-        <meta-data
-            android:name="JPUSH_APPKEY"
-            android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
-        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
         <activity android:name=".activity.SearchHospitalActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
@@ -267,6 +255,53 @@
             android:windowSoftInputMode="stateHidden"
             >
 
+        </activity>
+        <activity
+            android:name=".activity.Message.MessageListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.Setting.SettingActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.Setting_ChangePhoneActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.SettingAboutActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.SettingFeedActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.SettingContactActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".activity.MedicalRecord.EleMedicalRecordListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".activity.MedicalRecord.EleMedicalRecordActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

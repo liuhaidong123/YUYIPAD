@@ -56,6 +56,7 @@ public class RongConnect {
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
+                    iToken.onTokenError("网络异常");
                     break;
                 case 1:
                     try{

@@ -83,7 +83,7 @@ public class MainPresenter {
         }
         li.get(pos).setSelect(true);
     }
-    //清除缓存
+    //
     public void clearCache(Activity ac){
         if (PermissionCheck.getInstance().isPermissionGet(new String[]{PermissionNames.WRITE_SD,PermissionNames.READ_SD},ac)){
             File fl=new File(ac.getExternalFilesDir("DCIM").getAbsolutePath());

@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.technology.yuyipad.activity.InformationDetailsActivity">
-
+    <LinearLayout android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        </LinearLayout>
     <TextView
         android:id="@+id/information_title"
         android:layout_width="match_parent"
@@ -27,6 +30,7 @@
 
 
     <RelativeLayout
+        android:layout_above="@+id/btn"
         android:id="@+id/all_information_data_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -177,6 +181,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@drawable/frag_my_rela"
+        android:layout_width="match_parent"
+        android:layout_height="109dp">
+        <LinearLayout
+            android:id="@+id/item_top"
+            android:gravity="center"
+            android:background="#e5f6fb"
+            android:layout_width="109dp"
+            android:layout_height="109dp">
+        <RelativeLayout
+            android:layout_gravity="center"
+            style="@style/layoutWrapContent">
+            <TextView style="@style/layoutWrapContent"
+                android:textSize="19sp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="#1ebeec"
+                android:id="@+id/ele_TimeYear"
+                android:text="2017"/>
+            <TextView style="@style/layoutWrapContent"
+                android:textSize="19sp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="#1ebeec"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/ele_TimeYear"
+                android:id="@+id/ele_TimeMonth"
+                android:text="10-17"/>
+        </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_toRightOf="@+id/item_top"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            style="@style/layoutmatchparent">
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView style="@style/layoutWrapContent"
+                    android:textSize="19sp"
+                    android:textColor="#999999"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="涿州市中医院"
+                    android:maxLines="1"
+                    android:maxLength="10"
+                    android:ellipsize="end"
+                    android:id="@+id/ele_HosName"/>
+
+                <TextView style="@style/TextS19C3"
+                    android:text="消化科"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:id="@+id/ele_KS"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <LinearLayout
+                    android:id="@+id/bottomlyout"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    style="@style/layoutWrapContent">
+                    <TextView style="@style/layoutWrapContent"
+                        android:textSize="18sp"
+                        android:textColor="#999999"
+                        android:text="详情"
+                        />
+                    <ImageView style="@style/layoutWrapContent"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/returns"/>
+                    </LinearLayout>
+                <TextView style="@style/layoutWrapContent"
+                    android:textSize="19sp"
+                    android:id="@+id/ele_info"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/bottomlyout"
+                    android:maxLength="16"
+                    android:ellipsize="end"
+                    android:text="消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并"
+                    android:textColor="#999999"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

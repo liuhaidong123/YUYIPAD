@@ -73,6 +73,7 @@ public class MyApplication extends Application{
             }
         }
     }
+    //退出登录
     public static void removeActivity() {
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {

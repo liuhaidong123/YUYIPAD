@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.technology.yuyipad.activity.Setting.SettingActivity">
+    <RelativeLayout
+        android:background="#f2f2f2"
+        style="@style/layoutmatchparent">
+        <include layout="@layout/titleinclude"
+            android:layout_width="match_parent"
+            android:id="@+id/settings_titleinclude"
+            android:layout_height="wrap_content"></include>
+        <LinearLayout
+            android:id="@+id/settinglayout"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/settings_titleinclude"
+            android:background="@drawable/frag_my_rela"
+            android:layout_height="wrap_content"
+            android:paddingBottom="45dp"
+            android:paddingLeft="76.5dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:paddingRight="76.5dp"
+            android:orientation="vertical"
+            android:paddingTop="45dp">
+            <!--联系我们-->
+            <LinearLayout
+                android:id="@+id/setting_contactus"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        style="@style/TextS19C3"
+                        android:text="联系我们"/>
+                    <ImageView style="@style/layoutWrapContent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/returns"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#e5e5e5"/>
+            </LinearLayout>
+
+
+            <!--意见反馈-->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/setting_feedback"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        style="@style/TextS19C3"
+                        android:text="意见反馈"/>
+                    <ImageView style="@style/layoutWrapContent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/returns"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#e5e5e5"/>
+            </LinearLayout>
+
+            <!--关于我们-->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/setting_aboutus"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        style="@style/TextS19C3"
+                        android:text="关于我们"/>
+                    <ImageView style="@style/layoutWrapContent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/returns"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#e5e5e5"/>
+            </LinearLayout>
+
+
+            <!--修改手机号-->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/setting_changeTelePhone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        style="@style/TextS19C3"
+                        android:text="修改绑定手机号"/>
+                    <ImageView style="@style/layoutWrapContent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/returns"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#e5e5e5"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/setting_exit"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            style="@style/TextS19C3"
+            android:text="退出"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="76.5dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/frag_my_rela"
+            android:layout_below="@+id/settinglayout"/>
+        </RelativeLayout>
+
+</RelativeLayout>

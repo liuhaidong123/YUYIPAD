@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.RongUtils.RongWindow;
 import com.technology.yuyipad.adapter.InformationAda;
 import com.technology.yuyipad.bean.UpdatedFirstPageTwoDataBean.UpdatedInformation;
 import com.technology.yuyipad.httptools.HttpTools;

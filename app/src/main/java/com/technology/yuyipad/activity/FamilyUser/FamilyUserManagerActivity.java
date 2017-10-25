@@ -65,7 +65,6 @@ public class FamilyUserManagerActivity extends MyActivity implements AdapterView
     //item点击事件
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        toast.getInstance().text(this,i+"");
         if (i!=0){//点击的不是第一项
             if (!li.get(i).isAdd()){//不是添加按钮时，向fragment传递数据
                 presenter.showFragment(FamilyUserManagerPresenter.FragmentType.USERINFO,null);//显示用户信息的fragment

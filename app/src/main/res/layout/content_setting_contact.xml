@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_setting_contact"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    tools:context="com.technology.yuyipad.activity.Setting.SettingFeedActivity"
+    >
+    <include layout="@layout/titleinclude"
+        android:layout_width="match_parent"
+        android:id="@+id/settingsContact_titleinclude"
+        android:layout_height="wrap_content">
+    </include>
+
+
+
+    <LinearLayout
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:layout_below="@+id/settingsContact_titleinclude"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="您的意见"
+            android:paddingLeft="10dp"
+            android:paddingTop="12dp"
+            android:textColor="#333333"
+            android:textSize="15sp"/>
+        <RelativeLayout
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/frag_my_rela"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/my_settings_idea_textNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0/200"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:gravity="right"
+                android:textColor="#b4b4b4"
+                android:textSize="12sp"
+                />
+
+            <EditText
+                android:padding="5dp"
+                android:lineSpacingExtra="7dp"
+                android:id="@+id/my_settings_idea_editIdea"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="left"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:text=""
+                android:hint="输入内容～"
+                android:textColorHint="#b4b4b4"
+                android:maxLength="200"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="您的联系方式"
+            android:paddingLeft="10dp"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            />
+        android:textSize="14sp"/>
+        <RelativeLayout
+            android:background="@drawable/frag_my_rela"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <EditText
+                android:id="@+id/my_settings_idea_editContact"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="left"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:paddingTop="10dp"
+                android:paddingLeft="15dp"
+                android:paddingBottom="5dp"
+                android:textColorHint="#b4b4b4"
+                android:paddingRight="10dp"
+                android:hint="输入邮箱或电话～"
+                android:maxLength="50"/>
+        </RelativeLayout>
+        <TextView
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:text="确 定"
+            android:gravity="center"
+            android:id="@+id/settingFeed_submit"
+            android:background="@drawable/btnlogin"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200dp"
+            android:layout_height="44dp"/>
+    </LinearLayout>
+</RelativeLayout>

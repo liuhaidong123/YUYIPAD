@@ -35,4 +35,21 @@ public interface Iport {
     String interface_LoginGetSMS="personal/vcode.do";
     //登录
     String interface_Login="personal/login.do";
+
+
+    //更改绑定手机号修改绑定的手机号 http://192.168.1.168:8082/yuyi/personal/modifymobile.do?token=1213&newMobile=13717883009&vcode=123456
+  String interface_ChangePhone="personal/modifymobile.do?";
+    //获取验证码http://192.168.1.168:8082/yuyi/personal/vcode.do?id=13717883005
+     String interface_GetSMSCode="personal/vcode.do?";
+
+    //是否有未读消息http://192.168.1.168:8082/yuyi/message/hasmessage.do?token=97338E8A81C0CC137FC51C6206681EBB
+    String interface_HasUnReadMsg="message/hasmessage.do?";
+    //未读消息http://192.168.1.168:8082/yuyi/message/readPage.do?token=97338E8A81C0CC137FC51C6206681EBB&start=0&limit=1
+    String interface_getUnReadMsg="message/readPage.do?";
+
+    //意见反馈页面:http://localhost:8080/yuyi/feedback//save.do?content=“”&contact=192873637&token=2E8B4C79121FBC6CB1377B190C663F52
+    public final static String interface_User_feedus="feedback//save.do?";
+
+    //获取最新10消息http://192.168.1.55:8080/yuyi/message/findList.do?
+    public final static String interface_getPushMsg="message/findList.do?";
 }

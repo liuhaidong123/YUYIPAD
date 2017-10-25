@@ -29,32 +29,37 @@ public class User {
         return false;
     }
 
-    public static void saveLogin(Context con, String UsToken, String UsTele) {
-        SharedPreferences pre = con.getSharedPreferences("USER", Context.MODE_APPEND);
+    public static void saveLogin(Context con,String UsToken, String UsTele){
+        SharedPreferences pre = con.getSharedPreferences("USER",Context.MODE_APPEND);
         SharedPreferences.Editor edi = pre.edit();
-        edi.putString("userToken", UsToken);
-        edi.putString("telePhone", UsTele);
-        User.token = UsToken;
-        User.tele = UsTele;
+        edi.putString("userToken",UsToken);
+        edi.putString("telePhone",UsTele);
+        User.token=UsToken;
+        User.tele=UsTele;
         edi.commit();
     }
-
-    public static void clearLogin(Context con) {
-        SharedPreferences pre = con.getSharedPreferences("USER", Context.MODE_APPEND);
+    public static void clearLogin(Context con){
+        SharedPreferences pre = con.getSharedPreferences("USER",Context.MODE_APPEND);
         SharedPreferences.Editor edi = pre.edit();
         edi.remove("userToken");
         edi.remove("telePhone");
         edi.remove("JPSH");//是否注册过激光的别名
         edi.commit();
-        token = "";
-        tele = "";
+        token="";
+        tele="";
     }
-
-    //激光别名是否注册成功
-    public static void initJPSH(Context con, boolean flag) {
-        SharedPreferences pre = con.getSharedPreferences("USER", Context.MODE_APPEND);
+    //清除注册的jpsh
+    public static void removeJPSH(Context con){
+        SharedPreferences pre = con.getSharedPreferences("USER",Context.MODE_APPEND);
         SharedPreferences.Editor edi = pre.edit();
-        edi.putBoolean("JPSH", flag);
+        edi.remove("JPSH");
+        edi.commit();
+    }
+    //激光别名是否注册成功
+    public static void initJPSH(Context con,boolean flag){
+        SharedPreferences pre = con.getSharedPreferences("USER",Context.MODE_APPEND);
+        SharedPreferences.Editor edi = pre.edit();
+        edi.putBoolean("JPSH",flag);
         edi.commit();
     }
 }
