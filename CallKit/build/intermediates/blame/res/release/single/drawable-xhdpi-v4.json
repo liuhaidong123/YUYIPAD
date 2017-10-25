@@ -24,16 +24,16 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f60e.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f436.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f436.png"
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ac_text_file_icon.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ac_text_file_icon.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_voip_disable_camera.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/src/main/res/drawable-xhdpi/rc_voip_disable_camera.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ac_text_file_icon.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ac_text_file_icon.png"
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f436.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f436.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ac_ram_icon.png",
@@ -216,20 +216,20 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_file_icon_cancel.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_evaluate_plugin_hover.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_cs_evaluate_plugin_hover.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f3c2.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f3c2.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f601.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f601.png"
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_evaluate_plugin_hover.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_cs_evaluate_plugin_hover.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f4de.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f4de.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f601.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f601.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_follow_hover.png",
@@ -348,12 +348,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_send_voice_one.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_volume_0.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_volume_0.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_group_ok_disabled.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_cs_group_ok_disabled.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_volume_0.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_volume_0.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f319.png",
@@ -416,12 +416,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_picsel_pictype_normal.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_star.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_star.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f618.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f618.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_star.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_star.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_btn_pub_service_enter_hover.png",
@@ -472,12 +472,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ad_list_audio_icon.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_audio_toggle.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_audio_toggle.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_btn_send_normal.9.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_btn_send_normal.9.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_audio_toggle.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_audio_toggle.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u2614.png",
@@ -488,12 +488,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ac_video_file_icon.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f608.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f608.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f62e.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f62e.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f608.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f608.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f382.png",
@@ -516,12 +516,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_volume_4.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_default_portrait.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_cs_default_portrait.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_loading.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_loading.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_default_portrait.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_cs_default_portrait.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_volume_7.png",
@@ -680,12 +680,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ext_locator.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_def_rich_content.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_def_rich_content.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f37b.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f37b.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_def_rich_content.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_def_rich_content.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_cs_follow.png",
@@ -736,12 +736,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_menu_text.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_volume_2.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_volume_2.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_picsel_back_normal.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_picsel_back_normal.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_volume_2.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_ic_volume_2.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f4a9.png",

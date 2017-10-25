@@ -242,10 +242,20 @@
         </provider>
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
 
+        <activity android:name=".activity.SearchHospitalActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"
+            />
+        <activity android:name=".activity.HospitalDetailsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"
+            >
 
-
-
-        <activity android:name=".activity.SearchHospitalActivity" />
+        </activity>
         <activity
             android:name=".activity.Message.MessageListActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -292,27 +302,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden">
-        </activity>
-        <meta-data
-            android:name="JPUSH_CHANNEL"
-            android:value="developer-default" />
-        <meta-data
-            android:name="JPUSH_APPKEY"
-            android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
-        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
-        <activity android:name=".activity.SearchHospitalActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:launchMode="singleTop"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden"
-            />
-        <activity android:name=".activity.HospitalDetailsActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:launchMode="singleTop"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden"
-            >
-
         </activity>
     </application>
 

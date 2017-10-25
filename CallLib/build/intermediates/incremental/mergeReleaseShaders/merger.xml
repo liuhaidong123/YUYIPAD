@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallLib/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallLib/src/release/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/hcq/Desktop/YUYIPA/CallLib/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/hcq/Desktop/YUYIPA/CallLib/src/release/shaders"/></dataSet></merger>
