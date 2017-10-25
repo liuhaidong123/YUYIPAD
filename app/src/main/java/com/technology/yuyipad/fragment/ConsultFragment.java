@@ -1,16 +1,11 @@
 package com.technology.yuyipad.fragment;
-
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.telecom.TelecomManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.RongUtils.IGetRongDoctorId;
 import com.technology.yuyipad.RongUtils.IGetRongUserTokenError;
@@ -19,8 +14,6 @@ import com.technology.yuyipad.RongUtils.RongUser;
 import com.technology.yuyipad.RongUtils.RongUserInfoProvider;
 import com.technology.yuyipad.RongUtils.RongWindow;
 import com.technology.yuyipad.ToastUtils.toast;
-import com.technology.yuyipad.lzhUtils.StateBarUtils;
-
 import io.rong.imlib.model.UserInfo;
 
 /**
