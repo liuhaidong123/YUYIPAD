@@ -528,12 +528,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_btn_pub_service_follow_normal.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_emotion_toggle_hover.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_emotion_toggle_hover.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/u1f61f.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f61f.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_emotion_toggle_hover.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_emotion_toggle_hover.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_ad_list_audio_icon.png",
@@ -1032,12 +1032,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_receive_voice_three.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/u1f60a.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f60a.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_unread_remind_list_count.png",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/rc_unread_remind_list_count.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/u1f60a.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/drawable-xhdpi-v4/u1f60a.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_voip_video_left.png",

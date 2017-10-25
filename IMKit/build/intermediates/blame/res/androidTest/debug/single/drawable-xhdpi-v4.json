@@ -48,12 +48,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_praise_hover.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_volume_wraning.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_volume_wraning.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_unread_remind_without_count.png",
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_unread_remind_without_count.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_volume_wraning.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_volume_wraning.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u2614.png",
@@ -1240,12 +1240,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ext_plugin_toggle.png"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_btn_voice_hover.png",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_btn_voice_hover.png"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_bubble_right_file.9.png",
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_bubble_right_file.9.png"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_btn_voice_hover.png",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_btn_voice_hover.png"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_no.png",

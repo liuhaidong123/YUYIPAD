@@ -2,13 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/three"
     android:background="#aaeeaa"
     tools:context="com.technology.yuyipad.fragment.ConsultFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3333333" />
+
+        android:id="@+id/information_title"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:background="#1ebeec"
+        android:gravity="center"
+        android:text="咨询"
+        android:textColor="@color/color_white"
+        android:textSize="19sp" />
 
 </FrameLayout>

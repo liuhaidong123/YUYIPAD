@@ -46,6 +46,13 @@ public class User {
         token="";
         tele="";
     }
+    //清除注册的jpsh
+    public static void removeJPSH(Context con){
+        SharedPreferences pre = con.getSharedPreferences("USER",Context.MODE_APPEND);
+        SharedPreferences.Editor edi = pre.edit();
+        edi.remove("JPSH");
+        edi.commit();
+    }
     //激光别名是否注册成功
     public static void initJPSH(Context con,boolean flag){
         SharedPreferences pre = con.getSharedPreferences("USER",Context.MODE_APPEND);

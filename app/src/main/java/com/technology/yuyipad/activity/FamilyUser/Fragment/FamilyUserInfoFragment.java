@@ -73,7 +73,7 @@ public class FamilyUserInfoFragment extends Fragment {
                 return;
             }
             this.bean=bean;
-            presenter.setUserInfo(bean.getId()+"");
+            presenter.setUserInfo(bean.getId()+"",bean.isMySelf());
             familyUserInfo_textV_Name.setText(bean.getTrueName()+"  "+"("+bean.getNickName()+")");
         }
     }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ele_medical_record_list"
+    android:layout_width="match_parent"
+    android:background="#f2f2f2"
+    android:layout_height="match_parent"
+    tools:context="com.technology.yuyipad.activity.MedicalRecord.EleMedicalRecordListActivity">
+    <include layout="@layout/titleinclude"
+        android:layout_width="match_parent"
+        android:id="@+id/eleList_titleinclude"
+        android:layout_height="wrap_content">
+    </include>
+    <RelativeLayout style="@style/layoutmatchparent"
+        android:layout_below="@+id/eleList_titleinclude">
+        <com.technology.yuyipad.Lview.MyListView
+            android:scrollbars="none"
+            android:dividerHeight="20dp"
+            android:paddingLeft="125dp"
+            android:paddingRight="125dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:divider="#00ffffff"
+            android:listSelector="#00ffffff"
+            style="@style/layoutmatchparent"
+            android:id="@+id/ele_listView"
+            />
+    </RelativeLayout>
+</RelativeLayout>

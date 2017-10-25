@@ -4,7 +4,18 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TextView
-    style="@style/TextS15C1ebeecLayoutWrap"
-    android:text="电子病历"/>
+    <RelativeLayout style="@style/layoutmatchparent">
+        <com.technology.yuyipad.Lview.MyListView
+            android:paddingTop="20dp"
+            android:paddingRight="50dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="20dp"
+            android:divider="#00ffffff"
+            android:dividerHeight="10dp"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:id="@+id/familyuser_ele_listView"
+            android:layout_height="match_parent">
+        </com.technology.yuyipad.Lview.MyListView>
+    </RelativeLayout>
 </LinearLayout>

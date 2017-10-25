@@ -3,10 +3,10 @@
     package="com.technology.yuyipad">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <!--激光权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 激光权限 -->
     <permission
         android:name="com.technology.yuyipad.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
@@ -28,7 +28,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- 激光权限 -->
-
     <!-- 激光权限 -->
     <application
         android:name=".lzhUtils.MyApplication"
@@ -41,11 +40,11 @@
             android:name=".activity.Main.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".activity.Start.StartActivity"
-            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.Start.StartActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,9 +54,9 @@
         </activity>
         <activity
             android:name=".activity.Login.LoginActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.InformationDetailsActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -90,13 +89,9 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden">
-            >
-        </activity>
+            android:windowSoftInputMode="stateHidden" />
         <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
         <!-- Rich push 核心功能 since 2.0.6 -->
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.InputBloodActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -113,7 +108,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="88e70c8d9a56ceb62bfd2998e1888809" />
 
-        <service android:name="com.amap.api.location.APSService"></service>
+        <service android:name="com.amap.api.location.APSService" />
         <!-- 高德地图 -->
 
 
@@ -207,6 +202,8 @@
             android:name="JPUSH_APPKEY"
             android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
         <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
+
+
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -247,14 +244,57 @@
         </provider>
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
 
-        <meta-data
-            android:name="JPUSH_CHANNEL"
-            android:value="developer-default" />
-        <meta-data
-            android:name="JPUSH_APPKEY"
-            android:value="e57df854e567d1f21da64ea0" /> <!-- </>值来自开发者平台取得的AppKey -->
-        <!-- ,,,,,,,,,,,,,,激光推送,,,,,,,,,,,,,,,,,,,,,, -->
-        <activity android:name=".activity.SearchHospitalActivity"></activity>
+
+
+
+        <activity android:name=".activity.SearchHospitalActivity" />
+        <activity
+            android:name=".activity.Message.MessageListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.Setting.SettingActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.Setting_ChangePhoneActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.SettingAboutActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.SettingFeedActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.Setting.SettingContactActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".activity.MedicalRecord.EleMedicalRecordListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".activity.MedicalRecord.EleMedicalRecordActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
     </application>
 
 </manifest>

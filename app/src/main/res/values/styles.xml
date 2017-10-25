@@ -47,8 +47,8 @@
     </style>
     <!--定义字体颜色为1ebeec大小15sp，宽高度自适应-->
     <style name="TextS15C1ebeecLayoutWrap" parent="@style/layoutWrapContent">
-    <item name="android:textSize">@dimen/textSize15</item>
-    <item name="android:textColor">@color/color_homeTextColorSelect</item>
+        <item name="android:textSize">@dimen/textSize15</item>
+        <item name="android:textColor">@color/color_homeTextColorSelect</item>
     </style>
     <!--定义字体颜色为33333大小15sp，宽高度自适应-->
     <style name="TextS15C3LayoutWrap" parent="@style/layoutWrapContent">
@@ -71,4 +71,13 @@
         <item name="android:windowEnterAnimation">@anim/pop3_in</item>
         <item name="android:windowExitAnimation">@anim/pop3_out</item>
     </style>
+    <!--弹窗样式:屏幕右边到左边-->
+    <style name="popup4_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop4in</item>
+        <item name="android:windowExitAnimation">@anim/pop4out</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -29,4 +29,6 @@
     <dimen name="form_paddingbottom">15dp</dimen>
     <dimen name="form_paddingTop">20dp</dimen>
     <dimen name="form_padding">15dp</dimen>
+    <dimen name="popWidth">300dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -20,12 +20,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/layout/rc_ext_plugin_pager.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/layout/rc_camera.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/layout/rc_camera.xml"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/layout/rc_voip_call_bottom_incoming_button_layout.xml",
         "source": "/Users/hcq/Desktop/YUYIPA/CallKit/src/main/res/layout/rc_voip_call_bottom_incoming_button_layout.xml"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/layout/rc_camera.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/layout/rc_camera.xml"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/debug/layout/rc_wi_block_popup.xml",

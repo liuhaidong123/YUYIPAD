@@ -51,4 +51,35 @@ public class PopupSettings {
             }
         });
     }
+    //右侧向左缩放
+    public void showWindowRight(final Activity ac, PopupWindow pop, View contentView, View parentView){
+        ac.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        WindowManager.LayoutParams params= ac.getWindow().getAttributes();
+
+
+        params.alpha=0.6f;
+        ac.getWindow().setAttributes(params);
+//        pop.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+//        pop.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        pop.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+        pop.setWidth((int)ac.getResources().getDimension(R.dimen.popWidth));
+
+        pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        pop.setContentView(contentView);
+        pop.setBackgroundDrawable(new ColorDrawable(Color.argb(000, 255, 255, 255)));
+        pop.setTouchable(true);
+        pop.setFocusable(true);
+        pop.setOutsideTouchable(true);
+        pop.setAnimationStyle(R.style.popup4_anim);
+        pop.showAsDropDown(parentView,150,20);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                ac.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                WindowManager.LayoutParams params= ac.getWindow().getAttributes();
+                params.alpha=1f;
+                ac.getWindow().setAttributes(params);
+            }
+        });
+    }
 }

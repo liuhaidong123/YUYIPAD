@@ -231,18 +231,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.jude.rollviewpager.RollPagerView
-                        android:id="@+id/ad_viewpager"
-                        android:layout_width="match_parent"
-                        android:layout_height="240dp">
-
-                    </com.jude.rollviewpager.RollPagerView>
-
                     <View
                         android:id="@+id/line_view"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:layout_below="@id/ad_viewpager"
+                        android:layout_below="@+id/ad_viewpager"
                         android:background="@color/line_drug" />
                     <!--预约挂号，我的药品-->
                     <LinearLayout
@@ -361,6 +354,15 @@
 
                     </com.technology.yuyipad.lhdUtils.InformationListView>
 
+                    <com.jude.rollviewpager.RollPagerView
+                        android:id="@+id/ad_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true">
+
+                    </com.jude.rollviewpager.RollPagerView>
+
                 </RelativeLayout>
             </ScrollView>
 
@@ -372,6 +374,7 @@
 
     <!--首页标题横栏-->
     <RelativeLayout
+        android:clickable="true"
         android:id="@+id/first_title_rl"
         android:layout_width="match_parent"
         android:layout_height="42dp"
@@ -397,22 +400,35 @@
             android:textColor="@color/location_color"
             android:textSize="15dp" />
 
-
-        <ImageView
-            android:id="@+id/message_img"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:src="@mipmap/message" />
-
         <ImageView
             android:id="@+id/search_img"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="50dp"
-            android:layout_toLeftOf="@id/message_img"
+            android:layout_toLeftOf="@+id/frag"
             android:src="@mipmap/search" />
+
+        <FrameLayout
+            android:layout_marginRight="30dp"
+            android:id="@+id/frag"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp">
+            <ImageView
+                android:id="@+id/message_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/message" />
+            <View
+                android:id="@+id/message_unRead"
+                android:layout_marginRight="3dp"
+                android:layout_gravity="right|top"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:background="@drawable/circle"/>
+        </FrameLayout>
     </RelativeLayout>
 
 

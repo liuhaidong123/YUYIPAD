@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting__change_phone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.technology.yuyipad.activity.Setting.Setting_ChangePhoneActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#f2f2f2"
+        style="@style/layoutmatchparent">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/titleinclude"/>
+
+        <TextView
+            android:layout_width="375dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="#e5f6fb"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="当前绑定手机号"
+            android:textColor="#1ebeec"
+            android:id="@+id/settingChangePhone_teleNum"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="15dp"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/frag_my_rela">
+            <TextView
+                style="@style/layoutWrapContent"
+                android:textSize="14sp"
+                android:textColor="#8a8a8a"
+                android:text="填写新手机号"/>
+            <EditText android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:id="@+id/settingChangePhone_newTeleNum"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:maxLength="11"
+                android:hint="输入手机号"
+                android:inputType="number"
+                android:text=""
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                style="@style/TextS15C3LayoutWrap"/>
+
+
+            <TextView
+                style="@style/layoutWrapContent"
+                android:textSize="14sp"
+                android:layout_marginTop="25dp"
+                android:textColor="#8a8a8a"
+                android:text="填 写 验 证 码"/>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="44dp">
+                <EditText android:layout_width="215dp"
+                    android:layout_height="44dp"
+                    android:id="@+id/settingChangePhone_smsCode"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:maxLength="6"
+                    android:hint="输入验证码"
+                    android:inputType="number"
+                    android:text=""
+                    android:background="@drawable/editleft"
+                    style="@style/TextS15C3LayoutWrap"/>
+                <TextView
+                    android:textColor="@color/color_white"
+                    android:textSize="14sp"
+                    android:id="@+id/settingChangePhone_btn"
+                    android:gravity="center"
+                    android:background="@drawable/editright"
+                    style="@style/layoutmatchparent"
+                    android:text="发送验证码"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView android:layout_width="200dp"
+            android:layout_height="44dp"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:textColor="#ffffff"
+            android:text="确定"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btnlogin"
+            android:id="@+id/settingChangePhone_submit"/>
+    </LinearLayout>
+
+</RelativeLayout>

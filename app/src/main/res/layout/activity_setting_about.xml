@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    tools:context="com.technology.yuyipad.activity.Setting.SettingAboutActivity">
+    <include layout="@layout/titleinclude"
+        android:layout_width="match_parent"
+        android:id="@+id/settingsAbout_titleinclude"
+        android:layout_height="wrap_content">
+    </include>
+
+    <RelativeLayout
+        android:layout_below="@+id/settingsAbout_titleinclude"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:src="@mipmap/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/my_settings_aboutOurs_imageview"
+            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/my_settings_aboutOurs_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#333333"
+            android:textSize="17sp"
+            android:text="宇医1.0"
+            android:layout_below="@+id/my_settings_aboutOurs_imageview"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/my_settings_aboutOurs_pro"
+            android:layout_width="425dp"
+            android:lineSpacingExtra="7dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/my_settings_aboutOurs_name"
+            android:layout_marginTop="25dp"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:text="@string/my_settings_aboutOurs_msg"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/my_settings_aboutOurs_versionCode"
+            android:textSize="12sp"
+            android:id="@+id/my_settings_aboutOurs_versionCode"
+            android:layout_marginBottom="20dp"
+            android:textColor="#aaaaaa"/>
+
+
+    </RelativeLayout>
+</RelativeLayout>

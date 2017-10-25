@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_setting_contact2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.technology.yuyipad.activity.Setting.SettingContactActivity"
+   >
+
+    <RelativeLayout
+        android:background="#f2f2f2"
+        style="@style/layoutmatchparent">
+        <include layout="@layout/titleinclude"
+            android:layout_width="match_parent"
+            android:id="@+id/settingsContactUs_titleinclude"
+            android:layout_height="wrap_content">
+        </include>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:id="@+id/my_settings_contactOur_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="联系电话"
+                android:textColor="#555555"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/my_settings_contactOur_phoneNum"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/my_settings_contactOur_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="0312-3850331"
+                android:textColor="#555555"
+                android:textSize="20sp"/>
+            <TextView
+                android:clickable="true"
+                android:onClick="callPhone"
+                android:id="@+id/my_settings_contactOur_callPhone"
+                android:text="拨打"
+                android:textSize="18sp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/btnlogin"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:layout_centerHorizontal="true"
+                android:layout_width="250dp"
+                android:layout_height="44dp"
+                android:layout_below="@+id/my_settings_contactOur_phoneNum"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

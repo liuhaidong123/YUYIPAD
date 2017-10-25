@@ -239,10 +239,11 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
             if (IntentValue.UserInfoActivity_Change.equals(type)){
+                startActivity(new Intent(this,MainActivity.class));
                 finish();
+
             }
             else if (IntentValue.UserInfoActivity_Add.equals(type)){
-                startActivity(new Intent(this,MainActivity.class));
                 finish();
             }
         }

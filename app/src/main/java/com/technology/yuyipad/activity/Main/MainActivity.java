@@ -55,7 +55,7 @@ public class MainActivity extends MyActivity implements IGetRongUserTokenError {
 
         if (JpRegister.getInstance().isJPSHSucc(MainActivity.this) == false) {
             JpRegister.getInstance().setAlias(MainActivity.this, User.tele);
-            Log.e("激光推送在MainActivity注册----", "Login激光推送注册失败，重新注册");
+            Log.e("激光推送在MainActivity注册----", "Login激光推送注册失败");
         } else {
             Log.e("激光推送在LoginActiity注册----", "Login激光推送注册成功");
         }
@@ -86,6 +86,7 @@ public class MainActivity extends MyActivity implements IGetRongUserTokenError {
     @Override
     protected void onResume() {
         super.onResume();
+
         JPushInterface.onResume(this);
     }
 

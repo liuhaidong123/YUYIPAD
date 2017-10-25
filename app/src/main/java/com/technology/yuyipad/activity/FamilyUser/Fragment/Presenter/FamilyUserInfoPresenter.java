@@ -77,9 +77,9 @@ public class FamilyUserInfoPresenter {
         manager.beginTransaction().show(fragCurrent).commit();
     }
     //给下级页面传递当前的用户信息
-    public void setUserInfo(String homeUserId){
+    public void setUserInfo(String homeUserId,boolean isMySelf){
             fragDataNa.setUserId(homeUserId);
-            fragMedical.setUserId(homeUserId);
+            fragMedical.setUserId(homeUserId,isMySelf);
     }
     public enum FragType{
         MEDICAL,DATA;//电子病历，数据分析
