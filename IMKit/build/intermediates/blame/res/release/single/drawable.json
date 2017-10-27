@@ -48,20 +48,20 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_send_toggle_selector.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_cs_ratingbar.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_cs_ratingbar.xml"
-    },
-    {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_sp_grid_mask.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_sp_grid_mask.xml"
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_menu_keyboard_selector.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_menu_keyboard_selector.xml"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_ic_yes_selector.xml",
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_ic_yes_selector.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_menu_keyboard_selector.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_menu_keyboard_selector.xml"
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_sp_grid_mask.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_sp_grid_mask.xml"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_cs_ratingbar.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_cs_ratingbar.xml"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_corner_voice_style.xml",
@@ -72,12 +72,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_ic_phone_selector.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_ic_phone_selector.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_ic_phone_selector.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_selector_title_back_press.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_selector_title_back_press.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_ic_phone_selector.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_ic_phone_selector.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_ext_plugin_location_selector.xml",
@@ -92,16 +92,16 @@
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_corner_location_style.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_notification_connecting_animated.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_notification_connecting_animated.xml"
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_edit_text_background_selector.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_edit_text_background_selector.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_cs_leave_message_btn.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_cs_leave_message_btn.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_edit_text_background_selector.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_edit_text_background_selector.xml"
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/drawable/rc_notification_connecting_animated.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/drawable/rc_notification_connecting_animated.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/drawable/rc_cs_evaluate_selector.xml",

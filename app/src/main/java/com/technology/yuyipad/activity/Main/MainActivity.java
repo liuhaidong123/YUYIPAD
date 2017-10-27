@@ -109,4 +109,9 @@ public class MainActivity extends MyActivity implements IGetRongUserTokenError {
             Log.e("MainActivity","获取容云信息／链接容云服务器第 二次 链接失败："+message);
         }
     }
+    //链接容云成功
+    @Override
+    public void onTokenSucc() {
+
+    }
 }

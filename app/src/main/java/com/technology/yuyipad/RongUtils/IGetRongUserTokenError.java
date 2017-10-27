@@ -6,4 +6,5 @@ package com.technology.yuyipad.RongUtils;
 
 public interface IGetRongUserTokenError {
     void onTokenError(String message);//从本地服务器获取到容云的token失败
+    void onTokenSucc();//链接容云获取token成功
 }

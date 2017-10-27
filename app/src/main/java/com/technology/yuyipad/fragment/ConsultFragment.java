@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.RongUtils.RongWindow;
 import com.technology.yuyipad.adapter.AskListViewAdapter;
 import com.technology.yuyipad.bean.FirstPageInformationTwoData;
 import com.technology.yuyipad.bean.FirstPageInformationTwoDataRoot;
@@ -34,6 +35,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class ConsultFragment extends Fragment {
+    View three;
+    String hospitalId="";
     //医院列表
     private InformationListView mHospital_ListView;
     private RelativeLayout mMore_Rl;
@@ -88,6 +91,7 @@ public class ConsultFragment extends Fragment {
                 Object o = msg.obj;
                 if (o != null && o instanceof Information) {
                     Information information = (Information) o;
+                    hospitalId=information.getId()+"";
                     mHospital_Name.setText(information.getHospitalName());
                     mHospital_Grade.setText(information.getGradeName());
                     mHospital_Content.setText(information.getIntroduction());
@@ -111,6 +115,7 @@ public class ConsultFragment extends Fragment {
     }
 
     private void initUI(View view) {
+        three=view.findViewById(R.id.three);
         mHttptools = HttpTools.getHttpToolsInstance();//医院列表
         mHttptools.getAskData(handler, 0, 10);
         //医院列表
@@ -145,7 +150,7 @@ public class ConsultFragment extends Fragment {
         mAsk_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                RongWindow.getInstance().showWindow(getActivity(),three,hospitalId);
             }
         });
     }

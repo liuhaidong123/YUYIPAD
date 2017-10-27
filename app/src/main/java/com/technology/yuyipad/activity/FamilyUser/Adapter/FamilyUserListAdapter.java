@@ -10,7 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.Lview.RoundImageView;
+import com.technology.yuyipad.Net.Ip;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.FamilyUser.Bean.FamilyUserListBean;
@@ -49,7 +51,7 @@ public class FamilyUserListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView( int i, View view, ViewGroup viewGroup) {
         ViewHodler hodler;
         if (view==null){
             view= LayoutInflater.from(con).inflate(R.layout.item_familyusermanagerlist,null);
@@ -59,7 +61,6 @@ public class FamilyUserListAdapter extends BaseAdapter{
         else {
             hodler= (ViewHodler) view.getTag();
         }
-
             hodler.familyuserList_item_userName.setFocusable(false);
             if (i==0){//第一项
                 TextBean.getInstance(con).setVisiable(true,hodler.familyuserList_item_userName,hodler.familyuserList_item_userTele,hodler.familyuserList_item_image,hodler.familyuserList_item_layout,
@@ -74,6 +75,12 @@ public class FamilyUserListAdapter extends BaseAdapter{
                 if ( hodler.familyuserList_item_userName.getEllipsize() != null) {
                     hodler.familyuserList_item_userName.setEllipsize(null);
                 }
+            }
+            if (list.get(i).isAdd()){
+                Picasso.with(con).load(R.mipmap.addfamilyuser).placeholder(R.mipmap.addfamilyuser).error(R.mipmap.addfamilyuser).tag(Ip.imagePath+list.get(i).getAvatar()).into(hodler.familyuserList_item_image);
+            }
+        else {
+                Picasso.with(con).load(Ip.imagePath+list.get(i).getAvatar()).placeholder(R.mipmap.usererr).error(R.mipmap.usererr).tag(Ip.imagePath+list.get(i).getAvatar()).into(hodler.familyuserList_item_image);
             }
         return view;
     }
