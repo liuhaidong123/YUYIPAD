@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.RongUtils.RongWindow;
 import com.technology.yuyipad.bean.Information;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.httptools.UrlTools;
@@ -18,10 +19,10 @@ import com.technology.yuyipad.user.User;
 
 public class HospitalDetailsActivity extends AppCompatActivity {
 //医院详情
-
+    View parentView ;
     private ImageView mImg;
     private TextView mHospital_Name, mHospital_Grade, mHospital_Content, mAsk_Btn;
-
+    String hospitalId="";
     private HttpTools mHttptools;
     private Handler handler = new Handler() {
         @Override
@@ -31,6 +32,7 @@ public class HospitalDetailsActivity extends AppCompatActivity {
                 Object o = msg.obj;
                 if (o != null && o instanceof Information) {
                     Information information = (Information) o;
+                    hospitalId=information.getId()+"";
                     mHospital_Name.setText(information.getHospitalName());
                     mHospital_Grade.setText(information.getGradeName());
                     mHospital_Content.setText(information.getIntroduction());
@@ -56,7 +58,7 @@ public class HospitalDetailsActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-
+        parentView=findViewById(R.id.activity_hospital_details);
         mHttptools = HttpTools.getHttpToolsInstance();//医院列表
         mHttptools.getAskDataMessage(handler, getIntent().getIntExtra("HospitalID", -1));//请求医院详情
         //医院详情
@@ -69,7 +71,7 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         mAsk_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                RongWindow.getInstance().showWindow(HospitalDetailsActivity.this,parentView,hospitalId);
             }
         });
 

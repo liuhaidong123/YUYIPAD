@@ -61,15 +61,14 @@ public class TextBean {
         }
         return bean;
     }
-    public void setVisiable(boolean isFirstItem, TextView userName, TextView userTele, ImageView userImage,RelativeLayout parentLayout,RelativeLayout ChildLayout,FamilyUserListBean.ResultBean result){
+    public void setVisiable(boolean isFirstItem,  TextView userName,  TextView userTele,ImageView userImage,RelativeLayout parentLayout,RelativeLayout ChildLayout,FamilyUserListBean.ResultBean result){
         boolean isAdd=result.isAdd();//是否为添加按钮
         if (isFirstItem){//第一个字体大小18sp
-                if (isAdd){//设置字体颜色与大小
+                if (isAdd==true){//设置字体颜色与大小
                     userTele.setVisibility(View.GONE);//隐藏电话号
                     userName.setText("添加");
                     userName.setTextSize(textSizeNormal);
                     userName.setTextColor(textColorAdd);
-                    userImage.setImageResource(Integer.parseInt(result.getAvatar()));
                 }
                 else{//非添加按钮
                     //显示年龄
@@ -80,7 +79,6 @@ public class TextBean {
                     userTele.setVisibility(View.VISIBLE);
                     userTele.setText(result.getTelephone()==0?"保密":result.getTelephone()+"");
                     userTele.setTextSize(textSizeMax);
-                    Picasso.with(con).load(Ip.imagePath+result.getAvatar()).placeholder(R.mipmap.usererr).error(R.mipmap.usererr).into(userImage);
                 }
                 //外层顶部的padding为40dp,左边距离为50dp
                 parentLayout.setPadding(pLeftPaddingMin,pTopPaddingMax,pRightPadding,pBottomPadding);
@@ -94,12 +92,11 @@ public class TextBean {
 
             }
             else {
-                if (isAdd){//添加按钮
+                if (isAdd==true){//添加按钮
                     userTele.setVisibility(View.GONE);
                     userName.setText("添加");
                     userName.setTextSize(textSizeNormal);
                     userName.setTextColor(textColorAdd);
-                    userImage.setImageResource(Integer.parseInt(result.getAvatar()));
                 }
                 else {
                     userTele.setVisibility(View.GONE);
@@ -108,7 +105,6 @@ public class TextBean {
                     userTele.setTextSize(textSizeMin);
                     //隐藏年龄
                     userName.setText(result.getTrueName()+"  "+"("+result.getNickName()+")");
-                    Picasso.with(con).load(Ip.imagePath+result.getAvatar()).placeholder(R.mipmap.usererr).error(R.mipmap.usererr).into(userImage);
                 }
                 //隐藏电话号
                 userTele.setVisibility(View.GONE);

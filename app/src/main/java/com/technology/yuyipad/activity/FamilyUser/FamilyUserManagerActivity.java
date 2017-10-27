@@ -79,7 +79,7 @@ public class FamilyUserManagerActivity extends MyActivity implements AdapterView
             ListChangePosition.getInstance().changeList(li,i,0);
             adapter.notifyDataSetChanged();
             }
-        else{//点击的是第一项
+        else  {//点击的是第一项
                 if (!li.get(i).isAdd()){//第一项不是添加按钮才处理
                     presenter.showFragment(FamilyUserManagerPresenter.FragmentType.USERINFO,null);//显示用户信息的fragment
                     presenter.setUserData(li.get(i));
@@ -113,10 +113,10 @@ public class FamilyUserManagerActivity extends MyActivity implements AdapterView
         List<FamilyUserListBean.ResultBean>listFamilyUser=bean.getResult();
         if (listFamilyUser!=null&&listFamilyUser.size()>0){
             li.clear();
-            li.add(beanAdd);
+            adapter.notifyDataSetChanged();
             listFamilyUser.get(0).setMySelf(true);//第一个是用户自己
             li.addAll(listFamilyUser);
-            ListChangePosition.getInstance().changeList(li,0,li.size()-1);
+            li.add(beanAdd);
             adapter.notifyDataSetChanged();
             presenter.showFragment(FamilyUserManagerPresenter.FragmentType.USERINFO,null);
             presenter.setUserData(li.get(0));

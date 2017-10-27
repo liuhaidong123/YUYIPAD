@@ -120,12 +120,12 @@
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_ext_indicator.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_item_file_message.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_item_file_message.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_discussion_notification_message.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_discussion_notification_message.xml"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_item_file_message.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_item_file_message.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_public_service_input_menu_item.xml",
@@ -164,20 +164,20 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_conversation_notification_container.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_icon_rt_location_marker.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_icon_rt_location_marker.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_picsel_grid_item.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_picsel_grid_item.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_plugin_location_activity.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_plugin_location_activity.xml"
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_icon_rt_location_marker.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_icon_rt_location_marker.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_public_service_input_menu.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_public_service_input_menu.xml"
+    },
+    {
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_plugin_location_activity.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_plugin_location_activity.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_ext_voice_input.xml",
@@ -196,12 +196,12 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_dialog_popup_prompt.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_rich_content_message.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_rich_content_message.xml"
-    },
-    {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_ac_file_download.xml",
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_ac_file_download.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_rich_content_message.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_rich_content_message.xml"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_ac_file_manager.xml",
@@ -288,16 +288,16 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_public_service_multi_rich_content_message.xml"
     },
     {
-        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_fr_messagelist.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_fr_messagelist.xml"
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_conversation.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_conversation.xml"
     },
     {
         "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_dialog_popup_options.xml",
         "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_dialog_popup_options.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_item_conversation.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/layout/rc_item_conversation.xml"
+        "merged": "/Users/hcq/Desktop/YUYIPA/IMKit/build/intermediates/res/merged/release/layout/rc_fr_messagelist.xml",
+        "source": "/Users/hcq/Desktop/YUYIPA/IMKit/src/main/res/layout/rc_fr_messagelist.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/release/layout/rc_refresh_list_view.xml",
