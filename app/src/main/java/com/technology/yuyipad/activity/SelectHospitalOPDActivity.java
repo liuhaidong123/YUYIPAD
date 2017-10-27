@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.adapter.DepartmentAda;
 import com.technology.yuyipad.adapter.DoctorAda;
 import com.technology.yuyipad.adapter.HospitalAda;
@@ -524,10 +525,9 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //添加
                 if (position == userList.size()) {
-//                    Intent intent = new Intent(SelectHospitalOPDActivity.this, AddFamilyUserActivity.class);
-//                    intent.putExtra("type", "0");
-//                    startActivity(intent);
-//                    mAlertDialog.dismiss();
+                    Intent intent = new Intent(SelectHospitalOPDActivity.this, FamilyUserManagerActivity.class);
+                    startActivity(intent);
+                    mPatientPop.dismiss();
                 } else {//选择某一个联系人
                     homeuserId = userList.get(position).getId();
                     mPosition = position;
@@ -660,7 +660,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
         mPatientPop.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-               SelectHospitalOPDActivity.this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                SelectHospitalOPDActivity.this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 WindowManager.LayoutParams params = getWindow().getAttributes();
                 params.alpha = 1f;
                 getWindow().setAttributes(params);
@@ -672,6 +672,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
 
     //加载弹框
     private void showPopuWindow() {
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         //设置透明度
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.alpha = 0.7f;
@@ -689,6 +690,7 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
         mPopupwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                SelectHospitalOPDActivity.this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 WindowManager.LayoutParams params = getWindow().getAttributes();
                 params.alpha = 1f;
                 getWindow().setAttributes(params);

@@ -455,9 +455,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                     mHttptools.getClickUserDataData(mHandler, User.token, mList.get(i).getId());//请求某个患者数据
                 } else {
                     //添加患者
-                   // Toast.makeText(getActivity(), "添加患者", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), FamilyUserManagerActivity.class);
-                    //intent.putExtra("type", "0");
                     startActivity(intent);
                     mPopupwindow.dismiss();
                 }
@@ -469,7 +467,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mRollPagerView = view.findViewById(R.id.ad_viewpager);
         mRollPagerView.setPlayDelay(3000);//切换图片的间隔时间
         mRollPagerView.setAnimationDurtion(500);
-        mRollPagerView.setHintView(new IconHintView(this.getActivity(), R.mipmap.selected, R.mipmap.unselected));
+        mRollPagerView.setHintView(new IconHintView(this.getActivity(), R.mipmap.select_ad, R.mipmap.no_select_ad));
         mRollPagerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
