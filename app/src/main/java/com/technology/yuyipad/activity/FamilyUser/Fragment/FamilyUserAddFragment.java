@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -24,19 +22,18 @@ import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.Enum.UserSex;
 import com.technology.yuyipad.Lview.RoundImageView;
 import com.technology.yuyipad.Net.Ip;
-import com.technology.yuyipad.PermissionCheck.PicturePhotoUtils;
+import com.technology.yuyipad.Photo.PhotoPictureUtils;
+import com.technology.yuyipad.Photo.PhotoRSCode;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.FamilyUser.Bean.FamilyUserListBean;
 import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.activity.FamilyUser.Fragment.Presenter.FamilyUserAddPresenter;
 import com.technology.yuyipad.activity.FamilyUser.Fragment.Presenter.IFamilyUserAdd;
-import com.technology.yuyipad.code.RSCode;
 import com.technology.yuyipad.lzhUtils.BitmapTobase64;
 import com.technology.yuyipad.lzhUtils.DialogUtils;
 
 import java.io.File;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +46,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by wanyu on 2017/10/12.
  */
 //添加家庭用户的fragment
-public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd {
+public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd,PhotoPictureUtils.OnSavePictureListener{
     FamilyUserAddPresenter presenter;
     Unbinder unbinder;
     @BindView(R.id.familyUserAdd_textV_Name)TextView familyUserAdd_textV_Name;//添加／编辑
@@ -110,67 +107,42 @@ public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd {
                 ,familyUserAdd_edit_tele.getText().toString(),sex,bit64,isBitChange,bean==null?"":bean.getId()+"",this);
                 break;
             case R.id.familyUserAdd_textV_UserImg://上传头像
-                outImage= new File(getActivity().getExternalFilesDir("DCIM").getAbsolutePath(), new Date().getTime() + ".jpg");
                 presenter.showWindow(this,outImage);
                 break;
         }
     }
 
-    //处理头像问题
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case RSCode.priCode_SearchPicture://图库
-                if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    PicturePhotoUtils.getInstance().searchPhto(getActivity(),outImage);
-                }
-                else {
-                    toast.getInstance().text(getActivity(),"存储权限被禁用，无法获取相册信息");
-                }
-                break;
-            case RSCode.priCode_TakePhoto://拍照
-                if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    PicturePhotoUtils.getInstance().takePhoto(getActivity(),outImage);
-                }
-                else {
-                    toast.getInstance().text(getActivity(),"请打开相机权限");
-                }
-                break;
+        if (requestCode== PhotoRSCode.requestCode_SearchPermission){//选取图片的权限请求
+            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                PhotoPictureUtils.getInstance().searchPictureFragment(this);
+            }
+            else {
+                Toast.makeText(getActivity(),"请打开存储卡权限！",Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (requestCode==PhotoRSCode.requestCode_CameraPermission){//拍照的权限请求
+            if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                PhotoPictureUtils.getInstance().takePhotoFragment(this);
+            }
+            else {
+                Toast.makeText(getActivity(),"请打开相机权限！",Toast.LENGTH_SHORT).show();
+            }
         }
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-            switch (requestCode){
-                case RSCode.rCode_SearchPicture://浏览相册
-                    outImage=new File(getActivity().getExternalFilesDir("DCIM").getAbsolutePath(),new Date().getTime()+".jpg");
-                    PicturePhotoUtils.getInstance().cutPhoto_SearchFrag(this,outImage,data);
+        if (resultCode==RESULT_OK) {
+            switch (requestCode) {
+                case PhotoRSCode.requestCode_Search://相册选取返回
+                    PhotoPictureUtils.getInstance().savaPictureSearch(data.getData(),this,getActivity());
                     break;
-                case RSCode.rCode_TakePhoto://拍照
-                    Uri uri=Uri.fromFile(outImage);
-                    outImage=new File(getActivity().getExternalFilesDir("DCIM").getAbsolutePath(),new Date().getTime()+".jpg");
-                    PicturePhotoUtils.getInstance().cutPhoto_CameraFrag(this,uri,outImage);
-                    break;
-                case RSCode.rCode_CutPicture://裁剪
-                    try{
-                        //将output_image.jpg对象解析成Bitmap对象，然后设置到ImageView中显示出来
-                        Bitmap bitmap = BitmapFactory.decodeFile(outImage.getAbsolutePath());
-                        if (bitmap!=null){
-                            isBitChange=true;
-                            familyUserAdd_textV_UserImg.setImageBitmap(bitmap);
-                            bit64= BitmapTobase64.bitmapToBase64(bitmap);
-                        }
-                        else {
-                            Toast.makeText(getActivity(),"照片截取失败",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    catch (Exception e){
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(),"照片截取失败",Toast.LENGTH_SHORT).show();
-                    }
+                case PhotoRSCode.requestCode_Camera://拍照
+                    //cameraFile为保存后的文件，mImg：需要显示图片的ImageView
+                    PhotoPictureUtils.getInstance().savaPictureCamera(this,getActivity());
                     break;
             }
         }
@@ -251,5 +223,18 @@ public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd {
         if (unbinder!=null){
             unbinder.unbind();
         }
+    }
+
+    @Override
+    public void onSavePicture(boolean isSuccess, File result) {
+            if (isSuccess){
+                isBitChange=true;
+                Bitmap bt=BitmapFactory.decodeFile(result.getAbsolutePath());
+                bit64= BitmapTobase64.bitmapToBase64(bt);
+                familyUserAdd_textV_UserImg.setImageBitmap(bt);
+            }
+        else {
+                toast.getInstance().text(getActivity(),"选取图片失败！");
+            }
     }
 }

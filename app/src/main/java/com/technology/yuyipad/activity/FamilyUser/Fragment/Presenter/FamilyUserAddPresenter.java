@@ -1,6 +1,5 @@
 package com.technology.yuyipad.activity.FamilyUser.Fragment.Presenter;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.technology.yuyipad.Enum.UserSex;
-import com.technology.yuyipad.PermissionCheck.PicturePhotoUtils;
+import com.technology.yuyipad.Photo.PhotoPictureUtils;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.FamilyUser.Fragment.Models.FamilyUserAddModel;
 import com.technology.yuyipad.lzhUtils.Empty;
@@ -126,10 +125,10 @@ public class FamilyUserAddPresenter implements View.OnClickListener{
         }
         switch (view.getId()) {
             case R.id.usereditor_textv_picture://图库选取头像
-                PicturePhotoUtils.getInstance().searchPhtoFrag(activity, outImage);
+                PhotoPictureUtils.getInstance().searchPictureFragment(activity);
                 break;
             case R.id.usereditor_textv_camera://拍照头像
-                PicturePhotoUtils.getInstance().takePhotoFrag(activity, outImage);
+                PhotoPictureUtils.getInstance().takePhotoFragment(activity);
                 break;
             case R.id.usereditor_textv_cancle://取消
                 break;
