@@ -51,7 +51,7 @@ public class UserInfoModel {
                             }
                             else {
                                 iuser.onError(user.getMessage(),Iport.interface_UserMsg);
-                                }
+                            }
                         }
                         else {
                             iuser.onError("数据为空",Iport.interface_UserMsg);
@@ -92,22 +92,22 @@ public class UserInfoModel {
         }
     };
     public void getUserData(Iuser iuser){
-            this.iuser=iuser;
-            Map<String,String> mp=new HashMap<>();
-            mp.put("token", User.token);
-            ok.getCall(Ip.path+ Iport.interface_UserMsg,mp,ok.OK_GET).enqueue(new Callback() {
-                @Override
-                public void onFailure(Request request, IOException e) {
-                    handler.sendEmptyMessage(-1);
-                }
+        this.iuser=iuser;
+        Map<String,String> mp=new HashMap<>();
+        mp.put("token", User.token);
+        ok.getCall(Ip.path+ Iport.interface_UserMsg,mp,ok.OK_GET).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                handler.sendEmptyMessage(-1);
+            }
 
-                @Override
-                public void onResponse(Response response) throws IOException {
-                    resStr=response.body().string();
-                    Log.i("获取用户个人信息--",resStr);
-                    handler.sendEmptyMessage(1);
-                }
-            });
+            @Override
+            public void onResponse(Response response) throws IOException {
+                resStr=response.body().string();
+                Log.i("获取用户个人信息--",resStr);
+                handler.sendEmptyMessage(1);
+            }
+        });
     }
 
     //保存用户信息
