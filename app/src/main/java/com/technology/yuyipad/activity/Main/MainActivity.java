@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.technology.yuyipad.JPushUtils.JpRegister;
 import com.technology.yuyipad.R;
@@ -113,5 +114,23 @@ public class MainActivity extends MyActivity implements IGetRongUserTokenError {
     @Override
     public void onTokenSucc() {
 
+    }
+
+    private long time = 0;
+    @Override
+    public void onBackPressed() {
+        if (time > 0) {
+            if (System.currentTimeMillis() - time < 2000) {
+                super.onBackPressed();
+            } else {
+                time = System.currentTimeMillis();
+                Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            time = System.currentTimeMillis();
+            Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

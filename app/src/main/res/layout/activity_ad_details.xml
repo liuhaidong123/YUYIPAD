@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ad_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/white"
+    tools:context="com.technology.yuyipad.activity.AdDetailsActivity">
+
+    <TextView
+        android:id="@+id/h_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="资讯详情"
+        android:textColor="@color/color_333333"
+        android:textSize="19sp" />
+
+    <View
+        android:id="@+id/h_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/h_title"
+        android:background="#cccccc" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/h_line">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:id="@+id/infor_img"
+                android:layout_width="434dp"
+                android:layout_height="272dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/infor_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="125dp"
+                android:layout_toRightOf="@+id/infor_img"
+                android:textColor="@color/color_333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/infor_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infor_title"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@+id/infor_img"
+                android:textColor="@color/color_333333"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/infor_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infor_img"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/color_333333"
+                android:textSize="15sp"
+
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,10 +1,10 @@
 package com.technology.yuyipad.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -22,8 +22,8 @@ import com.technology.yuyipad.adapter.RecycleViewBlood;
 import com.technology.yuyipad.bean.UserListBean.Result;
 import com.technology.yuyipad.bean.UserListBean.Root;
 import com.technology.yuyipad.httptools.HttpTools;
-import com.technology.yuyipad.lhdUtils.MyDialog;
 import com.technology.yuyipad.lhdUtils.NetWorkUtils;
+import com.technology.yuyipad.lzhUtils.MyDialog;
 import com.technology.yuyipad.user.User;
 
 import java.util.ArrayList;
@@ -31,11 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InputBloodActivity extends AppCompatActivity {
+public class InputBloodActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mHeightBlood_Num, mLowBlood_Num;
-    private TextView mHandInput_Num, mSave_Btn;
-
+    private TextView mSave_Btn;
+    //重新登录页面
+    private RelativeLayout mLogin_rl;
     private RecyclerView mRecycleView;
     private RecycleViewBlood mAdapter;
     private List<Result> mList = new ArrayList<>();
@@ -53,46 +54,54 @@ public class InputBloodActivity extends AppCompatActivity {
                 Object o = msg.obj;
                 if (o != null && o instanceof Root) {
                     Root root = (Root) o;
-                    mList = root.getResult();
-                    isFlagList.clear();
-                    for (int i = 0; i < mList.size(); i++) {
-                        if (i == 0) {
-                            isFlagList.add(true);
-                        } else {
-                            isFlagList.add(false);
-                        }
+                    if (root != null && root.getResult() != null) {
+                        mList = root.getResult();
+                        isFlagList.clear();
+                        for (int i = 0; i < mList.size(); i++) {
+                            if (i == 0) {
+                                isFlagList.add(true);
+                            } else {
+                                isFlagList.add(false);
+                            }
 
+                        }
+                        mAdapter.setList(mList);
+                        mAdapter.setIsFlagList(isFlagList);
+                        mAdapter.notifyDataSetChanged();
+                        mPosintion = 0;
+                        isSelect = true;
+                        Log.e("用户下标-", mPosintion + "");
+                    } else {
+                        mLogin_rl.setVisibility(View.VISIBLE);
+                        Toast.makeText(InputBloodActivity.this, "请重新登录", Toast.LENGTH_SHORT).show();
                     }
-                    mAdapter.setList(mList);
-                    mAdapter.setIsFlagList(isFlagList);
-                    mAdapter.notifyDataSetChanged();
-                    mPosintion = 0;
-                    isSelect = true;
-                    Log.e("用户下标-", mPosintion + "");
+
                 }
             } else if (msg.what == 37) {//提交血压数据
                 Object o = msg.obj;
+                MyDialog.stopDia();
                 if (o != null && o instanceof com.technology.yuyipad.bean.SubmitTemBean.Root) {
                     com.technology.yuyipad.bean.SubmitTemBean.Root root = (com.technology.yuyipad.bean.SubmitTemBean.Root) o;
                     if (root.getCode().equals("0")) {
                         Toast.makeText(InputBloodActivity.this, "提交数据成功", Toast.LENGTH_SHORT).show();
-                        MyDialog.stopDialog();
+
                         finish();
                     } else {
                         Toast.makeText(InputBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
-                        MyDialog.stopDialog();
+                        MyDialog.stopDia();
                     }
                 }
             } else if (msg.what == 229) {//json解析失败
-                MyDialog.stopDialog();
-            } else if (msg.what == 230) {//提交数据失败
+                MyDialog.stopDia();
                 Toast.makeText(InputBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
-                MyDialog.stopDialog();
+            } else if (msg.what == 230) {//提交数据失败
+                MyDialog.stopDia();
+                Toast.makeText(InputBloodActivity.this, "提交数据失败", Toast.LENGTH_SHORT).show();
+
             }
         }
     };
 
-    private RelativeLayout mAllData_Blood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,13 +117,14 @@ public class InputBloodActivity extends AppCompatActivity {
             textView.setText("手动输入血压");
         }
     }
-
     private void initUI() {
-        mAllData_Blood = (RelativeLayout) findViewById(R.id.all_data_blood);
+        mLogin_rl = (RelativeLayout) findViewById(R.id.again_login_rl);
+        mLogin_rl.setOnClickListener(this);
         //请求用户列表
         mMap.put("token", User.token);
         Log.e("token=", User.token);
         mHttptools = HttpTools.getHttpToolsInstance();
+        mHttptools.getUserLIst(mHandler, mMap);//
         //异常提示
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view_person);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -128,12 +138,10 @@ public class InputBloodActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 if (mList.size() == 0) {//只有添加按钮
                     Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
-                    // intent.putExtra("type", "0");
                     startActivity(intent);
                 } else {
                     if (position == mList.size()) {//最后一个是添加按钮
                         Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
-                        //  intent.putExtra("type", "0");
                         startActivity(intent);
                     } else {
                         //用户信息不完善
@@ -163,7 +171,6 @@ public class InputBloodActivity extends AppCompatActivity {
 
         mHeightBlood_Num = (EditText) findViewById(R.id.blood_height_num);
         mLowBlood_Num = (EditText) findViewById(R.id.blood_low_num);
-        mHandInput_Num = (TextView) findViewById(R.id.blood_input_tv);
         mSave_Btn = (TextView) findViewById(R.id.save_blood_data);
 
         //保存血压数据
@@ -225,7 +232,7 @@ public class InputBloodActivity extends AppCompatActivity {
                         mSubmitMap.put("systolic", getHeightBlood());
                         mSubmitMap.put("diastolic", getLowBlood());
                         mHttptools.submitBloodData(mHandler, mSubmitMap);
-                        MyDialog.showPopuWindow(this, mAllData_Blood);
+                        MyDialog.showDialog(this);
                     } else {
                         Toast.makeText(InputBloodActivity.this, "请选择用户", Toast.LENGTH_SHORT).show();
                     }
@@ -244,38 +251,7 @@ public class InputBloodActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mHttptools.getUserLIst(mHandler, mMap);//
-        Log.e("onResume", "====onResume");
+    public void onClick(View view) {
+
     }
-
-
-    /**
-     * 判断血压,体温设置提示
-     * height 高压
-     * low 低压
-     *
-     */
-//    public void checkBlood(int height, int low) {
-//
-//        if (height == 0 && low == 0 ) {
-//
-//            mDataMsg_tv.setText("*当前数据为空");
-//            mDataMsg_tv.setTextColor(ContextCompat.getColor(this,R.color.navigate_tv_select));
-//        }
-//
-//        //显示不正常
-//        else if (height > 139 || height < 90 || low > 89 || low < 60 ) {
-//
-//            mDataMsg_tv.setText("*当前数据异常");
-//            mDataMsg_tv.setTextColor(ContextCompat.getColor(this,R.color.color_red));
-//
-//        } else {
-//
-//            mDataMsg_tv.setText("*当前数据正常");
-//            mDataMsg_tv.setTextColor(ContextCompat.getColor(this,R.color.normal_data));
-//        }
-//
-//    }
 }

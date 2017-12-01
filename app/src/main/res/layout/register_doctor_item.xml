@@ -19,7 +19,7 @@
                 android:id="@+id/dortor_head_img"
                 android:layout_width="85dp"
                 android:layout_height="110dp"
-                android:scaleType="center"
+                android:scaleType="centerCrop"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp" />
 

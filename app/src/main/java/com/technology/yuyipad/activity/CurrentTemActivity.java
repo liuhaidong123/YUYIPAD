@@ -1,14 +1,13 @@
 package com.technology.yuyipad.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,27 +16,27 @@ import android.widget.Toast;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.adapter.TemAdapter;
+import com.technology.yuyipad.bean.UserListBean.Result;
+import com.technology.yuyipad.bean.UserListBean.Root;
 import com.technology.yuyipad.httptools.HttpTools;
-import com.technology.yuyipad.lhdUtils.InformationListView;
-import com.technology.yuyipad.lhdUtils.MyDialog;
 import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.SanJiao;
 import com.technology.yuyipad.lhdUtils.TherC;
+import com.technology.yuyipad.lzhUtils.MyDialog;
+import com.technology.yuyipad.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.technology.yuyipad.bean.UserListBean.Result;
-import com.technology.yuyipad.bean.UserListBean.Root;
-import com.technology.yuyipad.user.User;
-
-public class CurrentTemActivity extends AppCompatActivity {
-
-    private TextView mHandInput, mSaveBtn, mDuNum, mPromptTv;
+public class CurrentTemActivity extends AppCompatActivity implements View.OnClickListener{
+    //重新登录页面
+    private RelativeLayout mLogin_rl;
+    private TextView mHandInput, mSaveBtn, mDuNum;
     private ListView mListview;
     private TemAdapter mAdapter;
+    private View footer;
     private RelativeLayout mTemRL;
     private Map<String, String> mSubmitMap = new HashMap<>();
     private int mPosintion = -1;
@@ -55,9 +54,10 @@ public class CurrentTemActivity extends AppCompatActivity {
                 if (o != null && o instanceof Root) {
                     Root root = (Root) o;
                     if (root != null && root.getResult() != null) {
+
+                        mList = root.getResult();
                         mListview.removeFooterView(footer);
                         showNameList.clear();
-                        mList = root.getResult();
                         for (int i = 0; i < mList.size(); i++) {
                             if (i == 0) {
                                 showNameList.add(true);
@@ -77,47 +77,47 @@ public class CurrentTemActivity extends AppCompatActivity {
                         } else {
                             mListview.addFooterView(footer);
                         }
+                    }else {
+                        mLogin_rl.setVisibility(View.VISIBLE);
+                        Toast.makeText(CurrentTemActivity.this, "请重新登录", Toast.LENGTH_SHORT).show();
                     }
 
 
                 }
             } else if (msg.what == 36) {//提交数据接口
+                MyDialog.stopDia();
                 Object o = msg.obj;
                 if (o != null && o instanceof com.technology.yuyipad.bean.SubmitTemBean.Root) {
                     com.technology.yuyipad.bean.SubmitTemBean.Root root = (com.technology.yuyipad.bean.SubmitTemBean.Root) o;
                     if (root.getCode().equals("0")) {
                         Toast.makeText(getApplicationContext(), "提交数据成功", Toast.LENGTH_SHORT).show();
-                        MyDialog.stopDialog();
+                        MyDialog.stopDia();
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "提交数据失败", Toast.LENGTH_SHORT).show();
-                        MyDialog.stopDialog();
+                        MyDialog.stopDia();
                     }
                 }
             } else if (msg.what == 227) {//json解析失败
-                MyDialog.stopDialog();
+                MyDialog.stopDia();
+                Toast.makeText(getApplicationContext(), "提交数据失败", Toast.LENGTH_SHORT).show();
             } else if (msg.what == 228) {//提交数据失败
                 Toast.makeText(getApplicationContext(), "提交数据失败", Toast.LENGTH_SHORT).show();
-                MyDialog.stopDialog();
+                MyDialog.stopDia();
             }
-
         }
     };
-
-    private ImageView mAddimg;
-    private RelativeLayout mAllDataView;
-    private View footer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         if (NetWorkUtils.isNetWorkConnected(this)) {
             setContentView(R.layout.activity_current_tem);
             //获取用户列表
             mMap.put("token", User.token);
             mHttptools = HttpTools.getHttpToolsInstance();
+            mHttptools.getUserLIst(mHandler, mMap);//
             initUI();
         } else {
             setContentView(R.layout.firstpage_newwork);
@@ -127,10 +127,11 @@ public class CurrentTemActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        mLogin_rl = (RelativeLayout) findViewById(R.id.again_login_rl);
+        mLogin_rl.setOnClickListener(this);
         mHandInput = (TextView) findViewById(R.id.input_tem_btn);
         mSaveBtn = (TextView) findViewById(R.id.tem_save_btn);
         mDuNum = (TextView) findViewById(R.id.current_tem);
-        mPromptTv = (TextView) findViewById(R.id.tv_prompt);
         //手动输入
         mHandInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +148,6 @@ public class CurrentTemActivity extends AppCompatActivity {
             }
         });
         footer = LayoutInflater.from(this).inflate(R.layout.tem_add_item, null);
-        mAddimg = (ImageView) footer.findViewById(R.id.tem_add_img);
         //存放温度计
         mTemRL = (RelativeLayout) findViewById(R.id.my_tem_rl);
         TherC therC = new TherC(this);
@@ -156,7 +156,6 @@ public class CurrentTemActivity extends AppCompatActivity {
         mTemRL.addView(sanJiao);
 
         mListview = (ListView) findViewById(R.id.tem_user_listview);
-        // mListview.addFooterView(footer);
         mAdapter = new TemAdapter(this, mList, showNameList);
         mListview.setAdapter(mAdapter);
         mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -164,9 +163,7 @@ public class CurrentTemActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (mList.size() == 0 || i == mList.size()) {
-                    // Toast.makeText(getApplicationContext(), "添加", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), FamilyUserManagerActivity.class);
-                    //  intent.putExtra("type", "0");
                     startActivity(intent);
                 } else {
                     for (int k = 0; k < mList.size(); k++) {
@@ -185,7 +182,6 @@ public class CurrentTemActivity extends AppCompatActivity {
             }
         });
 
-        mAllDataView = (RelativeLayout) findViewById(R.id.tem_all_data);
     }
 
 
@@ -210,7 +206,7 @@ public class CurrentTemActivity extends AppCompatActivity {
                 mSubmitMap.put("humeuserId", mList.get(mPosintion).getId() + "");
                 mSubmitMap.put("temperaturet", getTemData());
                 mHttptools.submitTemData(mHandler, mSubmitMap);
-                MyDialog.showPopuWindow(this, mAllDataView);
+                MyDialog.showDialog(this);
             } else {
                 Toast.makeText(this, "请选择用户", Toast.LENGTH_SHORT).show();
             }
@@ -221,8 +217,7 @@ public class CurrentTemActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mHttptools.getUserLIst(mHandler, mMap);//
+    public void onClick(View view) {
+
     }
 }

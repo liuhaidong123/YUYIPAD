@@ -298,7 +298,7 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
                             selectCityLocation("涿州市中医医院",aMapLocation.getDistrict());//在地图上显示城市
                         }
                     } else {
-                        myLocation.setText("未定位1");
+                        myLocation.setText("未定位...");
 
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                         Log.e("AmapError", "location Error, ErrCode:"
@@ -355,12 +355,10 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
             case LOCATION_CODE:
                 //点击了允许，授权成功
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
                     Toast.makeText(getApplicationContext(), "定位授权成功", Toast.LENGTH_SHORT).show();
                     gaoDeMap();
                     //点击了拒绝，授权失败
                 } else {
-                    // Permission Denied
                     Toast.makeText(getApplicationContext(), "定位授权失败", Toast.LENGTH_SHORT).show();
                 }
                 break;

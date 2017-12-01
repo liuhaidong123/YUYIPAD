@@ -36,7 +36,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
     private TextView mTitle, mGrade, mContent;
     private InformationListView information_listview;
     private InformationAda mAdapter;
-    private List<Rows> mList = new ArrayList<>();
+    private List<com.technology.yuyipad.bean.NewInformationList.Rows> mList = new ArrayList<>();
     private List<Boolean> checkBgList = new ArrayList<>();
     private int mStart = 0;
     private int mAddNum = 10;
@@ -48,13 +48,13 @@ public class InformationDetailsActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what == 22) {
+            if (msg.what == 41) {
                 Object o = msg.obj;
-                if (o != null && o instanceof Root) {
-                    Root root = (Root) o;
+                if (o != null && o instanceof  com.technology.yuyipad.bean.NewInformationList.Root) {
+                    com.technology.yuyipad.bean.NewInformationList.Root root = (com.technology.yuyipad.bean.NewInformationList.Root) o;
                     if (root != null && root.getRows() != null && root.getRows().size() != 0) {
 
-                        List<Rows> list = new ArrayList<>();
+                        List<com.technology.yuyipad.bean.NewInformationList.Rows> list = new ArrayList<>();
                         list = root.getRows();
                         mList.addAll(list);
 
@@ -70,7 +70,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
                                 }
                                 mAdapter.setList(mList, checkBgList);
                                 mAdapter.notifyDataSetChanged();
-                                mHttptools.getFirstPageInformationTwoDataMessage(handler, mList.get(0).getId());
+                                mHttptools.getNewInformationAdDetails(handler, mList.get(0).getId());
                             } else if (tag == -2) {
                                 Toast.makeText(InformationDetailsActivity.this, "详情错误", Toast.LENGTH_SHORT).show();
                             } else {//请求上一页点击的某条资讯详情
@@ -84,7 +84,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
                                 }
                                 mAdapter.setList(mList, checkBgList);
                                 mAdapter.notifyDataSetChanged();
-                                mHttptools.getFirstPageInformationTwoDataMessage(handler, mList.get(tag).getId());
+                                mHttptools.getNewInformationAdDetails(handler, mList.get(tag).getId());
                             }
                         } else {//点击了加载更多
                             for (int i = 0; i < list.size(); i++) {
@@ -104,15 +104,15 @@ public class InformationDetailsActivity extends AppCompatActivity {
                         mMany_more.setVisibility(View.GONE);
                     }
                 }
-            } else if (msg.what == 23) {//详情
+            } else if (msg.what == 43) {//详情
                 Object o = msg.obj;
-                if (o != null && o instanceof UpdatedInformation) {
-                    UpdatedInformation information = (UpdatedInformation) o;
+                if (o != null && o instanceof com.technology.yuyipad.bean.NewInforAdDetails.Root) {
+                    com.technology.yuyipad.bean.NewInforAdDetails.Root information = (com.technology.yuyipad.bean.NewInforAdDetails.Root) o;
                     if (information != null) {
-                        Picasso.with(InformationDetailsActivity.this).load(UrlTools.BASE + information.getPicture()).into(mImg);
-                        mTitle.setText(information.getTitle());
-                        mGrade.setText(information.getSmalltitle());
-                        mContent.setText(information.getArticleText());
+                        Picasso.with(InformationDetailsActivity.this).load(UrlTools.BASE + information.getResult().getPicture()).error(R.mipmap.errorpicture).into(mImg);
+                        mTitle.setText(information.getResult().getTitle());
+                        mGrade.setText(information.getResult().getSmallTitle());
+                        mContent.setText(information.getResult().getContent());
                         mAllData_Rl.setVisibility(View.VISIBLE);
                     }
                 }
@@ -124,7 +124,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
     };
 
     private int tag;//-1表示请求全部资讯列表，默认详情为第一条数据，-2表示数据错误，其他的表示请求上一页点击的某条资讯详情
-
+    private String flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +133,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
             setContentView(R.layout.activity_information_details);
             //获取资讯页面数据
             mHttptools = HttpTools.getHttpToolsInstance();
-            mHttptools.getFirstPageInformationTwoData(handler, 0, 10);
+            mHttptools.getNewInformationList(handler, 0, 10);
             initUI();
         } else {
 
@@ -166,7 +166,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
                 isMore = true;
                 mBar.setVisibility(View.VISIBLE);
                 mStart += 10;
-                mHttptools.getFirstPageInformationTwoData(handler, mStart, mAddNum);
+                mHttptools.getNewInformationList(handler, mStart, mAddNum);
 
             }
         });
@@ -175,7 +175,7 @@ public class InformationDetailsActivity extends AppCompatActivity {
         information_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mHttptools.getFirstPageInformationTwoDataMessage(handler, mList.get(i).getId());
+                mHttptools.getNewInformationAdDetails(handler, mList.get(i).getId());
                 checkBgList.clear();
                 for (int k = 0; k < mList.size(); k++) {
                     if (k == i) {

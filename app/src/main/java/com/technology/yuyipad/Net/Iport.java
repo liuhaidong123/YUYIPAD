@@ -36,7 +36,6 @@ public interface Iport {
     //登录
     String interface_Login="personal/login.do";
 
-
     //更改绑定手机号修改绑定的手机号 http://192.168.1.168:8082/yuyi/personal/modifymobile.do?token=1213&newMobile=13717883009&vcode=123456
   String interface_ChangePhone="personal/modifymobile.do?";
     //获取验证码http://192.168.1.168:8082/yuyi/personal/vcode.do?id=13717883005

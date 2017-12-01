@@ -1,6 +1,7 @@
 package com.technology.yuyipad.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 
 public class HospitalAda extends BaseAdapter {
+    private int k=0;
     private Context mContext;
     private LayoutInflater mInflater;
     private List<FirstPageInformationTwoData> list = new ArrayList<>();
@@ -53,6 +55,7 @@ public class HospitalAda extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        k++;
         HospitalHolder hospitalHolder = null;
         if (view == null) {
             hospitalHolder = new HospitalHolder();
@@ -64,7 +67,7 @@ public class HospitalAda extends BaseAdapter {
         } else {
             hospitalHolder = (HospitalHolder) view.getTag();
         }
-        Picasso.with(mContext).load(UrlTools.BASE + list.get(i).getPicture()).error(R.mipmap.error_big).into(hospitalHolder.img);
+        Picasso.with(mContext).load(UrlTools.BASE + list.get(i).getPicture()).error(R.mipmap.errorpicture).into(hospitalHolder.img);
         hospitalHolder.name_tv.setText(list.get(i).getHospitalName());
         hospitalHolder.grade_tv.setText(list.get(i).getGradeName());
 
@@ -73,6 +76,7 @@ public class HospitalAda extends BaseAdapter {
         }else {//没有点击
             view.setBackgroundResource(R.color.ffffff);
         }
+        Log.e("医院adater",""+k);
         return view;
     }
 

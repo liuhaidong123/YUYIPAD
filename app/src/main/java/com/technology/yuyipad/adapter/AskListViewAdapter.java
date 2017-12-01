@@ -68,7 +68,7 @@ public class AskListViewAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        Picasso.with(mContext).load(UrlTools.BASE + mList.get(position).getPicture()).into(viewHolder.img);
+        Picasso.with(mContext).load(UrlTools.BASE + mList.get(position).getPicture()).error(R.mipmap.errorpicture).into(viewHolder.img);
         viewHolder.title_tv.setText(mList.get(position).getHospitalName());
         viewHolder.tel_tv.setText("电话:" + mList.get(position).getTell());
         viewHolder.address_tv.setText("地址:" + mList.get(position).getAddress());

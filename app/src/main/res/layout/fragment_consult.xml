@@ -22,12 +22,12 @@
         android:layout_below="@+id/ask_title_tv"
         android:background="@color/add_color" />
 
-
     <LinearLayout
+        android:id="@+id/consult_data_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/line"
-        android:text="3333333">
+        android:visibility="gone">
 
 
         <LinearLayout
@@ -36,53 +36,17 @@
             android:layout_marginTop="15dp"
             android:layout_weight="3">
 
-            <ScrollView
+
+            <ListView
+                android:id="@+id/hospital_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:divider="@color/color_white"
+                android:dividerHeight="15dp"
                 android:scrollbars="none">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            </ListView>
 
-                    <com.technology.yuyipad.lhdUtils.InformationListView
-                        android:id="@+id/hospital_listview"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="@color/color_white"
-                        android:dividerHeight="15dp"
-                        android:scrollbars="none">
-
-                    </com.technology.yuyipad.lhdUtils.InformationListView>
-
-                    <RelativeLayout
-                        android:id="@+id/more_rl"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_below="@+id/hospital_listview"
-                        android:background="@color/color_white">
-
-
-                        <TextView
-                            android:id="@+id/footer_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="加载更多"
-                            android:textColor="#333333"
-                            android:textSize="13sp" />
-
-                        <ProgressBar
-                            android:id="@+id/circle_pbLocate"
-                            style="?android:attr/progressBarStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_toEndOf="@+id/footer_tv" />
-                    </RelativeLayout>
-                </RelativeLayout>
-            </ScrollView>
 
         </LinearLayout>
 
@@ -184,5 +148,32 @@
 
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/consult_nodata_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line"
+        android:background="@mipmap/white"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/nostatus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/network"
+            android:textColor="@color/cccccc"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 </RelativeLayout>

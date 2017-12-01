@@ -40,13 +40,7 @@ public class RongWindow implements View.OnClickListener ,IGetRongUserTokenError,
            docId="";//重制docId
            this.ac=con;
            this.parenteV=parentView;
-           if (RongUser.isConnectSuccess){//链接容云成功
-                RongConnect.getInstance().getTargetDocId(this,cid);
-           }
-           else {
-                   RongConnect.getInstance().getRongUserInfo(this,con);
-                }
-
+           RongConnect.getInstance().getTargetDocId(this,cid);
        }
        else {
            toast.getInstance().text(con,"医院信息错误，无法启动咨询程序");
@@ -56,7 +50,7 @@ public class RongWindow implements View.OnClickListener ,IGetRongUserTokenError,
     private void show(Activity con, View parentView){
         if (pop==null) {
             pop = new PopupWindow();
-        }
+            }
             View vi= LayoutInflater.from(con).inflate(R.layout.rongwindow,null);
             LinearLayout rong_video=vi.findViewById(R.id.rong_video);//视频
             LinearLayout rong_radio=vi.findViewById(R.id.rong_radio);//语音

@@ -4,6 +4,7 @@
     android:id="@+id/activity_select_hospital_opd"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/white"
     tools:context="com.technology.yuyipad.activity.SelectHospitalOPDActivity">
 
     <TextView
@@ -24,11 +25,11 @@
         android:background="@color/fafafa" />
 
     <LinearLayout
-
         android:id="@+id/all_data_register_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/register_line">
+        android:layout_below="@id/register_line"
+        android:visibility="gone">
         <!--左边医院-->
         <LinearLayout
             android:layout_width="0dp"
@@ -36,117 +37,82 @@
             android:layout_weight="7.5"
             android:background="@color/color_white">
 
-            <ScrollView
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none">
+                android:layout_height="match_parent">
 
+                <!--搜索医院-->
                 <RelativeLayout
+                    android:id="@+id/search_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="70dp"
+                    android:background="@color/color_white"
+                    android:gravity="center">
 
-                    <!--搜索医院-->
                     <RelativeLayout
-                        android:id="@+id/search_relative"
+                        android:id="@+id/app_edit_rl"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:background="@color/color_white"
-                        android:gravity="center">
+                        android:layout_height="29dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/search_hospital_boxbg">
 
                         <RelativeLayout
-                            android:id="@+id/app_edit_rl"
-                            android:layout_width="match_parent"
-                            android:layout_height="29dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/search_hospital_boxbg">
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true">
-
-                                <ImageView
-                                    android:id="@+id/app_search_img"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:background="@mipmap/search" />
-
-                                <TextView
-                                    android:id="@+id/app_edit_box"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="29dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_toEndOf="@id/app_search_img"
-                                    android:background="@null"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:text="搜索医院"
-                                    android:textColor="@color/color_aaa9a9"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
-
-
-                        </RelativeLayout>
-
-                    </RelativeLayout>
-
-                    <View
-                        android:id="@+id/line1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_below="@id/search_relative"
-                        android:background="@color/fafafa" />
-
-                    <com.technology.yuyipad.lhdUtils.InformationListView
-                        android:id="@+id/hospital_listview"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/line1"
-                        android:divider="@color/fafafa"
-                        android:dividerHeight="0.5dp"
-                        android:scrollbars="none">
-
-                    </com.technology.yuyipad.lhdUtils.InformationListView>
-
-                    <RelativeLayout
-                        android:id="@+id/hospital_many_relative"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@id/hospital_listview"
-                        android:background="@color/fafafa"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:id="@+id/footer_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:paddingBottom="15dp"
-                            android:paddingEnd="20dp"
-                            android:paddingStart="20dp"
-                            android:paddingTop="15dp"
-                            android:text="加载更多"
-                            android:textColor="@color/color_333333"
-                            android:textSize="13sp" />
-
-                        <ProgressBar
-                            android:id="@+id/in_pbLocate"
-                            style="?android:attr/progressBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/footer_tv"
-                            android:visibility="gone" />
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/app_search_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:background="@mipmap/search" />
+
+                            <TextView
+                                android:id="@+id/app_edit_box"
+                                android:layout_width="wrap_content"
+                                android:layout_height="29dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_toEndOf="@id/app_search_img"
+                                android:background="@null"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="搜索医院"
+                                android:textColor="@color/color_aaa9a9"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+
 
                     </RelativeLayout>
 
                 </RelativeLayout>
-            </ScrollView>
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/search_relative"
+                    android:background="@color/fafafa" />
+
+                <ListView
+                    android:id="@+id/hospital_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/line1"
+                    android:divider="@color/fafafa"
+                    android:dividerHeight="0.5dp"
+                    android:scrollbars="none">
+
+                </ListView>
+
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 
@@ -209,14 +175,47 @@
                         android:numColumns="3">
 
                     </com.technology.yuyipad.lhdUtils.UseDrugGridView>
+
+
+                    <RelativeLayout
+                        android:id="@+id/no_department_data_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/opd_line"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="50dp"
+                        android:background="@color/color_f6f6f6"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/no__hhimg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/nostatus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/no__hhimg"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="50dp"
+                            android:text="该医院暂无科室信息"
+                            android:textColor="@color/cccccc"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
+
                 </RelativeLayout>
+
+
             </ScrollView>
 
 
         </LinearLayout>
 
         <!--科室挂号选择医生详情-->
-
         <LinearLayout
             android:id="@+id/select_doctor_ll"
             android:layout_width="0dp"
@@ -328,11 +327,92 @@
 
                     </com.technology.yuyipad.lhdUtils.UseDrugGridView>
 
+                    <RelativeLayout
+                        android:id="@+id/no_doctor_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/no_doctor_img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="50dp"
+                            android:src="@mipmap/nostatus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/no_doctor_img"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:text="该门诊暂无医生信息"
+                            android:textColor="@color/color_1ebeec"
+                            android:textSize="18sp" />
+                    </RelativeLayout>
+
+
                 </RelativeLayout>
             </ScrollView>
+
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/nodata_rl_register"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/register_line"
+        android:background="@mipmap/white"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/nostatus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="抱歉,没有医院信息"
+            android:textColor="@color/cccccc"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/again_login_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/register_line"
+        android:background="@color/ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/login_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/nostatus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="登录异常,请重新登录"
+            android:textColor="@color/cccccc"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 </RelativeLayout>
