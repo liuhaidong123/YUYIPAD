@@ -7,7 +7,7 @@
     <color name="color_homeTextColorUnSelect">#636e59</color>
     <color name="color_homeBackGround">#383a41</color>
     <color name="color_unhomeBackGround">#212226</color>
-
+    <color name="dialog">#00ffffff</color>
     <color name="color9">#999999</color>
     <color name="color_network">#80818e</color>
     <color name="colorf1">#f1f1f1</color>

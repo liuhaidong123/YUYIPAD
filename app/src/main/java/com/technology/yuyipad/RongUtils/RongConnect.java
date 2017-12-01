@@ -205,6 +205,7 @@ public class RongConnect {
                 @Override
                 public void onFailure(Request request, IOException e) {
                     handler.sendEmptyMessage(-2);
+                    e.printStackTrace();
                 }
                 @Override
                 public void onResponse(Response response) throws IOException {

@@ -7,6 +7,6 @@
     tools:context="com.technology.yuyipad.activity.Start.StartActivity">
     <ImageView
       style="@style/layoutmatchparent"
-        android:src="@mipmap/tex"
+        android:src="@mipmap/start_page_img"
         android:scaleType="centerCrop"/>
 </RelativeLayout>

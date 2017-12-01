@@ -84,4 +84,7 @@ public class MyApplication extends Application{
             list.clear();
         }
     }
+
+
+
 }

@@ -132,12 +132,12 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/bundles/debug/res/drawable/rc_menu_background_selector.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_voice_input_selector.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/bundles/debug/res/drawable/rc_voice_input_selector.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_ic_location.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/bundles/debug/res/drawable/rc_ic_location.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_voice_input_selector.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/bundles/debug/res/drawable/rc_voice_input_selector.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_btn_input.xml",

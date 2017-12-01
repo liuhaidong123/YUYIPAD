@@ -24,16 +24,16 @@ public class InformationAda extends BaseAdapter {
     private LayoutInflater mInfllater;
     private Context mContext;
     private List<Boolean> checkList = new ArrayList<>();
-    private List<Rows> list = new ArrayList<>();
+    private List<com.technology.yuyipad.bean.NewInformationList.Rows> list = new ArrayList<>();
 
 
-    public InformationAda(Context mContext, List<Rows> list) {
+    public InformationAda(Context mContext, List<com.technology.yuyipad.bean.NewInformationList.Rows> list) {
         this.mContext = mContext;
         this.list = list;
         this.mInfllater = LayoutInflater.from(this.mContext);
     }
 
-    public void setList(List<Rows> list, List<Boolean> checkList) {
+    public void setList(List<com.technology.yuyipad.bean.NewInformationList.Rows> list, List<Boolean> checkList) {
         this.list = list;
         this.checkList = checkList;
     }
@@ -66,7 +66,7 @@ public class InformationAda extends BaseAdapter {
             informationHolder = (InformationHolder) view.getTag();
         }
 
-        Picasso.with(mContext).load(UrlTools.BASE + list.get(i).getPicture()).into(informationHolder.img);
+        Picasso.with(mContext).load(UrlTools.BASE + list.get(i).getPicture()).error(R.mipmap.errorpicture).into(informationHolder.img);
         informationHolder.title.setText(list.get(i).getTitle());
 
         if (checkList.get(i)) {

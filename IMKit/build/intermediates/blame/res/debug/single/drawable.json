@@ -16,12 +16,12 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_an_voice_sent.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_bg_mentionlist_item.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_bg_mentionlist_item.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_item_list_selector.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_item_list_selector.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_bg_mentionlist_item.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_bg_mentionlist_item.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_selector_title_back_press.xml",
@@ -64,12 +64,12 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_cs_submit_comment.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_emotion_toggle_selector.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_emotion_toggle_selector.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_sel_picsel_toolbar_send.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_sel_picsel_toolbar_send.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_emotion_toggle_selector.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_emotion_toggle_selector.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_cs_leave_message_btn.xml",
@@ -84,12 +84,12 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_plugin_toggle_selector.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_an_voice_receive.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_an_voice_receive.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_switch_btn.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_switch_btn.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_an_voice_receive.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/src/main/res/drawable/rc_an_voice_receive.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/IMKit/build/intermediates/res/merged/debug/drawable/rc_ext_plugin_location_selector.xml",

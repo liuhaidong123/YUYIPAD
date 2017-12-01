@@ -474,6 +474,7 @@ public class HttpTools {
 
     public void getHospitalDepartmentData(final Handler handler, int hid) {
         String url = UrlTools.BASE + UrlTools.URL_HOSPITAL_DEPARTMENT + "hid=" + hid;
+        Log.e("医院科室接口",url);
         mFinalHttp.get(url, new AjaxCallBack<String>() {
             @Override
             public void onStart() {
@@ -965,7 +966,104 @@ public class HttpTools {
                 handler.sendEmptyMessage(236);
             }
         });
+    }
+    //修改后的资讯列表
+    public void getNewInformationList(final Handler handler, int start, int limit) {
+        String url = UrlTools.BASE + UrlTools.URL_NEW_INFORMATION_MSG + "start=" + start + "&limit=" + limit;
 
+        mFinalHttp.get(url, new AjaxCallBack<String>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                Log.e("修改后的资讯列表开始", "-");
+            }
 
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                Log.e("修改后的资讯列表成功", "-" + s);
+                com.technology.yuyipad.bean.NewInformationList.Root root = mGson.fromJson(s, com.technology.yuyipad.bean.NewInformationList.Root.class);
+                Message m = new Message();
+                m.what = 41;
+                m.obj = root;
+                handler.sendMessage(m);
+
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                if (strMsg == null) {
+                    strMsg = "-null";
+                }
+                Log.e("修改后的资讯列表失败", "-" + strMsg);
+            }
+        });
+    }
+
+    //修改后的轮播列表接口
+
+    public void getNewAdList(final Handler handler) {
+        String url = UrlTools.BASE + UrlTools.URL_NEW_AD_MSG;
+        mFinalHttp.get(url, new AjaxCallBack<String>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                Log.e("修改后的轮播列表接口开始","-");
+            }
+
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                Log.e("修改后的轮播列表接口成功","-"+s);
+                com.technology.yuyipad.bean.NewAdList.Root root =mGson.fromJson(s, com.technology.yuyipad.bean.NewAdList.Root.class);
+                Message m=new Message();
+                m.obj=root;
+                m.what=42;
+                handler.sendMessage(m);
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                if (strMsg==null){
+                    strMsg="-null";
+                }
+                Log.e("修改后的轮播列表接口失败","-"+strMsg);
+            }
+        });
+    }
+
+    //修改后的轮播详情和资讯接口
+
+    public void getNewInformationAdDetails(final Handler handler,long id) {
+        String url = UrlTools.BASE + UrlTools.URL_NEW_INFOR_AD_DETIAL+"id="+id;
+        mFinalHttp.get(url, new AjaxCallBack<String>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                Log.e("修改后的轮播详情和资讯接口开始","-");
+            }
+
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                Log.e("修改后的轮播详情和资讯接口成功","-"+s);
+                com.technology.yuyipad.bean.NewInforAdDetails.Root root =mGson.fromJson(s, com.technology.yuyipad.bean.NewInforAdDetails.Root.class);
+                Message m=new Message();
+                m.obj=root;
+                m.what=43;
+                handler.sendMessage(m);
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                if (strMsg==null){
+                    strMsg="-null";
+                }
+                Log.e("修改后的轮播详情和资讯接口失败","-"+strMsg);
+            }
+        });
     }
 }

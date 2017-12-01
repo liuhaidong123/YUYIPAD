@@ -4,18 +4,37 @@
     android:id="@+id/activity_hospital_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:background="@color/color_white"
+    android:background="@color/color_white"
     tools:context="com.technology.yuyipad.activity.HospitalDetailsActivity">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/h_mes_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:text="医院详情"
+        android:textColor="#333333"
+        android:textSize="19sp" />
+
+    <View
+        android:id="@+id/h_mes_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/h_mes_title"
+        android:background="@color/cccccc" />
+
+    <RelativeLayout
+        android:id="@+id/h_all_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/h_mes_line"
+        android:visibility="gone">
 
         <ScrollView
-            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottomBtn">
+            android:layout_above="@+id/bottomBtn"
+            android:scrollbars="none">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -88,4 +107,29 @@
             android:textSize="15sp" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/h_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/h_mes_line"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/h_no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/nostatus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/h_no_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="抱歉,数据走丢了"
+            android:textColor="@color/cccccc"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -18,7 +18,11 @@ import com.technology.yuyipad.R;
 public class MyDialog {
     private static PopupWindow mPopupwindow = new PopupWindow();
 
-    //加载弹框
+    /**加载弹框
+     *
+     * @param activity
+     * @param view 相对于哪个控件位置
+     */
     public static void showPopuWindow(final Activity activity, View view) {
         View view2 = LayoutInflater.from(activity).inflate(R.layout.loading_box, null);
         //设置透明度
