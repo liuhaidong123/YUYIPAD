@@ -34,7 +34,9 @@
             android:name=".activity.Main.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape">
+
+        </activity>
         <activity
             android:name=".activity.Start.StartActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -49,7 +51,7 @@
         <activity
             android:name=".activity.Login.LoginActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.InformationDetailsActivity"
@@ -245,7 +247,9 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".activity.Message.MessageListActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
@@ -292,8 +296,17 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".activity.AdDetailsActivity"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
+        <activity
+            android:name=".activity.AdDetailsActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
     </application>
 
 </manifest>

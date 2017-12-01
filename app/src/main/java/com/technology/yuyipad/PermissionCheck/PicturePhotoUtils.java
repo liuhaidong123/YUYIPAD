@@ -86,9 +86,8 @@ public class PicturePhotoUtils {
         intent.putExtra("outputY", 400);//高度
         intent.putExtra("return-data", true);
         intent.putExtra("noFaceDetection", true);
-        String alert=ac.getPackageName()+".provider";
-        Uri uri= FileProvider.getUriForFile(ac,alert,outputImage);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
+        Uri u= Uri.fromFile(outputImage);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,outputImage);
         ac.startActivityForResult(intent, RSCode.rCode_CutPicture);
     }
     //拍照后的选取
@@ -103,8 +102,8 @@ public class PicturePhotoUtils {
         intent2.putExtra("outputY", 400);//高度
         intent2.putExtra("return-data", true);
         intent2.putExtra("noFaceDetection", true);
-        String alert=ac.getPackageName()+".provider";
-        Uri u= FileProvider.getUriForFile(ac,alert,file);
+//        String alert=ac.getPackageName()+".provider";
+        Uri u= Uri.fromFile(file);
         intent2.putExtra(MediaStore.EXTRA_OUTPUT, u);
         ac.startActivityForResult(intent2,RSCode.rCode_CutPicture);
     }
