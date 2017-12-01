@@ -199,7 +199,7 @@
         <!-- ，，，，，，，，，，，容云相关，，，，，，，，，，，，，， -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.technology.yuyipad.FileProvider"
+            android:authorities="${applicationId}.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -247,9 +247,7 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activity.Message.MessageListActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"

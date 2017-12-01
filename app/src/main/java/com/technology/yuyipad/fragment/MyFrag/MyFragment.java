@@ -2,9 +2,7 @@ package com.technology.yuyipad.fragment.MyFrag;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +18,6 @@ import com.technology.yuyipad.Lview.RoundImageView;
 import com.technology.yuyipad.Net.Ip;
 import com.technology.yuyipad.Net.gson;
 import com.technology.yuyipad.R;
-import com.technology.yuyipad.RongUtils.IGetRongDoctorId;
-import com.technology.yuyipad.RongUtils.IGetRongUserTokenError;
-import com.technology.yuyipad.RongUtils.RongConnect;
-import com.technology.yuyipad.RongUtils.RongUser;
-import com.technology.yuyipad.RongUtils.RongUserInfoProvider;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.activity.MedicalRecord.EleMedicalRecordListActivity;
@@ -39,7 +32,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.rong.imlib.model.UserInfo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,6 +56,7 @@ public class MyFragment extends Fragment implements IUser{
         View view= inflater.inflate(R.layout.fragment_my, container, false);
         unbinder= ButterKnife.bind(this,view);
         presenter=new MyPresenter();
+        presenter.getUserInfo(this);
         return view;
     }
     @OnClick({R.id.frag_my_userLayout,R.id.frag_my_layout_medical,R.id.frag_my_layout_message,

@@ -9,7 +9,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.technology.yuyipad.Enum.UserSex;
-import com.technology.yuyipad.PermissionCheck.PicturePhotoUtils;
+import com.technology.yuyipad.Photo.PhotoPictureUtils;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.lzhUtils.Empty;
@@ -78,10 +78,11 @@ public class UserInfoPresenter implements View.OnClickListener{
         }
         switch (view.getId()){
             case R.id.usereditor_textv_picture://图库选取头像
-                PicturePhotoUtils.getInstance().searchPhto(activity,outImage);
+                PhotoPictureUtils.getInstance().searchPicture(activity);
+//                PicturePhotoUtils.getInstance().searchPhto(activity,outImage);
                 break;
             case R.id.usereditor_textv_camera://拍照头像
-                PicturePhotoUtils.getInstance().takePhoto(activity,outImage);
+                PhotoPictureUtils.getInstance().takePhoto(activity);
                 break;
             case R.id.usereditor_textv_cancle://取消
                 break;

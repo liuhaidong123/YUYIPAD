@@ -2,11 +2,8 @@ package com.technology.yuyipad.activity.UserInfo;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -21,7 +18,8 @@ import com.technology.yuyipad.Enum.UserSex;
 import com.technology.yuyipad.Lview.RoundImageView;
 import com.technology.yuyipad.Net.Ip;
 import com.technology.yuyipad.Net.gson;
-import com.technology.yuyipad.PermissionCheck.PicturePhotoUtils;
+import com.technology.yuyipad.Photo.PhotoPictureUtils;
+import com.technology.yuyipad.Photo.PhotoRSCode;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.Main.MainActivity;
@@ -32,13 +30,12 @@ import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.lzhUtils.MyActivity;
 
 import java.io.File;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 //用户信息
-public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
+public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,PhotoPictureUtils.OnSavePictureListener {
     @BindView(R.id.userInfo_submit)TextView userInfo_submit;
     @BindView(R.id.userInfo_image)RoundImageView userInfo_image;//touxiang
     @BindView(R.id.userInfo_userName)EditText userInfo_userName;//用户名
@@ -84,7 +81,6 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
                 }
                 break;
             case R.id.userInfo_LayoutChangePhoto://修改头像的按钮
-                outImage= new File(getExternalFilesDir("DCIM").getAbsolutePath(), new Date().getTime() + ".jpg");
                 presenter.showWindow(this,outImage);
                 break;
             case R.id.userInfo_layout_sexWomen://选择性别女
@@ -99,59 +95,36 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case RSCode.priCode_SearchPicture://图库
-                if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    PicturePhotoUtils.getInstance().searchPhto(this,outImage);
-                    }
-                else {
-                    toast.getInstance().text(this,"存储权限被禁用，无法获取相册信息");
-                    }
-                break;
-            case RSCode.priCode_TakePhoto://拍照
-                if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    PicturePhotoUtils.getInstance().takePhoto(this,outImage);
-                    }
-                else {
-                    toast.getInstance().text(this,"请打开相机权限");
-                }
-                break;
+        if (requestCode== PhotoRSCode.requestCode_SearchPermission){//选取图片的权限请求
+            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                PhotoPictureUtils.getInstance().searchPicture(this);
+            }
+            else {
+                Toast.makeText(this,"请打开存储卡权限！",Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (requestCode==PhotoRSCode.requestCode_CameraPermission){//拍照的权限请求
+            if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                PhotoPictureUtils.getInstance().takePhoto(this);
+            }
+            else {
+                Toast.makeText(this,"请打开相机权限！",Toast.LENGTH_SHORT).show();
+            }
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-            switch (requestCode){
-                case RSCode.rCode_SearchPicture://浏览相册
-                    outImage=new File(getExternalFilesDir("DCIM").getAbsolutePath(),new Date().getTime()+".jpg");
-                    PicturePhotoUtils.getInstance().cutPhoto_Search(this,outImage,data);
+        if (resultCode==RESULT_OK) {
+            switch (requestCode) {
+                case PhotoRSCode.requestCode_Search://相册选取返回
+                    PhotoPictureUtils.getInstance().savaPictureSearch(data.getData(),this,this);
                     break;
-                case RSCode.rCode_TakePhoto://拍照
-                    Uri uri=Uri.fromFile(outImage);
-                    outImage=new File(getExternalFilesDir("DCIM").getAbsolutePath(),new Date().getTime()+".jpg");
-                    PicturePhotoUtils.getInstance().cutPhoto_Camera(this,uri,outImage);
-                    break;
-                case RSCode.rCode_CutPicture://裁剪
-                    try{
-                        //将output_image.jpg对象解析成Bitmap对象，然后设置到ImageView中显示出来
-                        Bitmap bitmap = BitmapFactory.decodeFile(outImage.getAbsolutePath());
-                        if (bitmap!=null){
-                            isPhotoChange=true;
-                            userInfo_image.setImageBitmap(bitmap);
-                            bitmap64= BitmapTobase64.bitmapToBase64(bitmap);
-                        }
-                        else {
-                            Toast.makeText(this,"照片截取失败",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    catch (Exception e){
-                        e.printStackTrace();
-                        Toast.makeText(this,"照片截取失败",Toast.LENGTH_SHORT).show();
-                    }
+                case PhotoRSCode.requestCode_Camera://拍照
+                    //cameraFile为保存后的文件，mImg：需要显示图片的ImageView
+                    PhotoPictureUtils.getInstance().savaPictureCamera(this,this);
                     break;
             }
         }
@@ -230,14 +203,25 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange{
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
             if (IntentValue.UserInfoActivity_Change.equals(type)){
-                startActivity(new Intent(this,MainActivity.class));
                 finish();
-
             }
             else if (IntentValue.UserInfoActivity_Add.equals(type)){
+                startActivity(new Intent(this,MainActivity.class));
                 finish();
             }
         }
         return false;
+    }
+
+    @Override
+    public void onSavePicture(boolean isSuccess, File result) {
+        if (isSuccess){
+            isPhotoChange=true;
+            bitmap64= BitmapTobase64.bitmapToBase64(BitmapFactory.decodeFile(result.getAbsolutePath()));
+            userInfo_image.setImageBitmap(BitmapFactory.decodeFile(result.getAbsolutePath()));
+        }
+        else {
+            toast.getInstance().text(this,"更换失败！");
+        }
     }
 }
