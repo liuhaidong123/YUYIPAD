@@ -1,13 +1,9 @@
 package com.technology.yuyipad.activity.FamilyUser;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.technology.yuyipad.DbUtils.IDbUtlis;
@@ -17,10 +13,7 @@ import com.technology.yuyipad.R;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.FamilyUser.Adapter.FamilyUserListAdapter;
 import com.technology.yuyipad.activity.FamilyUser.Bean.FamilyUserListBean;
-import com.technology.yuyipad.activity.FamilyUser.Fragment.FamilyUserAddFragment;
-import com.technology.yuyipad.activity.FamilyUser.Fragment.FamilyUserInfoFragment;
 import com.technology.yuyipad.code.ExitLogin;
-import com.technology.yuyipad.code.RSCode;
 import com.technology.yuyipad.lzhUtils.ListChangePosition;
 import com.technology.yuyipad.lzhUtils.MyActivity;
 
@@ -75,7 +68,7 @@ public class FamilyUserManagerActivity extends MyActivity implements AdapterView
                 }
             if (li.get(0).isAdd()&&i!=li.size()-1){//第一项是添加按钮时
                 ListChangePosition.getInstance().changeList(li,0,li.size()-1);//先把添加按钮换到最后
-            }
+                }
             ListChangePosition.getInstance().changeList(li,i,0);
             adapter.notifyDataSetChanged();
             }
@@ -83,6 +76,9 @@ public class FamilyUserManagerActivity extends MyActivity implements AdapterView
                 if (!li.get(i).isAdd()){//第一项不是添加按钮才处理
                     presenter.showFragment(FamilyUserManagerPresenter.FragmentType.USERINFO,null);//显示用户信息的fragment
                     presenter.setUserData(li.get(i));
+                }
+                else {
+                    presenter.showFragment(FamilyUserManagerPresenter.FragmentType.USERADD,null);//显示用户添加／修改的fragment
                 }
             }
     }

@@ -2,6 +2,7 @@ package com.technology.yuyipad.activity.FamilyUser.Adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import butterknife.ButterKnife;
  */
 //家庭用户列表的list
 public class FamilyUserListAdapter extends BaseAdapter{
+    int cnt=0;
     List<FamilyUserListBean.ResultBean>list;
     Context con;
     public FamilyUserListAdapter(List<FamilyUserListBean.ResultBean>list,Context con){
@@ -53,6 +55,8 @@ public class FamilyUserListAdapter extends BaseAdapter{
     @Override
     public View getView( int i, View view, ViewGroup viewGroup) {
         ViewHodler hodler;
+        cnt++;
+        Log.e("cnt====",""+cnt);
         if (view==null){
             view= LayoutInflater.from(con).inflate(R.layout.item_familyusermanagerlist,null);
             hodler=new ViewHodler(view);

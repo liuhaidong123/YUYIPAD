@@ -21,7 +21,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="#1ebeec"
                 android:id="@+id/ele_TimeYear"
-                android:text="2017"/>
+                android:text=""/>
             <TextView style="@style/layoutWrapContent"
                 android:textSize="19sp"
                 android:gravity="center"
@@ -30,7 +30,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/ele_TimeYear"
                 android:id="@+id/ele_TimeMonth"
-                android:text="10-17"/>
+                android:text=""/>
         </RelativeLayout>
         </LinearLayout>
         <RelativeLayout
@@ -48,14 +48,14 @@
                     android:textColor="#999999"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="涿州市中医院"
-                    android:maxLines="1"
+                    android:text=""
+                    android:singleLine="true"
                     android:maxLength="10"
                     android:ellipsize="end"
                     android:id="@+id/ele_HosName"/>
 
                 <TextView style="@style/TextS19C3"
-                    android:text="消化科"
+                    android:text=""
                     android:maxLength="10"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -80,7 +80,7 @@
                     <TextView style="@style/layoutWrapContent"
                         android:textSize="18sp"
                         android:textColor="#999999"
-                        android:text="详情"
+                        android:text=""
                         />
                     <ImageView style="@style/layoutWrapContent"
                         android:layout_marginLeft="10dp"
@@ -96,7 +96,7 @@
                     android:layout_toLeftOf="@+id/bottomlyout"
                     android:maxLength="16"
                     android:ellipsize="end"
-                    android:text="消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并消化系统归并"
+                    android:text=""
                     android:textColor="#999999"/>
 
             </RelativeLayout>

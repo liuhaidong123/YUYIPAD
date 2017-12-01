@@ -3,7 +3,6 @@ package com.technology.yuyipad.activity.UserInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -15,6 +14,7 @@ import com.technology.yuyipad.Net.Iport;
 import com.technology.yuyipad.Net.gson;
 import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.code.ServerCode;
+import com.technology.yuyipad.lzhUtils.DialogUtils;
 import com.technology.yuyipad.lzhUtils.MyApplication;
 import com.technology.yuyipad.user.User;
 
@@ -64,9 +64,11 @@ public class UserInfoModel {
                     break;
                 //修改信息
                 case -2:
+                    DialogUtils.stopDialog();
                     iuserChange.onChangeError("网络异常");
                     break;
                 case 2:
+                    DialogUtils.stopDialog();
                     try{
                         UserChangeBean bea=gson.gson.fromJson(resStr,UserChangeBean.class);
                         if (bea!=null){
@@ -110,6 +112,7 @@ public class UserInfoModel {
 
     //保存用户信息
     public void saveUserDate(String bit64, String name, String age, UserSex sex, boolean isPhotoChange,IuserChange iuserChange){
+        DialogUtils.showDialog();
         this.iuserChange=iuserChange;
         if (Integer.parseInt(age)<1|Integer.parseInt(age)>150){
             iuserChange.onChangeError("年龄不正确");
@@ -129,7 +132,7 @@ public class UserInfoModel {
         ok.getCall(Ip.path+Iport.interface_UserMsgRevise,mp,ok.OK_POST).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                handler.sendEmptyMessage(0);
+                handler.sendEmptyMessage(-2);
             }
             @Override
             public void onResponse(Response response) throws IOException {

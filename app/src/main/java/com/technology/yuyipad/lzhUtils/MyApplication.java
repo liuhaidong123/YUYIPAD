@@ -2,8 +2,10 @@ package com.technology.yuyipad.lzhUtils;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.technology.yuyipad.RongUtils.RongUserInfoProvider;
@@ -13,7 +15,6 @@ import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
-import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by wanyu on 2017/9/27.
@@ -83,5 +84,10 @@ public class MyApplication extends Application{
             }
             list.clear();
         }
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

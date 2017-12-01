@@ -29,7 +29,7 @@ public class toast {
         TextView textView = (TextView) v.findViewById(R.id.textView1);
         textView.setText(msg);
         Toast mToast = new Toast(con);
-        mToast.setDuration(1500);
+        mToast.setDuration(Toast.LENGTH_SHORT);
         mToast.setView(v);
         mToast.show();
     }

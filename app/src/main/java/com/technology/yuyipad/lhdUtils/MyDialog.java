@@ -1,7 +1,6 @@
 package com.technology.yuyipad.lhdUtils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +42,6 @@ public class MyDialog {
                 activity.getWindow().setAttributes(params);
             }
         });
-
     }
 
     public static void stopDialog(){

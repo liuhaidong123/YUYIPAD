@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,6 +33,7 @@ import com.technology.yuyipad.activity.FamilyUser.Fragment.Presenter.FamilyUserA
 import com.technology.yuyipad.activity.FamilyUser.Fragment.Presenter.IFamilyUserAdd;
 import com.technology.yuyipad.code.RSCode;
 import com.technology.yuyipad.lzhUtils.BitmapTobase64;
+import com.technology.yuyipad.lzhUtils.DialogUtils;
 
 import java.io.File;
 import java.util.Date;
@@ -95,7 +95,8 @@ public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd {
     @OnClick({R.id.familyUserAdd_textV_delete,R.id.familyUserAdd_image,R.id.familyUserAdd_subimt,R.id.familyUserAdd_textV_UserImg})
     public void 点击事件(View vi){
         switch (vi.getId()){
-            case R.id.familyUserAdd_textV_delete://删除家庭用户
+            case R.id.familyUserAdd_textV_delete://删除家庭用
+                DialogUtils.showDialog();
                 String id=bean.getId()+"";
                 Log.e("id===",id);
                 presenter.deleteUser(bean==null?"":bean.getId()+"",this);
@@ -104,6 +105,7 @@ public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd {
                 familyUserAdd_image.setSelected(!familyUserAdd_image.isSelected());
                 break;
             case R.id.familyUserAdd_subimt://确定按钮
+                DialogUtils.showDialog();
                 presenter.onSubmit(familyUserAdd_edit_rela.getText().toString(),familyUserAdd_edit_name.getText().toString(),familyUserAdd_edit_age.getText().toString()
                 ,familyUserAdd_edit_tele.getText().toString(),sex,bit64,isBitChange,bean==null?"":bean.getId()+"",this);
                 break;
@@ -233,12 +235,14 @@ public class FamilyUserAddFragment extends Fragment implements IFamilyUserAdd {
     //添加修改成功／删除成功
     @Override
     public void onSuccess() {
+        DialogUtils.stopDialog();
         FamilyUserManagerActivity ac= (FamilyUserManagerActivity) getActivity();
         ac.getData();//刷新数据
     }
     //添加／修改／删除失败
     @Override
     public void onError(String msg) {
+        DialogUtils.stopDialog();
         toast.getInstance().text(getActivity(),msg);
     }
     @Override

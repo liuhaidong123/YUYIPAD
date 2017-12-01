@@ -57,6 +57,9 @@ public class EleMedicalReocrdListAdapter extends BaseAdapter{
         else {
             hodler= (ViewHodler) view.getTag();
         }
+        hodler.ele_KS.setText(list.get(i).getDepartmentName());
+        hodler.ele_HosName.setText(list.get(i).getHospitalName());
+        hodler.ele_info.setText(list.get(i).getMedicalrecord());
         if (!"".equals(list.get(i).getCreateTimeString())&&!TextUtils.isEmpty(list.get(i).getCreateTimeString())){
             SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date d= null;
@@ -72,9 +75,6 @@ public class EleMedicalReocrdListAdapter extends BaseAdapter{
                 e.printStackTrace();
             }
         }
-        hodler.ele_KS.setText(list.get(i).getDepartmentName());
-        hodler.ele_HosName.setText(list.get(i).getHospitalName());
-        hodler.ele_info.setText(list.get(i).getMedicalrecord());
         return view;
     }
     class ViewHodler{

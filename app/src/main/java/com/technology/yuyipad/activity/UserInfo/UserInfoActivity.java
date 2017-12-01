@@ -5,10 +5,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -20,7 +18,6 @@ import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.DbUtils.IDbUtlis;
 import com.technology.yuyipad.Enum.IntentValue;
 import com.technology.yuyipad.Enum.UserSex;
-import com.technology.yuyipad.Lview.MyListView;
 import com.technology.yuyipad.Lview.RoundImageView;
 import com.technology.yuyipad.Net.Ip;
 import com.technology.yuyipad.Net.gson;
@@ -30,18 +27,12 @@ import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.Main.MainActivity;
 import com.technology.yuyipad.code.ExitLogin;
 import com.technology.yuyipad.code.RSCode;
-import com.technology.yuyipad.fragment.MyFrag.IUser;
 import com.technology.yuyipad.lzhUtils.BitmapTobase64;
 import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.lzhUtils.MyActivity;
 
-import net.tsz.afinal.db.sqlite.DbModel;
-
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;

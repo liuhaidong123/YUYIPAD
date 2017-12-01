@@ -1,6 +1,5 @@
 package com.technology.yuyipad.RongUtils;
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.PopupWindow;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.lzhUtils.Empty;
-import com.technology.yuyipad.lzhUtils.MyApplication;
 import com.technology.yuyipad.lzhUtils.PopupSettings;
 
 import io.rong.callkit.RongCallKit;

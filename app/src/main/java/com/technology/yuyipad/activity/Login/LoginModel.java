@@ -13,12 +13,11 @@ import com.technology.yuyipad.Net.gson;
 import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.bean.BeanCode;
 import com.technology.yuyipad.code.ServerCode;
+import com.technology.yuyipad.lzhUtils.DialogUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import io.rong.imageloader.utils.L;
 
 /**
  * Created by wanyu on 2017/10/17.
@@ -57,9 +56,11 @@ public class LoginModel {
                     }
                     break;
                 case -2:
+                    DialogUtils.stopDialog();
                     iLogin.onLoginError("网络异常！");
                     break;
                 case 2:
+                    DialogUtils.stopDialog();
                     try{
                         LoginBean bean=gson.gson.fromJson(resStr, LoginBean.class);
                         if (bean!=null){
@@ -103,6 +104,7 @@ public class LoginModel {
     }
 
     public  void onLogin(String phone,String smsCode,ILogin iLogin){
+        DialogUtils.showDialog();
         this.iLogin=iLogin;
         Map<String,String>mp=new HashMap<>();
         mp.put("id",phone); mp.put("vcode",smsCode);

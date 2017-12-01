@@ -133,6 +133,7 @@
             <FrameLayout style="@style/layoutmatchparent">
                 <!--血压-->
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/data_lin_pressNomalInfo"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"

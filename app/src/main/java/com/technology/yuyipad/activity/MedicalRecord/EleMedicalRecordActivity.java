@@ -1,6 +1,5 @@
 package com.technology.yuyipad.activity.MedicalRecord;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -31,7 +30,6 @@ public class EleMedicalRecordActivity extends MyActivity {
             initView();
         }
     }
-
     private void initView() {
         eleMsg_text_creatTime.setText(bean.getCreateTimeString());
         eleMsg_text_hospitalName.setText(bean.getHospitalName());

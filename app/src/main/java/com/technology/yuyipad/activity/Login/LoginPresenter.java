@@ -101,6 +101,8 @@ public class LoginPresenter {
     }
 
     public void stopTimer(){
-        handler.removeCallbacks(runnable);
+        if (runnable!=null){
+            handler.removeCallbacks(runnable);
+        }
     }
 }

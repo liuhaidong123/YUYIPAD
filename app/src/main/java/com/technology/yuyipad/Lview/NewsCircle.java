@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.technology.yuyipad.R;
+import com.technology.yuyipad.lzhUtils.PopupSettings;
 
 /**
  * Created by wanyu on 2017/9/27.
@@ -34,6 +35,7 @@ public class NewsCircle extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
+
 //        super.onDraw(canvas);
         if (flag==false){
             canvas.drawCircle(canvas.getWidth()/2,canvas.getHeight()/2,canvas.getWidth()>canvas.getHeight()?canvas.getHeight()/2:canvas.getWidth()/2,paint);

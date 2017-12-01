@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 
 import com.technology.yuyipad.code.RSCode;
 
 import java.io.File;
-import java.util.Date;
 
 /**
  * Created by wanyu on 2017/10/9.
@@ -35,7 +34,9 @@ public class PicturePhotoUtils {
         if (Build.VERSION.SDK_INT>=23){
             if (PermissionCheck.getInstance().isPermissionGet(new String[]{PermissionNames.CAMERA,PermissionNames.READ_SD,PermissionNames.WRITE_SD},ac)){
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                String alert=ac.getPackageName()+".provider";
+                Uri uri= FileProvider.getUriForFile(ac,alert,f);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
                 ac.startActivityForResult(intent,RSCode.rCode_TakePhoto);
             }
@@ -57,7 +58,9 @@ public class PicturePhotoUtils {
             if (PermissionCheck.getInstance().isPermissionGet(new String[]{PermissionNames.READ_SD,PermissionNames.WRITE_SD},ac)) {
                 Intent intent = new Intent(Intent.ACTION_PICK, null);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                String alert=ac.getPackageName()+".provider";
+                Uri uri= FileProvider.getUriForFile(ac,alert,f);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 ac.startActivityForResult(intent, RSCode.rCode_SearchPicture);
             }
             else {
@@ -83,7 +86,9 @@ public class PicturePhotoUtils {
         intent.putExtra("outputY", 400);//高度
         intent.putExtra("return-data", true);
         intent.putExtra("noFaceDetection", true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outputImage));
+        String alert=ac.getPackageName()+".provider";
+        Uri uri= FileProvider.getUriForFile(ac,alert,outputImage);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
         ac.startActivityForResult(intent, RSCode.rCode_CutPicture);
     }
     //拍照后的选取
@@ -98,7 +103,9 @@ public class PicturePhotoUtils {
         intent2.putExtra("outputY", 400);//高度
         intent2.putExtra("return-data", true);
         intent2.putExtra("noFaceDetection", true);
-        intent2.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        String alert=ac.getPackageName()+".provider";
+        Uri u= FileProvider.getUriForFile(ac,alert,file);
+        intent2.putExtra(MediaStore.EXTRA_OUTPUT, u);
         ac.startActivityForResult(intent2,RSCode.rCode_CutPicture);
     }
 
@@ -108,7 +115,9 @@ public class PicturePhotoUtils {
         if (Build.VERSION.SDK_INT>=23){
             if (PermissionCheck.getInstance().isPermissionGet(new String[]{PermissionNames.CAMERA,PermissionNames.READ_SD,PermissionNames.WRITE_SD},ac.getActivity())){
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                String alert=ac.getActivity().getPackageName()+".provider";
+                Uri uri= FileProvider.getUriForFile(ac.getActivity(),alert,f);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
                 ac.startActivityForResult(intent,RSCode.rCode_TakePhoto);
             }
@@ -130,7 +139,9 @@ public class PicturePhotoUtils {
             if (PermissionCheck.getInstance().isPermissionGet(new String[]{PermissionNames.READ_SD,PermissionNames.WRITE_SD},ac.getActivity())) {
                 Intent intent = new Intent(Intent.ACTION_PICK, null);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                String alert=ac.getActivity().getPackageName()+".provider";
+                Uri uri= FileProvider.getUriForFile(ac.getActivity(),alert,f);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 ac.startActivityForResult(intent, RSCode.rCode_SearchPicture);
             }
             else {
@@ -156,7 +167,9 @@ public class PicturePhotoUtils {
         intent.putExtra("outputY", 400);//高度
         intent.putExtra("return-data", true);
         intent.putExtra("noFaceDetection", true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outputImage));
+        String alert=ac.getActivity().getPackageName()+".provider";
+        Uri uri= FileProvider.getUriForFile(ac.getActivity(),alert,outputImage);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         ac.startActivityForResult(intent, RSCode.rCode_CutPicture);
     }
     //拍照后的选取
@@ -171,7 +184,9 @@ public class PicturePhotoUtils {
         intent2.putExtra("outputY", 400);//高度
         intent2.putExtra("return-data", true);
         intent2.putExtra("noFaceDetection", true);
-        intent2.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        String alert=ac.getActivity().getPackageName()+".provider";
+        Uri u= FileProvider.getUriForFile(ac.getActivity(),alert,file);
+        intent2.putExtra(MediaStore.EXTRA_OUTPUT, u);
         ac.startActivityForResult(intent2,RSCode.rCode_CutPicture);
     }
     //以下在fragment中使用
