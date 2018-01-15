@@ -30,7 +30,6 @@
 
 
     <RelativeLayout
-        android:layout_above="@+id/btn"
         android:id="@+id/all_information_data_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

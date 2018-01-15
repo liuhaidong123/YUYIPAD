@@ -2,6 +2,7 @@ package com.technology.yuyipad.activity.Login;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.lzhUtils.PhoneUtils;
@@ -41,21 +42,22 @@ public class LoginPresenter {
             }
         }
         };
-    public void getSmsCode(String phone,ILogin iLogin){
-        if (Empty.getInstance().notEmptyOrNull(phone)){
+    public void getSmsCode(String phone,String currentMillis,String imgcode,String mycookie,ILogin iLogin){
+        if (Empty.getInstance().notEmptyOrNull(phone)&&!"".equals(imgcode)){
             if (PhoneUtils.isPhone(phone)){
                 if (model==null){
                     model=new LoginModel();
                 }
                 this.iLogin=iLogin;
-                model.getSMSCode(phone,iLogin);
+                Log.e("myCooike传递中",mycookie);
+                model.getSMSCode(phone,currentMillis,imgcode,mycookie,iLogin);
             }
             else {
-                iLogin.getSMSCodeError("手机号不正确！");
+                iLogin.getSMSCodeError("请填写正确的手机号或者动态验证码！");
             }
         }
         else {
-            iLogin.getSMSCodeError("手机号不正确！");
+            iLogin.getSMSCodeError("请填写正确的手机号或者动态验证码！");
         }
     }
     public void onLogin(String phone,String smsCode,ILogin iLogin){

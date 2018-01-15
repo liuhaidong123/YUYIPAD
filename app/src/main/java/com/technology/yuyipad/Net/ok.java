@@ -101,7 +101,7 @@ public class ok {
         Request request;
         if (cookie!=null&&!"".equals(cookie)){
             request = new Request.Builder()
-                    .url(url).header("cookie",cookie)
+                    .url(url).header("Cookie",cookie)
                     .post(builder.build())
                     .build();
         }

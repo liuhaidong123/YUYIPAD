@@ -36,6 +36,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.jude.rollviewpager.hintview.IconHintView;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -66,7 +67,6 @@ import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.httptools.UrlTools;
 import com.technology.yuyipad.lhdUtils.BloodView;
 import com.technology.yuyipad.lhdUtils.InformationListView;
-import com.technology.yuyipad.lhdUtils.MyDialog;
 import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.RoundImageView;
 import com.technology.yuyipad.lhdUtils.TemView;
@@ -481,7 +481,8 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mRollPagerView = view.findViewById(R.id.ad_viewpager);
         mRollPagerView.setPlayDelay(3000);//切换图片的间隔时间
         mRollPagerView.setAnimationDurtion(500);
-        mRollPagerView.setHintView(new IconHintView(this.getActivity(), R.mipmap.select_ad, R.mipmap.no_select_ad));
+        // mRollPagerView.setHintView(new IconHintView(this.getActivity(), R.mipmap.select_ad, R.mipmap.no_select_ad));
+        mRollPagerView.setHintView(new ColorPointHintView(this.getActivity(), ContextCompat.getColor(this.getActivity(),R.color.color_06b2f7),ContextCompat.getColor(this.getActivity(),R.color.color_cecece)));
         mRollPagerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {

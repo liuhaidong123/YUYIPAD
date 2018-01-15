@@ -339,12 +339,12 @@ public class LocationActivity extends AppCompatActivity implements TextView.OnEd
 
             } else {//如果已经授权，执行业务逻辑
                 gaoDeMap();
-                Toast.makeText(this, "已经授权23", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, "已经授权23", Toast.LENGTH_SHORT).show();
             }
 
         } else { //版本小于23时，不需要判断敏感权限，执行业务逻辑
             gaoDeMap();
-            Toast.makeText(this, "版本小于23", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "版本小于23", Toast.LENGTH_SHORT).show();
         }
     }
 

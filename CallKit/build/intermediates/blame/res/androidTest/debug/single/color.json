@@ -2,9 +2,5 @@
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/res/merged/androidTest/debug/color/rc_btn_file_list_send.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/exploded-aar/YUYIPAD/IMKit/unspecified/res/color/rc_btn_file_list_send.xml"
-    },
-    {
-        "merged": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/res/merged/androidTest/debug/color/rc_btn_file_list_send.xml",
-        "source": "/Users/hcq/Desktop/YUYIPA/CallKit/build/intermediates/exploded-aar/YUYIPA/IMKit/unspecified/res/color/rc_btn_file_list_send.xml"
     }
 ]

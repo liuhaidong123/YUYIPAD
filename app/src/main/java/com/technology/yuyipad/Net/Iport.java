@@ -32,7 +32,7 @@ public interface Iport {
     //获取我的药品状态接口（所有的药品状态）
      String interface_MyDrugStateList="prescription/findList2.do?";
     //登录获取验证码
-    String interface_LoginGetSMS="personal/vcode.do";
+    String interface_LoginGetSMS="personal/vcode.do?";
     //登录
     String interface_Login="personal/login.do";
 
