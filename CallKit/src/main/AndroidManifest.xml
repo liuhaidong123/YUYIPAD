@@ -20,7 +20,7 @@
         <activity
             android:name=".MultiVideoCallActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="false">
@@ -33,7 +33,7 @@
         <activity
             android:name=".SingleCallActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="false">
@@ -49,7 +49,7 @@
         <activity
             android:name=".MultiAudioCallActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="false">
@@ -60,7 +60,7 @@
         </activity>
 
         <activity android:name=".CallSelectMemberActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             />
 
