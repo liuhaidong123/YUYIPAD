@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.technology.yuyipad">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,6 +23,20 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <!-- 解锁的权限 体温血压权限 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
 
     <application
         android:name=".lzhUtils.MyApplication"
@@ -305,6 +320,23 @@
             android:windowSoftInputMode="stateHidden">
 
         </activity>
+
+        <meta-data
+            android:name="LS_APP_KEY"
+            android:value="1517BEACD6A828171F95355251A8932C" />
+        <meta-data
+            android:name="LS_APP_CHANNEL"
+            android:value="wylt" />
+        <service android:name="com.sst.jkezt.bluetoothUtil.BluetoothClientService" >
+
+        </service>
+        <receiver
+            android:name="com.sst.jkezt.bluetoothUtil.BluetoothConnectActivityReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.PAIRING_REQUEST" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

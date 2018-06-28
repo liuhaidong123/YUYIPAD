@@ -22,13 +22,16 @@ public class SanJiao extends View {
     private double mTemNum;
 
 
-    public SanJiao(Context context, double mTemNum) {
+    public SanJiao(Context context) {
         super(context);
         this.mContext = context;
-        this.mTemNum = mTemNum;
+
 
     }
 
+    public void setDuNum(double mTemNum){
+        this.mTemNum = mTemNum;
+    }
     public SanJiao(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;

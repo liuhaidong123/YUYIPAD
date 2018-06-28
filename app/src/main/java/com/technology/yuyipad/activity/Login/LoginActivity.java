@@ -1,54 +1,33 @@
 package com.technology.yuyipad.activity.Login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.PrintStreamPrinter;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
-import com.squareup.picasso.Picasso;
 import com.technology.yuyipad.Enum.IntentValue;
 import com.technology.yuyipad.JPushUtils.JpRegister;
-import com.technology.yuyipad.Net.Ip;
-import com.technology.yuyipad.Net.Iport;
 import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.R;
-import com.technology.yuyipad.ToastUtils.toast;
 import com.technology.yuyipad.activity.Main.MainActivity;
 import com.technology.yuyipad.activity.UserInfo.UserInfoActivity;
-import com.technology.yuyipad.bean.LoginSuccess;
-import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.httptools.UrlTools;
 import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.lzhUtils.MyActivity;
 import com.technology.yuyipad.lzhUtils.MyToast;
 import com.technology.yuyipad.user.User;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;

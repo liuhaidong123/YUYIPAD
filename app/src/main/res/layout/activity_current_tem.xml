@@ -73,7 +73,7 @@
                         android:id="@+id/current_tem"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="37"
+                        android:text="0.0"
                         android:textColor="@color/color_department_tv"
                         android:textSize="50sp" />
 
@@ -93,7 +93,7 @@
                     android:layout_below="@id/du_ll"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="*当前数据为空"
+                    android:text="体温设备未连接"
                     android:textColor="@color/color_department_tv"
                     android:textSize="19sp" />
 

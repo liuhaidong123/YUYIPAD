@@ -52,6 +52,16 @@
                     android:layout_height="200dp"
                     android:background="@color/color_383838">
 
+                    <TextView
+                        android:id="@+id/device_prompt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="血压设备未连接"
+                        android:textColor="@color/color_white"
+                        android:textSize="19sp" />
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -68,7 +78,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:text="120"
+                                android:text="0"
                                 android:textColor="@color/name_color"
                                 android:textSize="50sp" />
 
@@ -95,7 +105,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:text="89"
+                                android:text="0"
                                 android:textColor="@color/name_color"
                                 android:textSize="50sp" />
 
@@ -173,30 +183,30 @@
     </RelativeLayout>
 
     <RelativeLayout
-    android:id="@+id/again_login_rl"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/ffffff"
-    android:visibility="gone">
+        android:id="@+id/again_login_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ffffff"
+        android:visibility="gone">
 
-    <ImageView
-        android:id="@+id/login_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/nostatus" />
+        <ImageView
+            android:id="@+id/login_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/nostatus" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:text="登录异常,请重新登录"
-        android:textColor="@color/cccccc"
-        android:textSize="19sp"
-        android:textStyle="bold" />
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="登录异常,请重新登录"
+            android:textColor="@color/cccccc"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 
 </RelativeLayout>

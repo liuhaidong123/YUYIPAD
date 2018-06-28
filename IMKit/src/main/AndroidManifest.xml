@@ -28,31 +28,31 @@
     <application>
 
         <activity android:name="io.rong.imkit.plugin.location.AMapLocationActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <activity android:name="io.rong.imkit.plugin.location.AMapPreviewActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <activity android:name="io.rong.imkit.plugin.location.AMapRealTimeActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <activity
             android:name="io.rong.imkit.plugin.image.PictureSelectorActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <activity
             android:name="io.rong.imkit.plugin.image.PicturePreviewActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <!-- 开发者可以修改 RongBaseActivity 的 rc_base_activity_layout 布局文件调整 actionbar-->
         <activity
             android:name="io.rong.imkit.tools.RongWebviewActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="io.rong.imkit.intent.action.webview" />
@@ -62,12 +62,12 @@
 
         <activity
             android:name="io.rong.imkit.widget.provider.TakingPicturesActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <activity
             android:name="io.rong.imkit.activity.PicturePagerActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -78,17 +78,17 @@
 
         <activity
             android:name="io.rong.imkit.mention.MemberMentionedActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name="io.rong.imkit.activity.FileManagerActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
         <activity android:name="io.rong.imkit.activity.FileListActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
         <activity android:name="io.rong.imkit.activity.FilePreviewActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize">
         <intent-filter>
             <action android:name="io.rong.imkit.intent.action.openfile" />
@@ -98,7 +98,7 @@
 
         <activity
             android:name=".activity.CSLeaveMessageActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"/>
 
         <!-- 此部分代码需要移植到您的 app 下的 manifest，并且 authorities 指定您的包名。例如：com.android.FileProvider -->

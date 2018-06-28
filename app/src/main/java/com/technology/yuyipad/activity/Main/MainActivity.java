@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sst.jkezt.health.utils.JkezAPIMain;
 import com.technology.yuyipad.JPushUtils.JpRegister;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.RongUtils.IGetRongUserTokenError;
@@ -72,6 +73,7 @@ public class MainActivity extends MyActivity implements IGetRongUserTokenError {
             case R.id.main_MeasurePage_rela://测量
                 presenter.setSelect(1);
                 presenter.ShowFragment(1);
+                 JkezAPIMain.openBluetooth();//打开蓝牙
                 break;
             case R.id.main_CounselingPage_rela://咨询
                 presenter.setSelect(2);
@@ -132,5 +134,11 @@ public class MainActivity extends MyActivity implements IGetRongUserTokenError {
             Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        JkezAPIMain.closeBluetooth();
     }
 }

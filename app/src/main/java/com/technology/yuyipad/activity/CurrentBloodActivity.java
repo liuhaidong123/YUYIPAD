@@ -1,10 +1,14 @@
 package com.technology.yuyipad.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +18,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sst.jkezt.health.utils.BTBpData;
+import com.sst.jkezt.health.utils.HealthMeasureActivity;
+import com.sst.jkezt.health.utils.HealthMeasureListener;
+import com.sst.jkezt.health.utils.HealthMeasureState;
+import com.sst.jkezt.health.utils.HealthMeasureType;
+import com.sst.jkezt.health.utils.JkezAPIMain;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.FamilyUser.FamilyUserManagerActivity;
 import com.technology.yuyipad.adapter.RecycleAdapter;
@@ -30,8 +40,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CurrentBloodActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView mHeightBlood_Num, mLowBlood_Num, mHandInput_Num, mSave_Btn;
+public class CurrentBloodActivity extends HealthMeasureActivity implements View.OnClickListener {
+    private TextView mHeightBlood_Num, mLowBlood_Num, mHandInput_Num, mSave_Btn, mDevice_Prompt;
     //重新登录页面
     private RelativeLayout mLogin_rl;
     private RecyclerView mRecycleView;
@@ -96,6 +106,7 @@ public class CurrentBloodActivity extends AppCompatActivity implements View.OnCl
         }
     };
 
+    private HealthMeasureType type;//血压类型
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +124,63 @@ public class CurrentBloodActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initUI() {
+        mDevice_Prompt = findViewById(R.id.device_prompt);
+        type = HealthMeasureType.BTBPTYPE;//测量时的类型，这里是血压的类型
+        mHeightBlood_Num = (TextView) findViewById(R.id.blood_height_num);
+        mLowBlood_Num = (TextView) findViewById(R.id.blood_low_num);
+        initBluetooth(type, new HealthMeasureListener() {
+            @Override
+            public void onHealthNotFindDevice() {
+
+            }
+
+            @Override
+            public void onHealthFindDevice(BluetoothDevice bluetoothDevice, HealthMeasureType healthMeasureType) {
+                Log.e("设备名称：", bluetoothDevice.getName());
+            }
+
+            /**
+             * 监听蓝牙连接
+             */
+            @Override
+            public void onHealthConnected() {
+                mDevice_Prompt.setText("连接成功，等待测量");
+
+            }
+
+            /**
+             * 监听蓝牙断开
+             */
+            @Override
+            public void onHealthDeviceDisconnect() {
+                mDevice_Prompt.setText("设备已断开");
+
+
+            }
+
+            @Override
+            public void onHealthDeviceReceiveData(HealthMeasureType healthMeasureType, HealthMeasureState healthMeasureState, Object o) {
+
+                if(healthMeasureType == HealthMeasureType.BTBPTYPE) {//接收到血压设备
+                    BTBpData bpdata = (BTBpData)o;
+                    if(healthMeasureState == HealthMeasureState.MEASURING) {
+                        //显示压力值
+                        //tv_content.setText("压力:" + bpdata.getPressure() + "");
+                    }else if(healthMeasureState == HealthMeasureState.ERROR) {//异常
+                        //异常的内容
+                        mDevice_Prompt.setText("异常:" + bpdata.getErrtext());
+                        mHeightBlood_Num.setText("0");//收缩压,高压
+                        mLowBlood_Num.setText("0");//舒张压 低压
+                    }else {
+                        //结果
+                        mHeightBlood_Num.setText(bpdata.getHret()+"");//收缩压,高压
+                        mLowBlood_Num.setText(bpdata.getLret()+"");//舒张压 低压
+                        mDevice_Prompt.setText("测量完毕");
+                       // tv_content.setText("收缩压:" + bpdata.getHret() + " 舒张压:" + bpdata.getLret() + " 心率:" + bpdata.getHeart());
+                    }
+                }
+            }
+        });
         mLogin_rl = (RelativeLayout) findViewById(R.id.again_login_rl);
         mLogin_rl.setOnClickListener(this);
         //请求用户列表
@@ -165,8 +233,7 @@ public class CurrentBloodActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        mHeightBlood_Num = (TextView) findViewById(R.id.blood_height_num);
-        mLowBlood_Num = (TextView) findViewById(R.id.blood_low_num);
+
         mHandInput_Num = (TextView) findViewById(R.id.blood_input_tv);
         mSave_Btn = (TextView) findViewById(R.id.save_blood_data);
         //手动输入
@@ -256,6 +323,12 @@ public class CurrentBloodActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
     }
 }

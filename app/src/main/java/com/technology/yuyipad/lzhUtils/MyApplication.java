@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.sst.jkezt.health.utils.JkezAPIMain;
 import com.technology.yuyipad.RongUtils.RongUserInfoProvider;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        JkezAPIMain.initSDK(this, "wanyult");//血压体温测量
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         RongIM.init(this);

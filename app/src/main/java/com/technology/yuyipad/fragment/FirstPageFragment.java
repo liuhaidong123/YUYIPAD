@@ -60,6 +60,7 @@ import com.technology.yuyipad.adapter.FirstPageListViewAdapter;
 import com.technology.yuyipad.adapter.My_messageListView_Adapter;
 import com.technology.yuyipad.adapter.PatientAda;
 import com.technology.yuyipad.bean.FirstPageUserDataBean.BloodpressureList;
+import com.technology.yuyipad.bean.FirstPageUserDataBean.Root;
 import com.technology.yuyipad.bean.FirstPageUserDataBean.TemperatureList;
 import com.technology.yuyipad.bean.HasMsgBean;
 import com.technology.yuyipad.bean.UnReadMsgBean;
@@ -151,7 +152,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                         if (mList.size() != 0) {
                             Picasso.with(getActivity()).load(UrlTools.BASE + mList.get(0).getAvatar()).error(R.mipmap.usererr).into(mHead_img);
                             mName.setText(mList.get(0).getTrueName());
-                            initUserMessage();//初始化默认主用户用户的头像和昵称，绘制折线图
+                            //initUserMessage();//初始化默认主用户用户的头像和昵称，绘制折线图
                             try {
                                 initUserMessage();//初始化默认主用户用户的头像和昵称，绘制折线图
                             } catch (Exception e) {
@@ -175,115 +176,118 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 Object o = msg.obj;
                 if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageClickUserBean.Root) {
                     com.technology.yuyipad.bean.FirstPageClickUserBean.Root root = (com.technology.yuyipad.bean.FirstPageClickUserBean.Root) o;
-                    XdateNum.clear();
-                    heightBloodData.clear();
-                    lowBloodData.clear();
-                    XTemdateNum.clear();
-                    temData.clear();
-                    int month = 0;
-                    int day = 0;
+                  if (root!=null){
+                      XdateNum.clear();
+                      heightBloodData.clear();
+                      lowBloodData.clear();
+                      XTemdateNum.clear();
+                      temData.clear();
+                      int month = 0;
+                      int day = 0;
 
-                    List<com.technology.yuyipad.bean.FirstPageClickUserBean.BloodpressureList> bloodlist = root.getResult().getBloodpressureList();
-                    List<com.technology.yuyipad.bean.FirstPageClickUserBean.TemperatureList> temlist = root.getResult().getTemperatureList();
-                    //血压
-                    if (bloodlist.size() != 0) {
-                        for (int i = 0; i < bloodlist.size(); i++) {
-                            try {
-                                Date date = simpleDateFormat.parse(bloodlist.get(i).getCreateTimeString());
-                                month = date.getMonth() + 1;
-                                day = date.getDate();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            String date = month + "月" + day + "日";
-                            XdateNum.add(date);
-                            heightBloodData.add(bloodlist.get(i).getSystolic());//高
-                            lowBloodData.add(bloodlist.get(i).getDiastolic());
-                        }
+                      List<com.technology.yuyipad.bean.FirstPageClickUserBean.BloodpressureList> bloodlist = root.getResult().getBloodpressureList();
+                      List<com.technology.yuyipad.bean.FirstPageClickUserBean.TemperatureList> temlist = root.getResult().getTemperatureList();
+                      //血压
+                      if (bloodlist.size() != 0) {
+                          for (int i = 0; i < bloodlist.size(); i++) {
+                              try {
+                                  Date date = simpleDateFormat.parse(bloodlist.get(i).getCreateTimeString());
+                                  month = date.getMonth() + 1;
+                                  day = date.getDate();
+                              } catch (ParseException e) {
+                                  e.printStackTrace();
+                              }
+                              String date = month + "月" + day + "日";
+                              XdateNum.add(date);
+                              heightBloodData.add(bloodlist.get(i).getSystolic());//高
+                              lowBloodData.add(bloodlist.get(i).getDiastolic());
+                          }
 
-                    }
+                      }
 
-                    //填补血压日期
-                    if (XdateNum.size() != 7) {
-                        Calendar calendarBlood = Calendar.getInstance();
-                        int dayNum = 7 - XdateNum.size();
-                        if (XdateNum.size() == 0) {
-                            for (int i = 0; i < dayNum; i++) {
-                                int month2 = calendarBlood.get(Calendar.MONTH) + 1;
-                                int day2 = calendarBlood.get(Calendar.DAY_OF_MONTH);
-                                String date2 = month2 + "月" + day2 + "日";
-                                XdateNum.add(date2);
-                                calendarBlood.add(Calendar.DAY_OF_MONTH, 1);
-                            }
-                        } else {
-                            for (int i = 0; i < dayNum; i++) {
-                                calendarBlood.add(Calendar.DAY_OF_MONTH, 1);
-                                int month2 = calendarBlood.get(Calendar.MONTH) + 1;
-                                int day2 = calendarBlood.get(Calendar.DAY_OF_MONTH);
-                                String date2 = month2 + "月" + day2 + "日";
-                                XdateNum.add(date2);
-                            }
-                        }
+                      //填补血压日期
+                      if (XdateNum.size() != 7) {
+                          Calendar calendarBlood = Calendar.getInstance();
+                          int dayNum = 7 - XdateNum.size();
+                          if (XdateNum.size() == 0) {
+                              for (int i = 0; i < dayNum; i++) {
+                                  int month2 = calendarBlood.get(Calendar.MONTH) + 1;
+                                  int day2 = calendarBlood.get(Calendar.DAY_OF_MONTH);
+                                  String date2 = month2 + "月" + day2 + "日";
+                                  XdateNum.add(date2);
+                                  calendarBlood.add(Calendar.DAY_OF_MONTH, 1);
+                              }
+                          } else {
+                              for (int i = 0; i < dayNum; i++) {
+                                  calendarBlood.add(Calendar.DAY_OF_MONTH, 1);
+                                  int month2 = calendarBlood.get(Calendar.MONTH) + 1;
+                                  int day2 = calendarBlood.get(Calendar.DAY_OF_MONTH);
+                                  String date2 = month2 + "月" + day2 + "日";
+                                  XdateNum.add(date2);
+                              }
+                          }
 
-                    }
-                    // 体温
-                    if (temlist.size() != 0) {
-                        for (int i = 0; i < temlist.size(); i++) {
-                            try {
-                                Date date = simpleDateFormat.parse(temlist.get(i).getCreateTimeString());
-                                month = date.getMonth() + 1;
-                                day = date.getDate();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            String date = month + "月" + day + "日";
-                            XTemdateNum.add(date);
-                            temData.add(temlist.get(i).getTemperaturet());//体温
+                      }
+                      // 体温
+                      if (temlist.size() != 0) {
+                          for (int i = 0; i < temlist.size(); i++) {
+                              try {
+                                  Date date = simpleDateFormat.parse(temlist.get(i).getCreateTimeString());
+                                  month = date.getMonth() + 1;
+                                  day = date.getDate();
+                              } catch (ParseException e) {
+                                  e.printStackTrace();
+                              }
+                              String date = month + "月" + day + "日";
+                              XTemdateNum.add(date);
+                              temData.add(temlist.get(i).getTemperaturet());//体温
 
-                        }
+                          }
 
-                    }
+                      }
 
-                    //填补体温日期
-                    if (XTemdateNum.size() != 7) {
-                        Calendar calendarTem = Calendar.getInstance();
-                        int dayNum = 7 - XTemdateNum.size();
-                        //没有数据时，从当前日期开始
-                        if (XTemdateNum.size() == 0) {
-                            for (int i = 0; i < dayNum; i++) {
-                                int month2 = calendarTem.get(Calendar.MONTH) + 1;
-                                int day2 = calendarTem.get(Calendar.DAY_OF_MONTH);
-                                String date2 = month2 + "月" + day2 + "日";
-                                XTemdateNum.add(date2);
-                                calendarTem.add(Calendar.DAY_OF_MONTH, 1);
-                            }
-                            //有数据时，从当前日期的下一天开始
-                        } else {
-                            for (int i = 0; i < dayNum; i++) {
-                                calendarTem.add(Calendar.DAY_OF_MONTH, 1);
-                                int month2 = calendarTem.get(Calendar.MONTH) + 1;
-                                int day2 = calendarTem.get(Calendar.DAY_OF_MONTH);
-                                String date2 = month2 + "月" + day2 + "日";
-                                XTemdateNum.add(date2);
-                            }
-                        }
+                      //填补体温日期
+                      if (XTemdateNum.size() != 7) {
+                          Calendar calendarTem = Calendar.getInstance();
+                          int dayNum = 7 - XTemdateNum.size();
+                          //没有数据时，从当前日期开始
+                          if (XTemdateNum.size() == 0) {
+                              for (int i = 0; i < dayNum; i++) {
+                                  int month2 = calendarTem.get(Calendar.MONTH) + 1;
+                                  int day2 = calendarTem.get(Calendar.DAY_OF_MONTH);
+                                  String date2 = month2 + "月" + day2 + "日";
+                                  XTemdateNum.add(date2);
+                                  calendarTem.add(Calendar.DAY_OF_MONTH, 1);
+                              }
+                              //有数据时，从当前日期的下一天开始
+                          } else {
+                              for (int i = 0; i < dayNum; i++) {
+                                  calendarTem.add(Calendar.DAY_OF_MONTH, 1);
+                                  int month2 = calendarTem.get(Calendar.MONTH) + 1;
+                                  int day2 = calendarTem.get(Calendar.DAY_OF_MONTH);
+                                  String date2 = month2 + "月" + day2 + "日";
+                                  XTemdateNum.add(date2);
+                              }
+                          }
 
-                    }
-                    mBloodView.setInfo(YbloodNum, XdateNum, heightBloodData, lowBloodData);
-                    mBloodView.invalidate();
-                    mTemView.setTemInfo(YTemData, XTemdateNum, temData);
-                    mTemView.invalidate();
+                      }
+                      mBloodView.setInfo(YbloodNum, XdateNum, heightBloodData, lowBloodData);
+                      mBloodView.invalidate();
+                      mTemView.setTemInfo(YTemData, XTemdateNum, temData);
+                      mTemView.invalidate();
 
-                    //判断数据是否正常，设置文字图片提示
-                    if (bloodlist.size() != 0 && temlist.size() != 0) {
-                        checkBlood(bloodlist.get(bloodlist.size() - 1).getSystolic(), bloodlist.get(bloodlist.size() - 1).getDiastolic(), temlist.get(temlist.size() - 1).getTemperaturet());
-                    } else if (bloodlist.size() == 0 && temlist.size() != 0) {
-                        checkBlood(0, 0, temlist.get(temlist.size() - 1).getTemperaturet());
-                    } else if (bloodlist.size() != 0 && temlist.size() == 0) {
-                        checkBlood(bloodlist.get(bloodlist.size() - 1).getSystolic(), bloodlist.get(bloodlist.size() - 1).getDiastolic(), 0);
-                    } else {
-                        checkBlood(0, 0, 0);
-                    }
+                      //判断数据是否正常，设置文字图片提示
+                      if (bloodlist.size() != 0 && temlist.size() != 0) {
+                          checkBlood(bloodlist.get(bloodlist.size() - 1).getSystolic(), bloodlist.get(bloodlist.size() - 1).getDiastolic(), temlist.get(temlist.size() - 1).getTemperaturet());
+                      } else if (bloodlist.size() == 0 && temlist.size() != 0) {
+                          checkBlood(0, 0, temlist.get(temlist.size() - 1).getTemperaturet());
+                      } else if (bloodlist.size() != 0 && temlist.size() == 0) {
+                          checkBlood(bloodlist.get(bloodlist.size() - 1).getSystolic(), bloodlist.get(bloodlist.size() - 1).getDiastolic(), 0);
+                      } else {
+                          checkBlood(0, 0, 0);
+                      }
+
+                  }
 
                 }
             } else if (msg.what == -10) {//获取有无未读消息网络异常
@@ -588,7 +592,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 //注意 ：如果是在fragment中申请权限，不要使用ActivityCompat.requestPermissions，
                 //直接使用requestPermissions （new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_ASK_READ_PHONE）
                 //否则不会调用onRequestPermissionsResult（）方法。
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_CODE);//
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO}, LOCATION_CODE);//
                 return;
 
             } else {//如果已经授权，执行业务逻辑
