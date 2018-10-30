@@ -40,7 +40,7 @@ public class DepartmentAda extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mList.size();
+        return mList.size()==0?0:mList.size();
     }
 
     @Override

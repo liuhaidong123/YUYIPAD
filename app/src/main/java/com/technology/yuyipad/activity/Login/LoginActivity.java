@@ -1,14 +1,24 @@
 package com.technology.yuyipad.activity.Login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -19,7 +29,10 @@ import com.technology.yuyipad.JPushUtils.JpRegister;
 import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.R;
 import com.technology.yuyipad.activity.Main.MainActivity;
+import com.technology.yuyipad.activity.Start.StartActivity;
 import com.technology.yuyipad.activity.UserInfo.UserInfoActivity;
+import com.technology.yuyipad.bean.VersionRoot;
+import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.httptools.UrlTools;
 import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.lzhUtils.MyActivity;
@@ -51,10 +64,12 @@ public class LoginActivity extends MyActivity implements ILogin {
     private long mCurrentMillis;
     private String myCooike = "-null";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setChilidView(R.layout.activity_login);
+
         titleinclude_text.setText("登录");
         presenter = new LoginPresenter();
         mCurrentMillis = System.currentTimeMillis();
@@ -66,10 +81,16 @@ public class LoginActivity extends MyActivity implements ILogin {
         mMyStatus_Img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCurrentMillis = System.currentTimeMillis();
-                getDynamicNumAndCookie();
+                if (isNetworkConnected()) {
+                    mCurrentMillis = System.currentTimeMillis();
+                    getDynamicNumAndCookie();
+                } else {
+                    Toast.makeText(LoginActivity.this, "请检查网络", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+
 
     }
 
@@ -79,7 +100,7 @@ public class LoginActivity extends MyActivity implements ILogin {
             case R.id.my_userlogin_getSMScode://获取验证码
                 my_userlogin_getSMScode.setClickable(false);
                 my_userlogin_getSMScode.setBackground(getResources().getDrawable(R.drawable.my_userlogin_unclick));
-                 presenter.getSmsCode(my_userlogin_edit_name.getText().toString(), String.valueOf(mCurrentMillis), mMyStatus_Num.getText().toString(), myCooike, this);
+                presenter.getSmsCode(my_userlogin_edit_name.getText().toString(), String.valueOf(mCurrentMillis), mMyStatus_Num.getText().toString(), myCooike, this);
                 break;
             case R.id.my_userlogin_logninButton://登录
                 my_userlogin_logninButton.setClickable(false);
@@ -176,10 +197,11 @@ public class LoginActivity extends MyActivity implements ILogin {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (bitmap!=null){
+                            if (bitmap != null) {
                                 mMyStatus_Img.setImageBitmap(bitmap);
-                            }else {
-                                mMyStatus_Img.setBackgroundResource(R.color.color_cecece);
+                            } else {
+                                mMyStatus_Img.setBackgroundResource(R.mipmap.res3);
+                                Toast.makeText(LoginActivity.this, "获取动态验证码错误，请重新获取", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -190,5 +212,26 @@ public class LoginActivity extends MyActivity implements ILogin {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
+    /**
+     * 判断有没有网
+     *
+     * @return
+     */
+    public boolean isNetworkConnected() {
+
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) this.getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+        if (mNetworkInfo != null) {
+            return mNetworkInfo.isAvailable();
+        }
+
+        return false;
     }
 }

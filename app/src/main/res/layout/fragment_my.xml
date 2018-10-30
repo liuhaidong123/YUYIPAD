@@ -4,191 +4,215 @@
     android:layout_height="match_parent"
     android:background="@color/color_white"
     tools:context="com.technology.yuyipad.fragment.MyFrag.MyFragment">
+
     <FrameLayout
         android:id="@+id/frag_my_topLayout"
         android:layout_width="match_parent"
-        android:layout_height="219dp"
-        >
+        android:layout_height="219dp">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/photo"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@mipmap/photo" />
+
         <RelativeLayout
             android:id="@+id/frag_my_userLayout"
-            android:layout_gravity="center"
-            style="@style/layoutWrapContent">
+            style="@style/layoutWrapContent"
+            android:layout_gravity="center">
+
             <com.technology.yuyipad.Lview.RoundImageView
+                android:id="@+id/frag_my_userImage"
                 android:layout_width="116dp"
                 android:layout_height="116dp"
-                android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"
                 android:padding="1.5dp"
-                android:id="@+id/frag_my_userImage"
-                android:src="@mipmap/usererr"/>
+                android:scaleType="centerCrop"
+                android:src="@mipmap/usererr" />
+
             <LinearLayout
-                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/frag_my_userImage"
-                android:layout_width="wrap_content">
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_gravity="center_vertical"
-                    android:text="姓名"
-                    style="@style/TextS19CfM5"
                     android:id="@+id/frag_my_userName"
-                    />
+                    style="@style/TextS19CfM5"
+                    android:layout_gravity="center_vertical"
+                    android:text="姓名" />
+
                 <TextView
+                    android:id="@+id/frag_my_userAge"
+                    style="@style/TextS19CfM5"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:text="年龄"
-                    android:id="@+id/frag_my_userAge"
-                    style="@style/TextS19CfM5"/>
+                    android:text="年龄" />
+
                 <ImageView
                     android:id="@+id/frag_my_userSexImage"
+                    style="@style/layoutWrapContent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="2.5dp"
-                    android:src="@drawable/frag_my_usersexselect"
-                    style="@style/layoutWrapContent"/>
-                </LinearLayout>
-                
+                    android:src="@drawable/frag_my_usersexselect" />
+            </LinearLayout>
+
         </RelativeLayout>
     </FrameLayout>
 
     <RelativeLayout
-        android:layout_below="@+id/frag_my_topLayout"
         android:id="@+id/frag_my_layout_center"
         style="@style/layoutmatchparent"
-        >
+        android:layout_below="@+id/frag_my_topLayout">
+
         <LinearLayout
+            style="@style/layoutWrapContent"
             android:layout_centerInParent="true"
-            android:orientation="vertical"
-            style="@style/layoutWrapContent">
+            android:orientation="vertical">
+
             <LinearLayout
+                style="@style/layoutWrapContent"
                 android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                style="@style/layoutWrapContent">
+                android:orientation="horizontal">
                 <!--/／电子病例-->
                 <RelativeLayout
                     android:id="@+id/frag_my_layout_medical"
-                    android:background="@drawable/frag_my_rela"
                     android:layout_width="145dp"
-                    android:layout_height="109dp">
+                    android:layout_height="109dp"
+                    android:background="@drawable/frag_my_rela">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
                         <ImageView
                             style="@style/layoutWrapContent"
                             android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/medicalrecord"/>
+                            android:src="@mipmap/medicalrecord" />
+
                         <TextView
+                            style="@style/TextS19C3"
                             android:layout_gravity="center_horizontal"
-                            android:text="电子病历"
                             android:layout_marginTop="15dp"
-                            style="@style/TextS19C3"/>
+                            android:text="电子病历" />
                     </LinearLayout>
                 </RelativeLayout>
 
                 <!--/／消息-->
                 <RelativeLayout
-                    android:layout_marginLeft="98.5dp"
                     android:id="@+id/frag_my_layout_message"
-                    android:background="@drawable/frag_my_rela"
                     android:layout_width="145dp"
-                    android:layout_height="109dp">
+                    android:layout_height="109dp"
+                    android:layout_marginLeft="98.5dp"
+                    android:background="@drawable/frag_my_rela">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
-                            <ImageView
-                                style="@style/layoutWrapContent"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@mipmap/news"/>
-                        <TextView
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            style="@style/layoutWrapContent"
                             android:layout_gravity="center_horizontal"
-                            android:text="消息"
+                            android:src="@mipmap/news" />
+
+                        <TextView
+                            style="@style/TextS19C3"
+                            android:layout_gravity="center_horizontal"
                             android:layout_marginTop="15dp"
-                            style="@style/TextS19C3"/>
+                            android:text="消息" />
                     </LinearLayout>
                 </RelativeLayout>
 
                 <!--/／家庭成员管理-->
                 <RelativeLayout
-                    android:layout_marginLeft="98.5dp"
                     android:id="@+id/frag_my_layout_member"
-                    android:background="@drawable/frag_my_rela"
                     android:layout_width="145dp"
-                    android:layout_height="109dp">
+                    android:layout_height="109dp"
+                    android:layout_marginLeft="98.5dp"
+                    android:background="@drawable/frag_my_rela">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
                         <ImageView
                             style="@style/layoutWrapContent"
                             android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/member"/>
+                            android:src="@mipmap/member" />
+
                         <TextView
+                            style="@style/TextS19C3"
                             android:layout_gravity="center_horizontal"
-                            android:text="家庭成员管理"
                             android:layout_marginTop="15dp"
-                            style="@style/TextS19C3"/>
+                            android:text="家庭成员管理" />
                     </LinearLayout>
                 </RelativeLayout>
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginTop="20dp"
+                style="@style/layoutWrapContent"
                 android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                style="@style/layoutWrapContent">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
                 <!--/／用户设备管理-->
                 <RelativeLayout
                     android:id="@+id/frag_my_layout_device"
-                    android:background="@drawable/frag_my_rela"
                     android:layout_width="145dp"
-                    android:layout_height="109dp">
+                    android:layout_height="109dp"
+                    android:background="@drawable/frag_my_rela"
+                    android:visibility="gone">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
                         <ImageView
                             style="@style/layoutWrapContent"
                             android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/equipment"/>
+                            android:src="@mipmap/equipment" />
+
                         <TextView
+                            style="@style/TextS19C3"
                             android:layout_gravity="center_horizontal"
-                            android:text="用户设备管理"
                             android:layout_marginTop="15dp"
-                            style="@style/TextS19C3"/>
+                            android:text="用户设备管理" />
                     </LinearLayout>
                 </RelativeLayout>
                 <!--/／设置-->
                 <RelativeLayout
-                    android:layout_marginLeft="98.5dp"
+
                     android:id="@+id/frag_my_layout_setting"
-                    android:background="@drawable/frag_my_rela"
                     android:layout_width="145dp"
-                    android:layout_height="109dp">
+                    android:layout_height="109dp"
+                    android:background="@drawable/frag_my_rela">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
                         <ImageView
                             style="@style/layoutWrapContent"
                             android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/setup"/>
+                            android:src="@mipmap/setup" />
+
                         <TextView
+                            style="@style/TextS19C3"
                             android:layout_gravity="center_horizontal"
-                            android:text="设置"
                             android:layout_marginTop="15dp"
-                            style="@style/TextS19C3"/>
+                            android:text="设置" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

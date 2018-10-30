@@ -104,6 +104,7 @@
 
             <!--修改手机号-->
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="20dp"
                 android:id="@+id/setting_changeTelePhone"
                 android:orientation="vertical"

@@ -49,6 +49,7 @@ import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lhdUtils.InformationListView;
 import com.technology.yuyipad.lhdUtils.NetWorkUtils;
 import com.technology.yuyipad.lhdUtils.UseDrugGridView;
+import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.lzhUtils.MyDialog;
 import com.technology.yuyipad.user.User;
 
@@ -408,7 +409,12 @@ public class SelectHospitalOPDActivity extends AppCompatActivity implements View
                     mRecycleView.smoothScrollToPosition(datePosition);//日期滚动到第一个日期
                     mDoctor_ll.setVisibility(View.GONE);//隐藏医生
                     mDepartmentAndOpd_ll.setVisibility(View.VISIBLE);//显示科室门诊
-                    MyDialog.showDialog(SelectHospitalOPDActivity.this);
+                    try{
+                        MyDialog.showDialog(SelectHospitalOPDActivity.this);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                     //变化背景
                     for (int k = 0; k < mList.size(); k++) {
                         if (k == i) {

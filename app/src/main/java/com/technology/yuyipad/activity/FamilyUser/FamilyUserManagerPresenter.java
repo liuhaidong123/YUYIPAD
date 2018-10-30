@@ -39,7 +39,12 @@ public class FamilyUserManagerPresenter {
         transaction.hide(fragAdd).hide(fragInfo).show(fragCurrent).commit();
     }
     public void showFragment(FragmentType tp,FamilyUserListBean.ResultBean bean){
-        manager.beginTransaction().hide(fragCurrent).commit();
+        try{
+            manager.beginTransaction().hide(fragCurrent).commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         switch (tp){
             case USERINFO:
                 fragCurrent=fragInfo;

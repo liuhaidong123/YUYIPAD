@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -45,7 +46,7 @@ public class ChangePhoneModel {
                             iChangePhone.onGetSmSSuccess();
                         }
                         else {
-                            iChangePhone.onChangeError(bean.getMessage());
+                            iChangePhone.onChangeError("此手机号已被注册");
                         }
                     }
                     catch (Exception e){

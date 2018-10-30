@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="请选择咨询医生"
+            android:textColor="@color/name_color"
+            android:textSize="25sp" />
+        <View
+            android:background="@color/add_color"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <ListView
+            android:dividerHeight="1dp"
+            android:divider="@color/add_color"
+            android:id="@+id/doc_listview"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </ListView>
+        <!--<TextView-->
+        <!--android:id="@+id/doctor1_btn"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="25sp"-->
+        <!--android:textColor="@color/name_color"-->
+        <!--android:text=""-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/doctor2_btn"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="25sp"-->
+        <!--android:textColor="@color/name_color"-->
+        <!--android:text=""-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp" />-->
+    </LinearLayout>
+</LinearLayout>

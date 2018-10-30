@@ -444,12 +444,12 @@
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/exploded-aar/YUYIPAD/IMKit/unspecified/res/layout/rc_item_image_message.xml"
     },
     {
-        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/res/merged/debug/layout/rc_voip_user_info.xml",
-        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/src/main/res/layout/rc_voip_user_info.xml"
-    },
-    {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/res/merged/debug/layout/rc_item_public_service_multi_rich_content_message.xml",
         "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/exploded-aar/YUYIPAD/IMKit/unspecified/res/layout/rc_item_public_service_multi_rich_content_message.xml"
+    },
+    {
+        "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/res/merged/debug/layout/rc_voip_user_info.xml",
+        "source": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/src/main/res/layout/rc_voip_user_info.xml"
     },
     {
         "merged": "/Users/liuhaidong/AndroidStudioProjects/YUYIPAD/CallKit/build/intermediates/res/merged/debug/layout/rc_fr_image.xml",

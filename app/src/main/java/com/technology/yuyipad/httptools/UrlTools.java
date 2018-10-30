@@ -23,6 +23,8 @@ public class UrlTools {
     public static final String URL_AD = "/article/findall.do";//首页广告轮播接口
     public static final String URL_AD_MEssage = "/article/getid.do?";//首页轮播详情接口，需传id（id=3）
     public static final String URL_SEARCH_DRUG = "/drugs/findvague.do?";//药品搜索接口 需传：vague=
+
+
     public static final String URL_SEARCH_HOSPITAL = "/hospital/findvague.do?";//医院搜索接口 需传：vague=
     public static final String URL_USER_LIST = "/homeuser/findList.do?";//获取用户列表（需传token=）
     public static final String URL_SUBMIT_TEM = "/temperature/save.do";//提交体温数据post(token,humeuserId家庭用户编号,temperaturet体温);
@@ -38,4 +40,8 @@ public class UrlTools {
 
     //获取动态验证码
     public static final String URL_GET_DYNAMIC_NUM = "/personal/imgcode.do?";//参数ts=1515636702185当前毫秒数
+
+    public static final String URL_GET_DoctorList="/physician/doctory2.do?";//cid=1医院id
+
+    public static final String Url_CheckVersion="/aboutUs/get.do";//检测版本号
 }

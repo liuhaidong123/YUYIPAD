@@ -35,19 +35,26 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 //用户信息
-public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,PhotoPictureUtils.OnSavePictureListener {
-    @BindView(R.id.userInfo_submit)TextView userInfo_submit;
-    @BindView(R.id.userInfo_image)RoundImageView userInfo_image;//touxiang
-    @BindView(R.id.userInfo_userName)EditText userInfo_userName;//用户名
-    @BindView(R.id.userInfo_sex_women)ImageView userInfo_sex_women;//女性的选择按钮
-    @BindView(R.id.userInfo_sex_man)ImageView userInfo_sex_man;//男性的select按钮
-    @BindView(R.id.userInfo_userAge)EditText userInfo_userAge;//用户年龄
+public class UserInfoActivity extends MyActivity implements Iuser, IuserChange, PhotoPictureUtils.OnSavePictureListener {
+    @BindView(R.id.userInfo_submit)
+    TextView userInfo_submit;
+    @BindView(R.id.userInfo_image)
+    RoundImageView userInfo_image;//touxiang
+    @BindView(R.id.userInfo_userName)
+    EditText userInfo_userName;//用户名
+    @BindView(R.id.userInfo_sex_women)
+    ImageView userInfo_sex_women;//女性的选择按钮
+    @BindView(R.id.userInfo_sex_man)
+    ImageView userInfo_sex_man;//男性的select按钮
+    @BindView(R.id.userInfo_userAge)
+    EditText userInfo_userAge;//用户年龄
     UserBean user;//用户信息实体类
-    String type="1";//0添加用户信息，1修改用户信息（默认是修改）
+    String type = "1";//0添加用户信息，1修改用户信息（默认是修改）
     UserInfoPresenter presenter;
     String bitmap64;
     File outImage;
-    boolean isPhotoChange=false;//头像是否更换过
+    boolean isPhotoChange = false;//头像是否更换过
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,33 +62,31 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,Ph
         userInfo_sex_man.setSelected(false);
         userInfo_sex_women.setSelected(true);
         //性别默认女
-        type=getIntent().getStringExtra("type");//
-        presenter=new UserInfoPresenter();
-        if (type.equals(IntentValue.UserInfoActivity_Change)){
+        type = getIntent().getStringExtra("type");//
+        presenter = new UserInfoPresenter();
+        if (type.equals(IntentValue.UserInfoActivity_Change)) {
             presenter.getUserDate(this);
-        }
-        else{
-            isPhotoChange=true;//添加时必须修改用户头像
+        } else {
+            isPhotoChange = true;//添加时必须修改用户头像
         }
     }
-    @OnClick({R.id.userInfo_submit,R.id.userInfo_LayoutChangePhoto,R.id.userInfo_layout_sexWomen,R.id.userInfo_layout_sexMan})
-    public void click(View view){
-        switch (view.getId()){
+
+    @OnClick({R.id.userInfo_submit, R.id.userInfo_LayoutChangePhoto, R.id.userInfo_layout_sexWomen, R.id.userInfo_layout_sexMan})
+    public void click(View view) {
+        switch (view.getId()) {
             case R.id.userInfo_submit://提交
-                if (IntentValue.UserInfoActivity_Change.equals(type)){
-                    presenter.saveUserDate(this,bitmap64,userInfo_userName.getText().toString(),userInfo_userAge.getText().toString(),userInfo_sex_man.isSelected()?UserSex.BOY:UserSex.GIRL,isPhotoChange,this);
-                }
-                else {//新添加用户信息的时候bit64不能为空
-                    if (Empty.getInstance().notEmptyOrNull(bitmap64)){
-                        presenter.saveUserDate(this,bitmap64,userInfo_userName.getText().toString(),userInfo_userAge.getText().toString(),userInfo_sex_man.isSelected()?UserSex.BOY:UserSex.GIRL,isPhotoChange,this);
-                    }
-                    else {
-                        toast.getInstance().text(this,"您还没有添加头像！");
+                if (IntentValue.UserInfoActivity_Change.equals(type)) {
+                    presenter.saveUserDate(this, bitmap64, userInfo_userName.getText().toString(), userInfo_userAge.getText().toString(), userInfo_sex_man.isSelected() ? UserSex.BOY : UserSex.GIRL, isPhotoChange, this);
+                } else {//新添加用户信息的时候bit64不能为空
+                    if (Empty.getInstance().notEmptyOrNull(bitmap64)) {
+                        presenter.saveUserDate(this, bitmap64, userInfo_userName.getText().toString(), userInfo_userAge.getText().toString(), userInfo_sex_man.isSelected() ? UserSex.BOY : UserSex.GIRL, isPhotoChange, this);
+                    } else {
+                        toast.getInstance().text(this, "您还没有添加头像！");
                     }
                 }
                 break;
             case R.id.userInfo_LayoutChangePhoto://修改头像的按钮
-                presenter.showWindow(this,outImage);
+                presenter.showWindow(this, outImage);
                 break;
             case R.id.userInfo_layout_sexWomen://选择性别女
                 userInfo_sex_man.setSelected(false);
@@ -97,49 +102,52 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,Ph
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode== PhotoRSCode.requestCode_SearchPermission){//选取图片的权限请求
-            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if (requestCode == PhotoRSCode.requestCode_SearchPermission) {//选取图片的权限请求
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 PhotoPictureUtils.getInstance().searchPicture(this);
+            } else {
+                Toast.makeText(this, "请打开存储卡权限！", Toast.LENGTH_SHORT).show();
             }
-            else {
-                Toast.makeText(this,"请打开存储卡权限！",Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if (requestCode==PhotoRSCode.requestCode_CameraPermission){//拍照的权限请求
-            if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
+        } else if (requestCode == PhotoRSCode.requestCode_CameraPermission) {//拍照的权限请求
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 PhotoPictureUtils.getInstance().takePhoto(this);
-            }
-            else {
-                Toast.makeText(this,"请打开相机权限！",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "请打开相机权限！", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PhotoRSCode.requestCode_Search://相册选取返回
-                    PhotoPictureUtils.getInstance().savaPictureSearch(data.getData(),this,this);
-                    break;
+                    if (data != null && data.getData() != null) {
+                        PhotoPictureUtils.getInstance().savaPictureSearch(data.getData(), this, this);
+                        break;
+                    } else {
+                        Toast.makeText(this, "图片无效", Toast.LENGTH_SHORT).show();
+                    }
+
                 case PhotoRSCode.requestCode_Camera://拍照
                     //cameraFile为保存后的文件，mImg：需要显示图片的ImageView
-                    PhotoPictureUtils.getInstance().savaPictureCamera(this,this);
+                    PhotoPictureUtils.getInstance().savaPictureCamera(this, this);
                     break;
             }
         }
     }
+
     //---------获取用户信息------
     @Override
     public void onError(String msg, String interfaceName) {
-        toast.getInstance().text(this,msg);
-        String resStr= IDbUtlis.getInstance().getOkhttpString(this,interfaceName);
-        if (Empty.getInstance().notEmptyOrNull(resStr)){
-            try{
-                this.user= gson.gson.fromJson(resStr,UserBean.class);
+        toast.getInstance().text(this, msg);
+        String resStr = IDbUtlis.getInstance().getOkhttpString(this, interfaceName);
+        if (Empty.getInstance().notEmptyOrNull(resStr)) {
+            try {
+                this.user = gson.gson.fromJson(resStr, UserBean.class);
                 initUserDate();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -152,7 +160,7 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,Ph
 
     @Override
     public void onSuccess(UserBean user) {
-        this.user=user;
+        this.user = user;
         initUserDate();
     }
     //---------获取用户信息------
@@ -161,37 +169,35 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,Ph
     //---------修改信息
     @Override
     public void onChangeSuccess() {
-        if (IntentValue.UserInfoActivity_Change.equals(type)){
-            Intent intent=new Intent(this, MainActivity.class);
-            setResult(RSCode.sCode,intent);
+        if (IntentValue.UserInfoActivity_Change.equals(type)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            setResult(RSCode.sCode, intent);
             finish();
-        }
-        else {
-            startActivity(new Intent(this,MainActivity.class));
+        } else {
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
     }
 
     @Override
     public void onChangeError(String msg) {
-        toast.getInstance().text(this,"修改失败："+msg);
+        toast.getInstance().text(this, "修改失败：" + msg);
     }
     //---------修改信息
 
     //设置数据
-    public void initUserDate(){
-        if (user==null){
+    public void initUserDate() {
+        if (user == null) {
             return;
         }
         userInfo_userName.setText(user.getResult().getTrueName());
-        Picasso.with(this).load(Ip.imagePath+user.getResult().getAvatar()).placeholder(R.mipmap.usererr).error(R.mipmap.usererr).into(userInfo_image);
-        userInfo_userAge.setText(user.getResult().getAge()+"");
-        int gender=user.getResult().getGender();
-        if (UserSex.getUserSex(gender)==UserSex.BOY){
+        Picasso.with(this).load(Ip.imagePath + user.getResult().getAvatar()).placeholder(R.mipmap.usererr).error(R.mipmap.usererr).into(userInfo_image);
+        userInfo_userAge.setText(user.getResult().getAge() + "");
+        int gender = user.getResult().getGender();
+        if (UserSex.getUserSex(gender) == UserSex.BOY) {
             userInfo_sex_women.setSelected(false);
             userInfo_sex_man.setSelected(true);
-        }
-        else if (UserSex.getUserSex(gender)==UserSex.GIRL){
+        } else if (UserSex.getUserSex(gender) == UserSex.GIRL) {
             userInfo_sex_women.setSelected(true);
             userInfo_sex_man.setSelected(false);
         }
@@ -200,13 +206,11 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,Ph
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK )
-        {
-            if (IntentValue.UserInfoActivity_Change.equals(type)){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (IntentValue.UserInfoActivity_Change.equals(type)) {
                 finish();
-            }
-            else if (IntentValue.UserInfoActivity_Add.equals(type)){
-                startActivity(new Intent(this,MainActivity.class));
+            } else if (IntentValue.UserInfoActivity_Add.equals(type)) {
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
             }
         }
@@ -215,13 +219,12 @@ public class UserInfoActivity extends MyActivity implements Iuser,IuserChange,Ph
 
     @Override
     public void onSavePicture(boolean isSuccess, File result) {
-        if (isSuccess){
-            isPhotoChange=true;
-            bitmap64= BitmapTobase64.bitmapToBase64(BitmapFactory.decodeFile(result.getAbsolutePath()));
+        if (isSuccess) {
+            isPhotoChange = true;
+            bitmap64 = BitmapTobase64.bitmapToBase64(BitmapFactory.decodeFile(result.getAbsolutePath()));
             userInfo_image.setImageBitmap(BitmapFactory.decodeFile(result.getAbsolutePath()));
-        }
-        else {
-            toast.getInstance().text(this,"更换失败！");
+        } else {
+            toast.getInstance().text(this, "图片无效！");
         }
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.technology.yuyipad.bean.AdBean.Root;
+import com.technology.yuyipad.bean.DoctorRoot;
 import com.technology.yuyipad.bean.FirstPageDrugSixDataRoot;
 import com.technology.yuyipad.bean.FirstPageInformationTwoDataRoot;
 import com.technology.yuyipad.bean.HospitalDepartmentRoot;
@@ -14,6 +15,7 @@ import com.technology.yuyipad.bean.LoginSuccess;
 import com.technology.yuyipad.bean.UpdatedFirstPageTwoDataBean.UpdatedInformation;
 import com.technology.yuyipad.bean.UserMessage;
 import com.technology.yuyipad.bean.ValidateCodeRoot;
+import com.technology.yuyipad.bean.VersionRoot;
 
 
 import net.tsz.afinal.FinalHttp;
@@ -635,9 +637,9 @@ public class HttpTools {
     /**
      * 搜索医院接口
      */
-    public void getSearchHospitalData(final Handler handler, String vague) {
-        String url = UrlTools.BASE + UrlTools.URL_SEARCH_HOSPITAL + "vague=" + vague;
-        mFinalHttp.get(url, new AjaxCallBack<String>() {
+    public void getSearchHospitalData(final Handler handler, Map<String,String> map) {
+        String url = UrlTools.BASE + UrlTools.URL_SEARCH_HOSPITAL ;
+        mFinalHttp.post(url, new AjaxParams(map), new AjaxCallBack<String>() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -1035,7 +1037,6 @@ public class HttpTools {
     }
 
     //修改后的轮播详情和资讯接口
-
     public void getNewInformationAdDetails(final Handler handler,long id) {
         String url = UrlTools.BASE + UrlTools.URL_NEW_INFOR_AD_DETIAL+"id="+id;
         mFinalHttp.get(url, new AjaxCallBack<String>() {
@@ -1063,6 +1064,70 @@ public class HttpTools {
                     strMsg="-null";
                 }
                 Log.e("修改后的轮播详情和资讯接口失败","-"+strMsg);
+            }
+        });
+    }
+
+    //获取有视频通话权限的医生列表
+    public void getDoctorList(final Handler handler,String id) {
+        String url = UrlTools.BASE + UrlTools.URL_GET_DoctorList+"cid="+id;
+        mFinalHttp.get(url, new AjaxCallBack<String>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                Log.e("获取有视频通话权限的医生列表onStart","-");
+            }
+
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                Log.e("获取有视频通话权限的医生列表onSuccess","-"+s);
+                DoctorRoot doctorRoot=mGson.fromJson(s, DoctorRoot.class);
+                Message m=new Message();
+                m.obj=doctorRoot;
+                m.what=44;
+                handler.sendMessage(m);
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                if (strMsg==null){
+                    strMsg="-null";
+                }
+                Log.e("获取有视频通话权限的医生列表onFailure","-"+strMsg);
+            }
+        });
+    }
+
+    //检测版本
+    public void CheckVersion(final Handler handler) {
+
+        String url = UrlTools.BASE + UrlTools.Url_CheckVersion;
+
+        mFinalHttp.get(url, new AjaxCallBack<String>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                Log.e(" 检测版本onStart", "-");
+            }
+
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                Log.e(" 检测版本onSuccess", "-" + s);
+                VersionRoot root = mGson.fromJson(s, VersionRoot.class);
+                Message message = new Message();
+                message.obj = root;
+                message.what = 909;
+                handler.sendMessage(message);
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                handler.sendEmptyMessage(1010);
+                Log.e(" 检测版本onFailure", "-" + strMsg);
             }
         });
     }

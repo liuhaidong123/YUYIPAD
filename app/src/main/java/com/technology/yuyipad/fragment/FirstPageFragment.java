@@ -176,7 +176,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                 Object o = msg.obj;
                 if (o != null && o instanceof com.technology.yuyipad.bean.FirstPageClickUserBean.Root) {
                     com.technology.yuyipad.bean.FirstPageClickUserBean.Root root = (com.technology.yuyipad.bean.FirstPageClickUserBean.Root) o;
-                  if (root!=null){
+                  if (root!=null&&"0".equals(root.getCode())){
                       XdateNum.clear();
                       heightBloodData.clear();
                       lowBloodData.clear();
@@ -287,6 +287,8 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
                           checkBlood(0, 0, 0);
                       }
 
+                  }else {
+                      Toast.makeText(getContext(),"家庭成员不存在",Toast.LENGTH_SHORT).show();
                   }
 
                 }
@@ -630,13 +632,14 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
         int id = view.getId();
         if (id == mSelect_patient_rl.getId()) {//选择患者查看数据
+
             showPatientBox();
         } else if (id == mInformation_Rl.getId()) {//点击资讯跳转列表和详情
             Intent intent = new Intent(getActivity(), InformationDetailsActivity.class);
             intent.putExtra("tag", -1);
             intent.putExtra("flag", "infor");
             startActivity(intent);
-        } else if (id == mRegister_ll.getId()) {
+        } else if (id == mRegister_ll.getId()) {//预约挂号
             startActivity(new Intent(getActivity(), SelectHospitalOPDActivity.class));
         } else if (id == drugmall_ll.getId()) {
             startActivity(new Intent(getActivity(), MyMedicalActivity.class));
@@ -892,6 +895,13 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         mHeightBloodTv.setText(height + "");
         mLowBloodTv.setText(low + "");
         mTem.setText(tem + "°C");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mHttptools.getFirstPageUserDataData(mHandler, User.token);//首页用户列表数据u
+
     }
 
     @Override

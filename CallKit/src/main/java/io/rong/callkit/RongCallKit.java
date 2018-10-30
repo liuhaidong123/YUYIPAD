@@ -62,25 +62,25 @@ public class RongCallKit {
      * @param mediaType        会话媒体类型
      * @param userIds          参与者 id 列表
      */
-    public static void startMultiCall(Context context, Conversation.ConversationType conversationType, String targetId, CallMediaType mediaType, ArrayList<String> userIds) {
-        if (checkEnvironment(context, mediaType)) {
-            String action;
-            if (mediaType.equals(CallMediaType.CALL_MEDIA_TYPE_AUDIO)) {
-                action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIAUDIO;
-            } else {
-                action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIVIDEO;
-            }
-
-            Intent intent = new Intent(action);
-            userIds.add(RongIMClient.getInstance().getCurrentUserId());
-            intent.putExtra("conversationType", conversationType.getName().toLowerCase());
-            intent.putExtra("targetId", targetId);
-            intent.putExtra("callAction", RongCallAction.ACTION_OUTGOING_CALL.getName());
-            intent.setPackage(context.getPackageName());
-            intent.putStringArrayListExtra("invitedUsers", userIds);
-            context.startActivity(intent);
-        }
-    }
+//    public static void startMultiCall(Context context, Conversation.ConversationType conversationType, String targetId, CallMediaType mediaType, ArrayList<String> userIds) {
+//        if (checkEnvironment(context, mediaType)) {
+//            String action;
+//            if (mediaType.equals(CallMediaType.CALL_MEDIA_TYPE_AUDIO)) {
+//                action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIAUDIO;
+//            } else {
+//                action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIVIDEO;
+//            }
+//
+//            Intent intent = new Intent(action);
+//            userIds.add(RongIMClient.getInstance().getCurrentUserId());
+//            intent.putExtra("conversationType", conversationType.getName().toLowerCase());
+//            intent.putExtra("targetId", targetId);
+//            intent.putExtra("callAction", RongCallAction.ACTION_OUTGOING_CALL.getName());
+//            intent.setPackage(context.getPackageName());
+//            intent.putStringArrayListExtra("invitedUsers", userIds);
+//            context.startActivity(intent);
+//        }
+//    }
 
 
     /**
@@ -94,27 +94,27 @@ public class RongCallKit {
      * @param mediaType        通话的媒体类型：CALL_MEDIA_TYPE_AUDIO， CALL_MEDIA_TYPE_VIDEO
      * @return 返回当前会话用户列表提供者对象
      */
-    public static ICallUsersProvider startMultiCall(final Context context, final Conversation.ConversationType conversationType, final String targetId, final CallMediaType mediaType) {
-        return new ICallUsersProvider() {
-            @Override
-            public void onGotUserList(ArrayList<String> userIds) {
-                String action;
-                if (mediaType.equals(CallMediaType.CALL_MEDIA_TYPE_AUDIO)) {
-                    action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIAUDIO;
-                } else {
-                    action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIVIDEO;
-                }
-                Intent intent = new Intent(action);
-                userIds.add(RongIMClient.getInstance().getCurrentUserId());
-                intent.putExtra("conversationType", conversationType.getName().toLowerCase());
-                intent.putExtra("targetId", targetId);
-                intent.putExtra("callAction", RongCallAction.ACTION_OUTGOING_CALL.getName());
-                intent.setPackage(context.getPackageName());
-                intent.putStringArrayListExtra("invitedUsers", userIds);
-                context.startActivity(intent);
-            }
-        };
-    }
+//    public static ICallUsersProvider startMultiCall(final Context context, final Conversation.ConversationType conversationType, final String targetId, final CallMediaType mediaType) {
+//        return new ICallUsersProvider() {
+//            @Override
+//            public void onGotUserList(ArrayList<String> userIds) {
+//                String action;
+//                if (mediaType.equals(CallMediaType.CALL_MEDIA_TYPE_AUDIO)) {
+//                    action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIAUDIO;
+//                } else {
+//                    action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIVIDEO;
+//                }
+//                Intent intent = new Intent(action);
+//                userIds.add(RongIMClient.getInstance().getCurrentUserId());
+//                intent.putExtra("conversationType", conversationType.getName().toLowerCase());
+//                intent.putExtra("targetId", targetId);
+//                intent.putExtra("callAction", RongCallAction.ACTION_OUTGOING_CALL.getName());
+//                intent.setPackage(context.getPackageName());
+//                intent.putStringArrayListExtra("invitedUsers", userIds);
+//                context.startActivity(intent);
+//            }
+//        };
+//    }
 
     /**
      * 发起的多人通话，不依赖群、讨论组等
@@ -123,20 +123,20 @@ public class RongCallKit {
      * @param mediaType
      * @return
      */
-    public static void startMultiCall(final Context context, ArrayList<String> userIds, final CallMediaType mediaType) {
-        String action;
-        if (mediaType.equals(CallMediaType.CALL_MEDIA_TYPE_AUDIO)) {
-            action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIAUDIO;
-        } else {
-            action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIVIDEO;
-        }
-        Intent intent = new Intent(action);
-        userIds.add(RongIMClient.getInstance().getCurrentUserId());
-        intent.putExtra("conversationType", Conversation.ConversationType.NONE.getName().toLowerCase());
-        intent.putExtra("callAction", RongCallAction.ACTION_OUTGOING_CALL.getName());
-        intent.putStringArrayListExtra("invitedUsers", userIds);
-        context.startActivity(intent);
-    }
+//    public static void startMultiCall(final Context context, ArrayList<String> userIds, final CallMediaType mediaType) {
+//        String action;
+//        if (mediaType.equals(CallMediaType.CALL_MEDIA_TYPE_AUDIO)) {
+//            action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIAUDIO;
+//        } else {
+//            action = RongVoIPIntent.RONG_INTENT_ACTION_VOIP_MULTIVIDEO;
+//        }
+//        Intent intent = new Intent(action);
+//        userIds.add(RongIMClient.getInstance().getCurrentUserId());
+//        intent.putExtra("conversationType", Conversation.ConversationType.NONE.getName().toLowerCase());
+//        intent.putExtra("callAction", RongCallAction.ACTION_OUTGOING_CALL.getName());
+//        intent.putStringArrayListExtra("invitedUsers", userIds);
+//        context.startActivity(intent);
+//    }
 
     /**
      * 检查应用音视频授权信息

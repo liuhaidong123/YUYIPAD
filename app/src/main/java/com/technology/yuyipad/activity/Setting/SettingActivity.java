@@ -46,6 +46,7 @@ public class SettingActivity extends MyActivity {
 
     private void exitApp() {
         User.clearLogin(this);
+        User.clearFuWu(this);
         MyApplication.removeActivity();
         startActivity(new Intent(this, LoginActivity.class));
     }

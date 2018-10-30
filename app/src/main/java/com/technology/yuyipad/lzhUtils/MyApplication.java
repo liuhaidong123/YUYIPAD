@@ -27,7 +27,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        JkezAPIMain.initSDK(this, "wanyult");//血压体温测量
+    //    JkezAPIMain.initSDK(this, "wanyult");//血压体温测量
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         RongIM.init(this);

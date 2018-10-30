@@ -68,7 +68,12 @@ public class EleMedicalRecordListActivity extends MyActivity implements EleMedic
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent=new Intent(this,EleMedicalRecordActivity.class);
-        intent.putExtra("result",lis.get(i));
+        try {
+            intent.putExtra("result",lis.get(i));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         startActivity(intent);
     }
 }

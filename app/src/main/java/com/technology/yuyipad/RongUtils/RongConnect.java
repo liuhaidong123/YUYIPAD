@@ -17,6 +17,7 @@ import com.technology.yuyipad.Net.ok;
 import com.technology.yuyipad.RongUtils.Bean.RongDoctorInfoBean;
 import com.technology.yuyipad.RongUtils.Bean.RongTokenBean;
 import com.technology.yuyipad.RongUtils.Bean.RongUserInfoBean;
+import com.technology.yuyipad.bean.DoctorRoot;
 import com.technology.yuyipad.code.ServerCode;
 import com.technology.yuyipad.lzhUtils.Empty;
 import com.technology.yuyipad.user.User;
@@ -40,6 +41,7 @@ public class RongConnect {
     IGetRongDoctorId iGetDocId;//获取医生信息
     RongUserInfoBean info;//容云用户信息
     Context con;
+    int posi;
     private RongConnect(){
 
     }
@@ -91,16 +93,23 @@ public class RongConnect {
                     break;
                 case 2:
                     try{
-                        RongDoctorInfoBean bean=gson.gson.fromJson(resStr,RongDoctorInfoBean.class);
+                       // RongDoctorInfoBean bean=gson.gson.fromJson(resStr,RongDoctorInfoBean.class);
+                        DoctorRoot bean=gson.gson.fromJson(resStr,DoctorRoot.class);
                         if (bean!=null){
-                            if (ServerCode.successCode.equals(bean.getCode())){
-                                iGetDocId.onSuccess(bean.getId());
+                            if (ServerCode.successCode.equals(bean.getCode()+"")){
+                                if (bean.getPhysicianList()!=null&&bean.getPhysicianList().size()!=0){
+                                    iGetDocId.onSuccess(bean.getPhysicianList().get(posi).getId());
+                                }else {
+                                    iGetDocId.onError("请求医生信息错误1，无法启动咨询功能,请稍后重试");
+                                }
+
+
                             }
                             else if ("-1".equals(bean.getCode())){//医院没有开通咨询服务
                                 iGetDocId.onError("医院没有开通咨询服务");
                             }
                             else {
-                               iGetDocId.onError("请求医生信息错误，无法启动咨询功能,请稍后重试");
+                               iGetDocId.onError("请求医生信息错误2，无法启动咨询功能,请稍后重试");
                                 }
                         }
                         else {
@@ -196,7 +205,8 @@ public class RongConnect {
 
 
     //获取聊天医生的信息cid医院的id（默认值-1）
-    public void getTargetDocId(IGetRongDoctorId iGetDocId,String cid){
+    public void getTargetDocId(IGetRongDoctorId iGetDocId,String cid,int position){
+        this.posi=position;
         this.iGetDocId=iGetDocId;
         if (!"-1".equals(cid)){
             Map<String, String> m = new HashMap<>();

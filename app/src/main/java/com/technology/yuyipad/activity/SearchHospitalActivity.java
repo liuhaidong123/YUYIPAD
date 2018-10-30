@@ -29,8 +29,13 @@ import com.technology.yuyipad.bean.SearchHospital.Root;
 import com.technology.yuyipad.httptools.HttpTools;
 import com.technology.yuyipad.lzhUtils.MyDialog;
 
+import net.tsz.afinal.http.AjaxParams;
+import net.tsz.afinal.http.entityhandler.StringEntityHandler;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchHospitalActivity extends AppCompatActivity implements View.OnClickListener {
     private ListView mHistoryListView, mResultListView;
@@ -131,7 +136,10 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
                     if (!getEditTxt().equals("")) {
                         if (event.getAction() == KeyEvent.ACTION_UP) {
                             MyDialog.showDialog(SearchHospitalActivity.this);
-                            mHttptools.getSearchHospitalData(mHandler, getEditTxt());
+                            Map<String ,String> map=new HashMap<String, String>();
+                            map.put("vague",getEditTxt());
+                          //  AjaxParams ajaxParams=new AjaxParams(map);
+                            mHttptools.getSearchHospitalData(mHandler, map);
                             ContentValues valuesHospital = new ContentValues();
                             valuesHospital.put("hospitalname", getEditTxt());
                             mSqliteHospitalDB.insert("hospital", null, valuesHospital);
@@ -158,7 +166,9 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
                     mHistoryListView.removeFooterView(clearFooter);
                     mPrompt_Tv.setText("暂无搜索历史");
                 } else {//搜索医院
-                    mHttptools.getSearchHospitalData(mHandler, mHistoryList.get(position));
+                    Map<String ,String> map=new HashMap<String, String>();
+                    map.put("vague",mHistoryList.get(position).toString());
+                    mHttptools.getSearchHospitalData(mHandler, map);
                     MyDialog.showDialog(SearchHospitalActivity.this);
                 }
             }

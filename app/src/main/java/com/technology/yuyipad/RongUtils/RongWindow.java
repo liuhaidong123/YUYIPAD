@@ -25,6 +25,7 @@ public class RongWindow implements View.OnClickListener ,IGetRongUserTokenError,
     String cID;
     View parenteV;
     String docId="";
+    int posi;
     static RongWindow rWindow;
     private RongWindow(){}
     public static RongWindow getInstance(){
@@ -34,13 +35,14 @@ public class RongWindow implements View.OnClickListener ,IGetRongUserTokenError,
         return rWindow;
     }
     //cid医院的id
-   public  void showWindow(Activity con, View parentView,String cid){
+   public  void showWindow(Activity con, View parentView,String cid,int position){
        if (Empty.getInstance().notEmptyOrNull(cid)){
            this.cID=cid;
            docId="";//重制docId
            this.ac=con;
            this.parenteV=parentView;
-           RongConnect.getInstance().getTargetDocId(this,cid);
+           this.posi=position;
+           RongConnect.getInstance().getTargetDocId(this,cid,position);
        }
        else {
            toast.getInstance().text(con,"医院信息错误，无法启动咨询程序");
@@ -84,12 +86,12 @@ public class RongWindow implements View.OnClickListener ,IGetRongUserTokenError,
     //请求服务器的token异常
     @Override
     public void onTokenError(String message) {
-        showWindow(ac,parenteV,cID);//获取容云token失败或者链接容云服务器失败时执行一次重新链接
+        showWindow(ac,parenteV,cID,posi);//获取容云token失败或者链接容云服务器失败时执行一次重新链接
     }
 
     @Override
     public void onTokenSucc() {
-        showWindow(ac,parenteV,cID);
+        showWindow(ac,parenteV,cID,posi);
     }
 
     //获取医生信息

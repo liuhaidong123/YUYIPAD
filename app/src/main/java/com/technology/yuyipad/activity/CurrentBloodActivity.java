@@ -2,6 +2,7 @@ package com.technology.yuyipad.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -107,6 +108,7 @@ public class CurrentBloodActivity extends HealthMeasureActivity implements View.
     };
 
     private HealthMeasureType type;//血压类型
+    BluetoothAdapter bluetoothAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,63 +126,7 @@ public class CurrentBloodActivity extends HealthMeasureActivity implements View.
     }
 
     private void initUI() {
-        mDevice_Prompt = findViewById(R.id.device_prompt);
-        type = HealthMeasureType.BTBPTYPE;//测量时的类型，这里是血压的类型
-        mHeightBlood_Num = (TextView) findViewById(R.id.blood_height_num);
-        mLowBlood_Num = (TextView) findViewById(R.id.blood_low_num);
-        initBluetooth(type, new HealthMeasureListener() {
-            @Override
-            public void onHealthNotFindDevice() {
-
-            }
-
-            @Override
-            public void onHealthFindDevice(BluetoothDevice bluetoothDevice, HealthMeasureType healthMeasureType) {
-                Log.e("设备名称：", bluetoothDevice.getName());
-            }
-
-            /**
-             * 监听蓝牙连接
-             */
-            @Override
-            public void onHealthConnected() {
-                mDevice_Prompt.setText("连接成功，等待测量");
-
-            }
-
-            /**
-             * 监听蓝牙断开
-             */
-            @Override
-            public void onHealthDeviceDisconnect() {
-                mDevice_Prompt.setText("设备已断开");
-
-
-            }
-
-            @Override
-            public void onHealthDeviceReceiveData(HealthMeasureType healthMeasureType, HealthMeasureState healthMeasureState, Object o) {
-
-                if(healthMeasureType == HealthMeasureType.BTBPTYPE) {//接收到血压设备
-                    BTBpData bpdata = (BTBpData)o;
-                    if(healthMeasureState == HealthMeasureState.MEASURING) {
-                        //显示压力值
-                        //tv_content.setText("压力:" + bpdata.getPressure() + "");
-                    }else if(healthMeasureState == HealthMeasureState.ERROR) {//异常
-                        //异常的内容
-                        mDevice_Prompt.setText("异常:" + bpdata.getErrtext());
-                        mHeightBlood_Num.setText("0");//收缩压,高压
-                        mLowBlood_Num.setText("0");//舒张压 低压
-                    }else {
-                        //结果
-                        mHeightBlood_Num.setText(bpdata.getHret()+"");//收缩压,高压
-                        mLowBlood_Num.setText(bpdata.getLret()+"");//舒张压 低压
-                        mDevice_Prompt.setText("测量完毕");
-                       // tv_content.setText("收缩压:" + bpdata.getHret() + " 舒张压:" + bpdata.getLret() + " 心率:" + bpdata.getHeart());
-                    }
-                }
-            }
-        });
+        JkezAPIMain.openBluetooth();//打开蓝牙
         mLogin_rl = (RelativeLayout) findViewById(R.id.again_login_rl);
         mLogin_rl.setOnClickListener(this);
         //请求用户列表
@@ -234,6 +180,67 @@ public class CurrentBloodActivity extends HealthMeasureActivity implements View.
         });
 
 
+        mDevice_Prompt = findViewById(R.id.device_prompt);
+        mHeightBlood_Num = (TextView) findViewById(R.id.blood_height_num);
+        mLowBlood_Num = (TextView) findViewById(R.id.blood_low_num);
+        type = HealthMeasureType.BTBPBLETYPE;//测量时的类型，这里是血压的类型
+        try{
+            initBluetooth(type, new HealthMeasureListener() {
+                @Override
+                public void onHealthNotFindDevice() {
+
+                }
+
+                @Override
+                public void onHealthFindDevice(BluetoothDevice bluetoothDevice, HealthMeasureType healthMeasureType) {
+                    Log.e("设备名称：", bluetoothDevice.getName());
+                }
+
+                /**
+                 * 监听蓝牙连接
+                 */
+                @Override
+                public void onHealthConnected() {
+                    mDevice_Prompt.setText("连接成功，等待测量");
+
+                }
+
+                /**
+                 * 监听蓝牙断开
+                 */
+                @Override
+                public void onHealthDeviceDisconnect() {
+                    mDevice_Prompt.setText("设备已断开");
+
+
+                }
+
+                @Override
+                public void onHealthDeviceReceiveData(HealthMeasureType healthMeasureType, HealthMeasureState healthMeasureState, Object o) {
+
+                    if(healthMeasureType == HealthMeasureType.BTBPTYPE) {//接收到血压设备
+                        BTBpData bpdata = (BTBpData)o;
+                        if(healthMeasureState == HealthMeasureState.MEASURING) {
+                            //显示压力值
+                            //tv_content.setText("压力:" + bpdata.getPressure() + "");
+                        }else if(healthMeasureState == HealthMeasureState.ERROR) {//异常
+                            //异常的内容
+                            mDevice_Prompt.setText("异常:" + bpdata.getErrtext());
+                            mHeightBlood_Num.setText("0");//收缩压,高压
+                            mLowBlood_Num.setText("0");//舒张压 低压
+                        }else {
+                            //结果
+                            mHeightBlood_Num.setText(bpdata.getHret()+"");//收缩压,高压
+                            mLowBlood_Num.setText(bpdata.getLret()+"");//舒张压 低压
+                            mDevice_Prompt.setText("测量完毕");
+                            // tv_content.setText("收缩压:" + bpdata.getHret() + " 舒张压:" + bpdata.getLret() + " 心率:" + bpdata.getHeart());
+                        }
+                    }
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         mHandInput_Num = (TextView) findViewById(R.id.blood_input_tv);
         mSave_Btn = (TextView) findViewById(R.id.save_blood_data);
         //手动输入
@@ -331,4 +338,8 @@ public class CurrentBloodActivity extends HealthMeasureActivity implements View.
         super.onDestroy();
 
     }
+
+
+
+
 }

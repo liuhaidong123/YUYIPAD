@@ -18,7 +18,8 @@ public interface Iport {
     //获取融云token的请求personal/rongyuToken.do?personalid=18782931356
     String interface_RongToken="personal/rongyuToken.do?";
     //获取融云医生的信息接口（聊天对象的信息）http://192.168.1.37:8080/yuyi/physician/doctory.do?
-     String interface_DocInfo="physician/doctory.do?";
+     //String interface_DocInfo="physician/doctory.do?";
+     String interface_DocInfo="physician/doctory2.do?";
 
     //获取家庭用户电子病历列表（我的家庭用户,不是我的）//http://localhost:8080/yuyi/medical/homeuserMedicalTime.do?id=1
      String interface_famiUserEleList="medical/homeuserMedicalTime.do?";
